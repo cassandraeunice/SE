@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+
+:root {
+  --cream-color: #FFF5E9;
+  --coffee-color: #230C02;
+  --coffee-opacity: 35, 12, 2;
+  --cream-opacity: 255, 245, 233;
+  --caramel-color: #9C6F44;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Fanwood Text', serif;
+}
+
+body{
+  width: auto;
+  height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url("../images/Cream-Background.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.header-container {
+  margin: 50px;
+  color: var(--coffee-color);
+}
+
+.header-container .main-text{
+  margin: -10px;
+  font-size: 50px;
+}
+
+.header-container .sub-text {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-size: 20px;
+}
+
+form {  
+  display: flex;
+  justify-content: center;
+  width: 580px;
+  height: 380px;
+    color: var(--cream-color);
+    background-color: var(--coffee-color);
+    border-radius: 30px;
+  }
+
+  form .login-header{
+    font-size: 40px;
+    margin: 0;
+  }
+  
+  input[type=email], input[type=password] {
+    width: 380px;
+    height: 50px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 25px;
+    border-radius: 10px;
+    background-color: var(--cream-color);
+    color: var(--coffee-color);
+  }
+
+  label {
+    font-size: 25px;
+  }
+
+  .psw {
+    font-size: 15px;
+  }
+
+  ::placeholder {
+    color: rgba(var(--coffee-opacity), 0.7);
+    background-color: var(--cream-color);
+  }
+  
+  button {
+    background-color: var(--caramel-color);
+    color: var(--cream-color);
+    font-size: 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  .login-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .login-container .login-header {
+    margin-left: -53px;
+    margin-bottom: 20px;
+  }
+
+  .login-container label{
+    align-self: flex-start;
+    margin-bottom: -12px;
+  }
+  
+  span.psw {
+    margin-left: 285px;
+    margin-top: -8px;
+    margin-bottom: 15px;
+  }
+
+  a{
+    text-decoration: none;
+    color: var(--cream-color);
+  }
+  
+  @media screen and (max-width: 600px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+    form {
+      width: 100%;
+    }
+
+  }
