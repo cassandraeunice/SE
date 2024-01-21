@@ -153,7 +153,7 @@
 /* Welcome to cafe siena */
 .welcome-container {
   width: 100%;
-  height: 600px;
+  height: 768px;
   background: url("../images/Home-Cream-Background.png");
   background-position: top;
   background-size: cover;
@@ -263,7 +263,7 @@
 
 .card-menu img {
   width: 109px;
-  height: 100;
+  height: 100px;
   margin: auto;
 }
 
@@ -312,6 +312,7 @@
   color: var(--cream-color);
   border: none;
   font-size: 20px;
+  justify-content: center;
   float: right;
   margin-right: 40px;
   margin-top: 10px;
@@ -336,5 +337,221 @@
     display: flex;
     justify-self: center;
     margin-top: 40px;
+    margin-right: 160px;
+    text-align: center;
   }
+}
+
+/* About */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 768px;
+  background: url("../images/CafeLogo-Background.png");
+  background-position: center;
+  background-size: cover;
+  color: var(--coffee-color);
+}
+
+.about-title {
+  text-align: center;
+  font-size: 70px;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+.about-toolbar {
+  margin-top: -110px;
+  padding-right: 30px;
+  width: 100%;
+  display: flex;
+  font-size: 40px;
+  cursor: pointer;
+  justify-content: flex-end;
+  }
+
+  .about-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    color: var(--coffee-color);
+  }
+
+.about-body {
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+}
+
+.card-img-top {
+  width: 100%;
+  max-width: 500px;
+}
+
+.card-img-top img {
+  width: 473px;
+  height: 449px;
+}
+
+.about-text-section {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.about-card-text {
+  font-size: 26px;
+  align-items: center;
+}
+
+.know-more {
+  width: 174px;
+  height: 50px;
+  background-color: var(--coffee-color);
+  color: var(--cream-color);
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 20px;
+  align-self: flex-end;
+  margin-right: 50px;
+}
+
+/* BREAKPOINTS */
+@media (max-width: 992px) {
+  .about-body {
+    flex-direction: column;
+  }
+
+  .about-container {
+    height: auto;
+  }
+
+  .about-card img {
+    margin-top: 20px;
+    width: 373px;
+    height: 349px;
+  }
+
+  .about-text-section {
+    gap: 0;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .know-more {
+    align-self: center;
+    margin-right: 0px;
+}
+
+.about-toolbar {
+  margin-top: 0;
+  padding-right: 0;
+  width: 100%;
+  display: flex;
+  font-size: 40px;
+  cursor: pointer;
+  justify-content: center;
+  }
+}
+
+/* Footer */
+footer {
+  background: url("../images/Footer-Background.png");
+  background-position: bottom;
+  background-size: cover;
+  color: var(--cream-color);
+}
+/* Footer */
+.footer-container {
+  width: 100%;
+  display: flex;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  margin-top: 25px;
+  width: 33.3%;
+  align-items: center;
+}
+
+.footer-content p {
+  width: 200px;
+  margin: auto;
+  padding: 7px;
+}
+
+.footer-content ul {
+  text-align: center;
+  margin: auto;
+}
+
+.footer-logo {
+  font-size: 25px;
+}
+
+.list li {
+  width: auto;
+  text-align: center;
+  list-style: none;
+  padding: 7px;
+  position: relative;
+  display: inline-block;
+}
+
+.list a:hover {
+  color: var(--cream-color);
+}
+
+.list li::before {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 2px;
+  background: var(--cream-color);
+  transition-duration: .5%;
+}
+
+.list a {
+  text-decoration: none;
+  color: var(--cream-color);
+}
+
+.list li:hover::before {
+  width: 100%;
+}
+
+.social-icons li {
+  display: inline-block;
+  text-align: center;
+}
+
+.social-icons i {
+  color: var(--caramel-color);
+  font-size: 25px;
+}
+
+.social-icons i:hover{
+  color: var(--cream-color);
+}
+
+.bottom-bar {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.bottom-bar p {
+  width: 100%;
+  margin: 0;
+  font-size: 16px;
 }
