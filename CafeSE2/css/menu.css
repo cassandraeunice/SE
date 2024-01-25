@@ -216,6 +216,8 @@
   width: 100%;
   color: var(--coffee-color);
   border-radius: 20px;
+  width: 160px;
+  height: 60px;
 }
 
 .menu-toolbar a:hover {
