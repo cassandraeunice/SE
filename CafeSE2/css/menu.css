@@ -224,6 +224,10 @@
   color: var(--cream-color);
 }
 
+.menu-toolbar .active {
+  background-color: var(--coffee-color);
+  color: var(--cream-color);
+}
 
 .menu-display {
   display: flex;
