@@ -299,9 +299,8 @@
   color: var(--coffee-color);
   margin-right: 15px;
   gap: 10px;
+  cursor: pointer;
 }
-
-
 
 /* BREAKPOINTS */
 @media (max-width: 992px) {
