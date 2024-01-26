@@ -301,6 +301,7 @@
   color: var(--coffee-color);
   margin-right: 15px;
   gap: 10px;
+  cursor: pointer;
 }
 
 .see-more {
@@ -315,7 +316,6 @@
   color: var(--cream-color);
   border: none;
   font-size: 20px;
-  justify-content: center;
   float: right;
   margin-right: 40px;
   margin-top: -20px;
@@ -472,7 +472,7 @@ footer {
   background-size: cover;
   color: var(--cream-color);
 }
-/* Footer */
+
 .footer-container {
   width: 100%;
   display: flex;
