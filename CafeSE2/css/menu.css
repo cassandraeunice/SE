@@ -196,7 +196,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     color: var(--cream-color);
 }
 
@@ -208,12 +207,12 @@
   border: 1px solid var(--coffee-color);
   border-radius: 20px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .menu-toolbar a {
   text-decoration: none;
-  width: 100%;
   color: var(--coffee-color);
   border-radius: 20px;
   width: 160px;
@@ -223,4 +222,81 @@
 .menu-toolbar a:hover {
   background-color: var(--coffee-color);
   color: var(--cream-color);
+}
+
+#add-plus {
+  color: var(--coffee-color);
+  font-size: 45px;
+  cursor: pointer;
+  display: flex;
+  align-self: flex-end;
+  margin-right: 35px;
+}
+
+.card-menu {
+  width: 800px;
+  height: 200px;
+  flex-direction: row;
+  border-radius: 65px;
+  border: none;
+  background-color: var(--caramel-color);
+  color: var(--cream-color);
+  padding: 15px;
+  justify-content: center;
+  margin: 30px;
+}
+
+.card-menu img {
+  width: 175px;
+  height: 170px;
+  
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-section {
+  margin-left: 10px;
+  margin-right: 0px;
+  width: 562px;
+}
+
+.card-title {
+  font-size: 35px;
+}
+
+.card-text {
+  font-size: 25px;
+}
+
+#price {
+  margin-top: -15px;
+  color: var(--coffee-color);
+  font-weight: bold;
+}
+
+.cta-section {
+  display: flex;
+  font-size: 30px;
+  flex-direction: row;
+  align-self: flex-start;
+  color: var(--coffee-color);
+  margin-right: 15px;
+  gap: 10px;
+}
+
+
+.menu-display {
+  display: flex;
+  width: 100%;
+  height: 90%;
+  overflow: scroll;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-display::-webkit-scrollbar {
+  display: none;
 }
