@@ -53,7 +53,6 @@
     <section id="content">
         <nav>
             <i class='bx bx-menu'></i>
-            <a href="#" class="nav-link">Categories</a>
             <form action="#">
                 <div class="form-input">
                     <input type="search" placeholder="Search...">
@@ -61,6 +60,193 @@
                 </div>
             </form>
         </nav>
+
+
+        <main>
+        <div id="menu-content" class="content-section">
+            <div class="head-title">
+                <div class=left>
+                    <h1>Menu Content</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Admin Dashboard</a>
+
+                        </li>
+                        <li><i class="bx bx-chevron-right"></i></li>
+                        <li>
+                            <a href="#" class="active">Menu Content</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="btn-download">
+                    <i class="bx bxs-cloud-download"></i>
+                    <span class="text">Download PDF</span>
+                </a>
+            </div>
+
+            <!---TABLE--->
+            <div class="table-data">
+                    <div class="menu">
+                        <div class="head">
+                            <h3>Menu Items</h3>
+                            <i class="bx bx-filter"></i>
+                            <i class="bx bx-plus"></i>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Item No.</th>
+                                    <th>Menu Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Rating</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="../images/Coffee-icon.png">
+                                        
+                                    </td>
+                                    <td>1</td>
+                                    <td>White Mocha</td>
+                                    <td>Milky Coffee</td>
+                                    <td>75</td>
+                                    <td>4.4</td>
+                                    <td><span class="btn edit">Edit</span></td>
+                                    <td><span class="btn delete">Delete</span></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <img src="../images/Coffee-icon.png">
+                                        
+                                    </td>
+                                    <td>2</td>
+                                    <td>Dark Mocha</td>
+                                    <td>Dark Coffee</td>
+                                    <td>85</td>
+                                    <td>4.1</td>
+                                    <td><span class="btn edit">Edit</span></td>
+                                    <td><span class="btn delete">Delete</span></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <img src="../images/Coffee-icon.png">
+                                        
+                                    </td>
+                                    <td>3</td>
+                                    <td>Caramel Macchiato</td>
+                                    <td>Caramelized Milky Coffee</td>
+                                    <td>105</td>
+                                    <td>4.6</td>
+                                    <td><span class="btn edit">Edit</span></td>
+                                    <td><span class="btn delete">Delete</span></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>  
+        </div>
+
+        <div id="home-content" class="content-section">
+            <div class="head-title">
+                <div class=left>
+                    <h1>Home Content</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Admin Dashboard</a>
+
+                        </li>
+                        <li><i class="bx bx-chevron-right"></i></li>
+                        <li>
+                            <a href="#" class="active">Home Content</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="btn-download">
+                    <i class="bx bxs-cloud-download"></i>
+                    <span class="text">Download PDF</span>
+                </a>
+            </div>
+
+            <!---TABLE--->
+            <div class="table-data">
+                    <div class="menu">
+                        <div class="head">
+                            <h3>Home Items</h3>
+                            <i class="bx bx-filter"></i>
+                            <i class="bx bx-plus"></i>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Content No.</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Date Posted</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="../images/Coffee-icon.png">
+                                        
+                                    </td>
+                                    <td>1</td>
+                                    <td>Holiday Season</td>
+                                    <td>Discounts</td>
+                                    <td>1/28/24</td>
+                                    <td><span class="btn edit">Edit</span></td>
+                                    <td><span class="btn delete">Delete</span></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <img src="../images/Coffee-icon.png">
+                                        
+                                    </td>
+                                    <td>2</td>
+                                    <td>New Year</td>
+                                    <td>New Menu Items</td>
+                                    <td>1/29/24</td>
+                                    <td><span class="btn edit">Edit</span></td>
+                                    <td><span class="btn delete">Delete</span></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <img src="../images/Coffee-icon.png">
+                                        
+                                    </td>
+                                    <td>3</td>
+                                    <td>Valentines!!!</td>
+                                    <td>Great Deals</td>
+                                    <td>2/14/24</td>
+                                    <td><span class="btn edit">Edit</span></td>
+                                    <td><span class="btn delete">Delete</span></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>  
+        </div>
+        </main>
 
     </section>
 
