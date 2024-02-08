@@ -371,8 +371,11 @@
   width: 100%;
   display: flex;
   font-size: 40px;
-  cursor: pointer;
   justify-content: flex-end;
+  }
+
+  .about-toolbar i {
+    cursor: pointer;
   }
 
   .about-card {
@@ -432,36 +435,21 @@
     flex-direction: column;
   }
 
-  .about-container {
+  .visit-container {
     height: auto;
     background-size: contain;
   }
 
-  .about-card img {
+  .visit-card img {
     margin-top: 20px;
     width: 373px;
     height: 349px;
   }
 
-  .about-text-section {
+  .visit-text-section {
     gap: 0;
     margin-top: 0;
     text-align: center;
-  }
-
-  .know-more {
-    align-self: center;
-    margin-right: 0px;
-}
-
-.about-toolbar {
-  margin-top: 0;
-  padding-right: 0;
-  width: 100%;
-  display: flex;
-  font-size: 40px;
-  cursor: pointer;
-  justify-content: center;
   }
 }
 
