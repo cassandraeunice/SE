@@ -11,20 +11,20 @@ if ($conn->connect_error) {
 }
 
 // Check if the file was uploaded successfully
-if (isset($_FILES["itemImage"]) && $_FILES["itemImage"]["error"] == UPLOAD_ERR_OK) {
-    $productName = $_POST['ProductName'];
-    $description = $_POST['Description'];
-    $price = $_POST['Price'];
+if (isset($_FILES["product_img"]) && $_FILES["product_img"]["error"] == UPLOAD_ERR_OK) {
+    $product_name = $_POST['product_name'];
+    $product_description = $_POST['product_description'];
+    $product_price = $_POST['product_price'];
 
     // Process the file upload
-    $image = $_FILES["itemImage"]["name"];
+    $image = $_FILES["product_img"]["name"];
     $target_dir = "../images/";
 
     // Move the uploaded file to the desired directory
     $target_file = $target_dir . basename($image);
-    if (move_uploaded_file($_FILES["itemImage"]["tmp_name"], $target_file)) {
-        $sql = $conn->prepare("INSERT INTO menu (ProductName, Img, Description, Price) VALUES (?, ?, ?, ?)");
-        $sql->bind_param("sssi", $productName, $image, $description, $price);
+    if (move_uploaded_file($_FILES["product_img"]["tmp_name"], $target_file)) {
+        $sql = $conn->prepare("INSERT INTO menu (product_name, product_img, product_description, product_price) VALUES (?, ?, ?, ?)");
+        $sql->bind_param("sssi", $product_name, $image, $product_description, $product_price);
 
         if ($sql->execute() === TRUE) {
             echo json_encode(['success' => true]);

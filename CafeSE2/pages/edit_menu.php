@@ -11,24 +11,24 @@ if ($conn->connect_error) {
 }
 
 // Get the item number from the URL
-$itemNo = $_GET['itemNo'];
+$product_ID = $_GET['product_ID'];
 
 // Check if the form data is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
-    $productName = $_POST['ProductName'];
-    $description = $_POST['Description'];
-    $price = $_POST['Price'];
+    $product_name = $_POST['product_name'];
+    $product_description = $_POST['product_description'];
+    $product_price = $_POST['product_price'];
 
     // Validate and sanitize user inputs
-    $productName = htmlspecialchars($productName);
-    $description = htmlspecialchars($description);
-    $price = floatval($price); // Assuming Price is a float, adjust if it's an integer
+    $product_name = htmlspecialchars($product_name);
+    $product_description = htmlspecialchars($product_description);
+    $product_price = floatval($product_price); // Assuming Price is a float, adjust if it's an integer
 
     // Check if an image is uploaded
-    if (!empty($_FILES['itemImage']['name'])) {
+    if (!empty($_FILES['product_img']['name'])) {
         $targetDir = "../images/";  // Change this to your desired upload directory
-        $targetFile = $targetDir . basename($_FILES["itemImage"]["name"]);
+        $targetFile = $targetDir . basename($_FILES["product_img"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
@@ -38,11 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Upload the new image
-        if (move_uploaded_file($_FILES["itemImage"]["tmp_name"], $targetFile)) {
+        if (move_uploaded_file($_FILES["product_img"]["tmp_name"], $targetFile)) {
             // Update the database with the new image and other details
-            $updateQuery = "UPDATE menu SET ProductName=?, Description=?, Price=?, Img=? WHERE ItemNo=?";
+            $updateQuery = "UPDATE menu SET product_name=?, product_description=?, product_price=?, product_img=? WHERE product_ID=?";
             $updateStmt = $conn->prepare($updateQuery);
-            $updateStmt->bind_param('ssdsi', $productName, $description, $price, $targetFile, $itemNo);
+            $updateStmt->bind_param('ssdsi', $product_name, $product_description, $product_price, $targetFile, $product_ID);
 
             if ($updateStmt->execute()) {
                 // Return success message
@@ -59,9 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         // Update the database without changing the image
-        $updateQuery = "UPDATE menu SET ProductName=?, Description=?, Price=? WHERE ItemNo=?";
+        $updateQuery = "UPDATE menu SET product_name=?, product_description=?, product_price=? WHERE product_ID=?";
         $updateStmt = $conn->prepare($updateQuery);
-        $updateStmt->bind_param('ssdi', $productName, $description, $price, $itemNo);
+        $updateStmt->bind_param('ssdi', $product_name, $product_description, $product_price, $product_ID);
 
         if ($updateStmt->execute()) {
             // Return success message
@@ -75,9 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // Fetch item details from the database
-    $selectQuery = "SELECT * FROM menu WHERE ItemNo = ?";
+    $selectQuery = "SELECT * FROM menu WHERE product_ID = ?";
     $selectStmt = $conn->prepare($selectQuery);
-    $selectStmt->bind_param('i', $itemNo);
+    $selectStmt->bind_param('i', $product_ID);
 
     if ($selectStmt->execute()) {
         // Get result and fetch associative array

@@ -11,13 +11,13 @@ if ($conn->connect_error) {
 }
 
 // Get the item number from the POST request
-$itemNo = isset($_POST['itemNo']) ? (int)$_POST['itemNo'] : 0;
+$product_ID = isset($_POST['product_ID']) ? (int)$_POST['product_ID'] : 0;
 
 // Sanitize the item number to prevent SQL injection
-$itemNo = $conn->real_escape_string($itemNo);
+$product_ID = $conn->real_escape_string($product_ID);
 
 // Perform the deletion
-$sql = "DELETE FROM menu WHERE ItemNo = $itemNo";
+$sql = "DELETE FROM menu WHERE product_ID = $product_ID";
 
 if ($conn->query($sql) === TRUE) {
     echo json_encode(['success' => true]);

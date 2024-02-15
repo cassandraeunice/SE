@@ -148,17 +148,17 @@
 
 function addItem() {
     // Retrieve form data
-    var productName = document.getElementById('ProductName').value;
-    var image = document.getElementById('itemImage').files[0]; // Get the selected image file
-    var description = document.getElementById('Description').value;
-    var price = document.getElementById('Price').value;
+    var product_name = document.getElementById('ProductName').value;
+    var product_img = document.getElementById('itemImage').files[0]; // Get the selected image file
+    var product_description = document.getElementById('Description').value;
+    var product_price = document.getElementById('Price').value;
 
     // Create a new FormData object to send data in the POST request
     var formData = new FormData();
-    formData.append('ProductName', productName);
-    formData.append('itemImage', image); // Append the image file to the FormData
-    formData.append('Description', description); // Corrected line
-    formData.append('Price', price);
+    formData.append('product_name', product_name);
+    formData.append('product_img', product_img); // Append the image file to the FormData
+    formData.append('product_description', product_description); // Corrected line
+    formData.append('product_price', product_price);
 
     // Make an AJAX request
     var xhr = new XMLHttpRequest();
@@ -207,13 +207,13 @@ function displayRecentlyAdded() {
                 for (var i = 0; i < data.length; i++) {
                     var newRow = document.createElement('tr');
                     newRow.innerHTML = `
-                        <td>${data[i].ItemNo}</td>
-                        <td><img src="${data[i].Img}" alt="Image" style="width: 50px; height: 50px;"></td>
-                        <td>${data[i].ProductName}</td>
-                        <td>${data[i].Description}</td>
-                        <td>${data[i].Price}</td>
-                        <td><span class="btn edit" onclick="openEditPopup(${data[i].ItemNo})">Edit</span></td>
-                        <td><span class="btn delete" onclick="deleteItem(${data[i].ItemNo})">Delete</span></td>
+                        <td>${data[i].product_ID}</td>
+                        <td><img src="${data[i].product_img}" alt="Image" style="width: 50px; height: 50px;"></td>
+                        <td>${data[i].product_name}</td>
+                        <td>${data[i].product_description}</td>
+                        <td>${data[i].product_price}</td>
+                        <td><span class="btn edit" onclick="openEditPopup(${data[i].product_ID})">Edit</span></td>
+                        <td><span class="btn delete" onclick="deleteItem(${data[i].product_ID})">Delete</span></td>
                     `;
 
                     // Add the new row to the tbody
@@ -391,22 +391,22 @@ document.addEventListener('DOMContentLoaded', function () {
     editValueIcons.forEach(function (editValueIcon) {
         editValueIcon.addEventListener("click", function () {
             // Get the itemNo associated with the clicked edit button
-            var itemNo = getItemNoFromEditButton(editValueIcon);
+            var product_ID = getProduct_IDFromEditButton(editValueIcon);
 
             // Call the openEditPopup function with the itemNo
-            openEditPopup(itemNo);
+            openEditPopup(product_ID);
         });
     });
 });
 
-function getItemNoFromEditButton(editValueIcon) {
+function getProduct_IDFromEditButton(editValueIcon) {
     // Extract and return the itemNo from the DOM element or any other method based on your structure
     // For example, if your itemNo is stored as a data attribute, you can use:
     // return editValueIcon.getAttribute('data-itemNo');
     // Adjust this based on how your itemNo is associated with the "Edit" button.
 }
 
-function openEditPopup(itemNo) {
+function openEditPopup(product_ID) {
     // Create the card container
     var cardContainer = document.createElement("div");
     cardContainer.classList.add("popup-card-container");
@@ -417,7 +417,7 @@ function openEditPopup(itemNo) {
 
     // Fetch item details from the server using AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_all_items.php?itemNo=' + itemNo, true);
+    xhr.open('GET', 'get_all_items.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
     if (xhr.status === 200) {
         var itemDetails = JSON.parse(xhr.responseText);
@@ -428,9 +428,9 @@ function openEditPopup(itemNo) {
         var priceEdit = document.querySelector('#PriceEdit');
 
         if (productNameEdit && descriptionEdit && priceEdit) {
-            productNameEdit.value = itemDetails.ProductName || '';
-            descriptionEdit.value = itemDetails.Description || '';
-            priceEdit.value = itemDetails.Price || '';
+            productNameEdit.value = itemDetails.product_name || '';
+            descriptionEdit.value = itemDetails.product_description || '';
+            priceEdit.value = itemDetails.product_price || '';
         } else {
             console.error('One or more form elements not found.');
         }
@@ -476,7 +476,7 @@ function openEditPopup(itemNo) {
                         
                         <div class="btn-container">
                             <button class="btn-close" type="button" onclick="closePopup()">Close</button>
-                            <button class="btn-edit" type="button" onclick="updateItem(${itemNo})">Edit Item</button>
+                            <button class="btn-edit" type="button" onclick="updateItem(${product_ID})">Edit Item</button>
                         </div>
                     </fieldset>
                 </form>
@@ -553,19 +553,19 @@ function openEditPopup(itemNo) {
 }
 
 
-function editItem(itemNo) {
+function editItem(product_ID) {
     // Fetch item details from the server using AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_all_items.php?itemNo=' + itemNo, true);
+    xhr.open('GET', 'get_all_items.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
             var itemDetails = JSON.parse(xhr.responseText);
 
             // Update form fields with the fetched item details
             // Inside editItem function
-            document.querySelector('#ProductNameEdit').value = itemDetails.ProductName;
-document.querySelector('#DescriptionEdit').value = itemDetails.Description;
-document.querySelector('#PriceEdit').value = itemDetails.Price;
+            document.querySelector('#ProductNameEdit').value = itemDetails.product_name;
+document.querySelector('#DescriptionEdit').value = itemDetails.product_description;
+document.querySelector('#PriceEdit').value = itemDetails.product_price;
 
 
 
@@ -596,23 +596,23 @@ document.querySelector('#PriceEdit').value = itemDetails.Price;
 }
 
 
-function updateItem(itemNo) {
+function updateItem(product_ID) {
     // Retrieve form data
-    var productName = document.getElementById('ProductNameEdit').value;
-    var image = document.getElementById('itemImageEdit').files[0]; // Get the selected image file
-    var description = document.getElementById('DescriptionEdit').value;
-    var price = document.getElementById('PriceEdit').value;
+    var product_name = document.getElementById('ProductNameEdit').value;
+    var product_img = document.getElementById('itemImageEdit').files[0]; // Get the selected image file
+    var product_description = document.getElementById('DescriptionEdit').value;
+    var product_price = document.getElementById('PriceEdit').value;
 
     // Create a new FormData object to send data in the POST request
     var formData = new FormData();
-    formData.append('ProductName', productName);
-    formData.append('itemImage', image);
-    formData.append('Description', description);
-    formData.append('Price', price);
+    formData.append('product_name', product_name);
+    formData.append('product_img', product_img);
+    formData.append('product_description', product_description);
+    formData.append('product_price', product_price);
 
     // Make an AJAX request to update the item
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'edit_menu.php?itemNo=' + itemNo, true);
+    xhr.open('POST', 'edit_menu.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
             console.log(xhr.responseText);
@@ -637,7 +637,7 @@ function updateItem(itemNo) {
     xhr.send(formData);
 }
 
-function deleteItem(itemNo) {
+function deleteItem(product_ID) {
     // Confirm with the user before proceeding with the deletion
     var confirmDelete = confirm("Are you sure you want to delete this item?");
     
@@ -671,7 +671,7 @@ function deleteItem(itemNo) {
         };
 
         // Send the request with the item number as data
-        xhr.send('itemNo=' + itemNo);
+        xhr.send('product_ID=' + product_ID);
     }
 }
 
