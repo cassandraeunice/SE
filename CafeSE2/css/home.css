@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Argent');
+
 
 :root {
-  --cream-color: #FFF5E9;
-  --coffee-color: #230C02;
+  --cream-color: #FFF3E2;
+  --coffee-color: #8F5E36;
   --coffee-opacity: 35, 12, 2;
   --cream-opacity: 255, 245, 233;
   --caramel-color: #9C6F44;
@@ -36,7 +38,8 @@
 }
 
 .navbar-links{
-  margin-left: -100px;
+  margin-right: 488px;
+ 
 }
 
 .navbar-links a{
@@ -166,15 +169,16 @@
 .welcome-message {
   font-size: 85px;
   text-align: center;
+  margin-top: 200px;
 }
 
-.welcome-toolbar {
+/* .welcome-toolbar {
   font-size: 40px;
   cursor: pointer;
   display: flex;
   align-self: flex-end;
   margin-right: 25px;
-}
+} */
 
 .view-menu {
   cursor: pointer;

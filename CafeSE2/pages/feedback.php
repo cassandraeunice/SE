@@ -78,25 +78,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback Page</title>
+    <title>Cafe Siena</title>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/feedback-form.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h2 class="mt-4">Feedback Form</h2>
+        <h2 class="welcome-text">Share Your Experience</h2>
+        <p class="message">We value your feedback! Help us enhance your cafe experience by sharing your thoughts on our offerings.</p>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="form-group">
-                <label for="customer_first_name">First Name:</label>
-                <input type="text" class="form-control" id="customer_first_name" name="customer_first_name">
+                <label id="label" for="customer_first_name">First Name:</label>
+                <input type="text" class="form-control" id="customer_first_name" name="customer_first_name" placeholder="Enter your first name">
             </div>
             <div class="form-group">
-                <label for="customer_last_name">Last Name:</label>
-                <input type="text" class="form-control" id="customer_last_name" name="customer_last_name">
+                <label id="label" for="customer_last_name">Last Name:</label>
+                <input type="text" class="form-control" id="customer_last_name" name="customer_last_name" placeholder="Enter your last name">
             </div>
             <div class="form-group">
-                <label for="customer_email">Email:</label>
-                <input type="email" class="form-control" id="customer_email" name="customer_email" required>
+                <label id="label" for="customer_email">Email:</label>
+                <input type="email" class="form-control" id="customer_email" name="customer_email" required placeholder="Enter your email">
             </div>
             
             <?php foreach ($questions as $section => $section_questions): ?>
@@ -141,12 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endforeach; ?>
             
             <div class="form-group">
-                <label for="feedback_experience">Comments and Suggestions:</label>
+                <label id="label" for="feedback_experience">Comments and Suggestions:</label>
                 <textarea class="form-control" id="feedback_experience" name="feedback_experience"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            <button class="btn-submit" type="submit">Submit</button>
+        </form><br>
     </div>
 </body>
 </html>

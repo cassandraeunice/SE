@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
 
 :root {
-  --cream-color: #FFF5E9;
-  --coffee-color: #230C02;
+  --cream-color: #FFF3E2;
+  --coffee-color: #8F5E36;
   --coffee-opacity: 35, 12, 2;
   --cream-opacity: 255, 245, 233;
   --caramel-color: #9C6F44;
@@ -36,7 +36,7 @@
 }
 
 .navbar-links{
-  margin-left: -100px;
+  margin-right: 488px;
 }
 
 .navbar-links a{
@@ -152,7 +152,7 @@
 /* Menu-Top */
 .menu-top-container {
     width: 100%;
-    height: 400px;
+    height: 350px;
     background: url("../images/Menu-Top-Background.png");
     background-position: center;
     background-size: cover;
@@ -189,21 +189,22 @@
 /* Menu Display */
 .display-container {
   width: 100%;
-    height: 1750px;
-    background: url("../images/Menu-Background.png");
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--cream-color);
+  height: 1750px;
+  background: url("../images/Menu-Background.png");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--cream-color);
 }
 
 .menu-toolbar {
   width: 450px;
-  height: 55px;
-  font-size: 35px;
+  height: 40px;
+  font-size: 25px;
   margin-top: 25px;
+  padding-bottom: 25px;
   border: 1px solid var(--coffee-color);
   border-radius: 20px;
   display: flex;
@@ -216,7 +217,7 @@
   color: var(--coffee-color);
   border-radius: 20px;
   width: 160px;
-  height: 55px;
+  height: 40px;
 }
 
 .menu-toolbar a:hover {
@@ -265,8 +266,8 @@
 }
 
 .card-menu img {
-  width: 175px;
-  height: 170px;
+  width: 140px;
+  height: 135px;
   
 }
 
@@ -282,11 +283,11 @@
 }
 
 .card-title {
-  font-size: 35px;
+  font-size: 30px;
 }
 
 .card-text {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #price {

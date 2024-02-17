@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Argent');
+
+:root {
+    --cream-color: #FFF3E2;
+    --coffee-color: #8F5E36;
+    --coffee-opacity: 35, 12, 2;
+    --cream-opacity: 255, 245, 233;
+    --caramel-color: #9C6F44;
+    --dark-color: #271300;
+}
+
+* {
+    background-color: var(--cream-color);
+}
+
+.container {
+    width: 100%;
+}
+
+.welcome-text {
+    margin-top: 25px;
+    font-family: 'Fanwood Text', serif;
+    font-weight: bold;
+    font-size: 35px;
+    text-align: center;
+    color: var(--dark-color);
+}
+
+.message {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    text-align: justify;
+    color: var(--coffee-color);
+}
+
+#label {
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.btn-submit {
+    height: 50px;
+    width: 400px;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: var(--cream-color);
+    background-color: var(--coffee-color);
+    margin-left: 3px;
+}
