@@ -19,30 +19,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_name = $_POST['product_name'];
     $product_description = $_POST['product_description'];
     $product_price = $_POST['product_price'];
+    $product_category = $_POST['product_category']; // Assuming the category dropdown has the name 'product_category'
+    $product_subcategory = isset($_POST['product_subcategory']) ? $_POST['product_subcategory'] : '';
 
     // Validate and sanitize user inputs
-    $product_name = htmlspecialchars($product_name);
-    $product_description = htmlspecialchars($product_description);
-    $product_price = floatval($product_price); // Assuming Price is a float, adjust if it's an integer
+    $product_name = filter_var($product_name, FILTER_SANITIZE_STRING);
+    $product_description = filter_var($product_description, FILTER_SANITIZE_STRING);
+    $product_price = filter_var($product_price, FILTER_VALIDATE_FLOAT); // Assuming Price is a float, adjust if it's an integer
+    $product_category = filter_var($product_category, FILTER_SANITIZE_STRING);
+    $product_subcategory = filter_var($product_subcategory, FILTER_SANITIZE_STRING);
+
+    if ($product_price === false) {
+        // Handle invalid price input
+        echo json_encode(['error' => 'Invalid price']);
+        exit();
+    }
+
+    // If subcategory is not empty, concatenate it with the category
+    if (!empty($product_subcategory)) {
+        $product_category .= ', ' . $product_subcategory;
+    }
 
     // Check if an image is uploaded
     if (!empty($_FILES['product_img']['name'])) {
         $targetDir = "../images/";  // Change this to your desired upload directory
-        $targetFile = $targetDir . basename($_FILES["product_img"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-
-        // Check if the file already exists and overwrite it
-        if (file_exists($targetFile)) {
-            unlink($targetFile);
-        }
+        $imageFileType = strtolower(pathinfo($_FILES["product_img"]["name"], PATHINFO_EXTENSION));
+        $targetFile = $targetDir . uniqid() . '.' . $imageFileType;
 
         // Upload the new image
         if (move_uploaded_file($_FILES["product_img"]["tmp_name"], $targetFile)) {
             // Update the database with the new image and other details
-            $updateQuery = "UPDATE menu SET product_name=?, product_description=?, product_price=?, product_img=? WHERE product_ID=?";
+            $updateQuery = "UPDATE menu SET product_name=?, product_description=?, product_price=?, product_img=?, product_category=? WHERE product_ID=?";
             $updateStmt = $conn->prepare($updateQuery);
-            $updateStmt->bind_param('ssdsi', $product_name, $product_description, $product_price, $targetFile, $product_ID);
+            $updateStmt->bind_param('ssdssi', $product_name, $product_description, $product_price, $targetFile, $product_category, $product_ID);
 
             if ($updateStmt->execute()) {
                 // Return success message
@@ -59,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         // Update the database without changing the image
-        $updateQuery = "UPDATE menu SET product_name=?, product_description=?, product_price=? WHERE product_ID=?";
+        $updateQuery = "UPDATE menu SET product_name=?, product_description=?, product_price=?, product_category=? WHERE product_ID=?";
         $updateStmt = $conn->prepare($updateQuery);
-        $updateStmt->bind_param('ssdi', $product_name, $product_description, $product_price, $product_ID);
+        $updateStmt->bind_param('ssdsi', $product_name, $product_description, $product_price, $product_category, $product_ID);
 
         if ($updateStmt->execute()) {
             // Return success message

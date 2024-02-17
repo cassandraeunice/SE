@@ -18,14 +18,14 @@ $product_ID = $conn->real_escape_string($product_ID);
 
 // Fetch details of the specified item or all items from the database
 $sql = ($product_ID > 0)
-    ? "SELECT product_ID, product_img, product_name, product_description, product_price FROM menu WHERE product_ID = $product_ID"
-    : "SELECT product_ID, product_img, product_name, product_description, product_price FROM menu";
+    ? "SELECT product_ID, product_img, product_name, product_description, product_price, product_category FROM menu WHERE product_ID = $product_ID"
+    : "SELECT product_ID, product_img, product_name, product_description, product_price, product_category FROM menu";
 
 $result = $conn->query($sql);
 
 if (!$result) {
     // Handle query error
-    echo "Error executing query: " . $conn->error;
+    echo json_encode(['error' => 'Error executing query: ' . $conn->error]);
 } elseif ($result->num_rows > 0) {
     if ($product_ID > 0) {
         // Fetch data as associative array for a specific item
@@ -59,7 +59,7 @@ if (!$result) {
         echo json_encode($itemsArray);
     }
 } else {
-    echo "Item(s) not found";
+    echo json_encode(['error' => 'Item(s) not found']);
 }
 
 $conn->close();

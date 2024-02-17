@@ -102,6 +102,7 @@
                                     <th>Product Name</th>
                                     <th>Description</th>
                                     <th>Price</th>
+                                    <th>Category</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
 
@@ -145,6 +146,165 @@
     <script src="../Script/dashboard.js"></script>
     
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    // Fetch and display recently added items when the document is fully loaded
+    displayRecentlyAdded();
+});
+
+
+function displayRecentlyAdded() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'get_all_items.php', true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+
+            if (data && data.length > 0) {
+                // Clear existing rows in the table
+                var tbody = document.getElementById('tableBody');
+                tbody.innerHTML = '';
+
+                // Iterate through all rows and add them to the table
+                for (var i = 0; i < data.length; i++) {
+                    var newRow = document.createElement('tr');
+                    newRow.innerHTML = `
+                        <td>${data[i].product_ID}</td>
+                        <td><img src="${data[i].product_img}" alt="Image" style="width: 50px; height: 50px;"></td>
+                        <td>${data[i].product_name}</td>
+                        <td>${data[i].product_description}</td>
+                        <td>${data[i].product_price}</td>
+                        <td>${data[i].product_category}</td> <!-- Display product category -->
+                        <td><span class="btn edit" onclick="openEditPopup(${data[i].product_ID})">Edit</span></td>
+                        <td><span class="btn delete" onclick="deleteItem(${data[i].product_ID})">Delete</span></td>
+                    `;
+
+                    // Add the new row to the tbody
+                    tbody.appendChild(newRow);
+                }
+            }
+        } else {
+            console.error('Error fetching recently added data:', xhr.statusText);
+        }
+    };
+    xhr.onerror = function () {
+        console.error('Network error');
+    };
+
+    // Send the request to get all items
+    xhr.send();
+}
+
+function handleCategoryChange() {
+    var categorySelect = document.getElementById('ProductCategory');
+    var subcategorySelect = document.getElementById('ProductSubcategory');
+    var subcategoryContainer = document.getElementById('subcategoryContainer');
+    var ProductSubcategoryLabel = document.getElementById('ProductSubcategoryLabel');
+
+        if (categorySelect.value === 'All Day Breakfast' || categorySelect.value === 'Coffee & Drinks') {
+            subcategoryContainer.style.display = 'block';
+            ProductSubcategoryLabel.style.display = 'block';
+
+            // Clear existing options
+            subcategorySelect.innerHTML = '';
+
+            if (categorySelect.value === 'All Day Breakfast') {
+                var breakfastOptions = [
+                    'Rice Meal',
+                    'Waffles',
+                ];
+
+                breakfastOptions.forEach(function (optionB) {
+                    var optionBElement = document.createElement('option');
+                    optionBElement.value = optionB;
+                    optionBElement.textContent = optionB;
+                    subcategorySelect.appendChild(optionBElement);
+                });
+            } else if (categorySelect.value === 'Coffee & Drinks') {
+                var drinkOptions = [
+                    'Refreshers',
+                    'Fruit Shakes',
+                    'Tea',
+                    'Coffee',
+                    'Non-Coffee Based',
+                    'Iced Blended (Coffee Based)',
+                    'Iced Blended (Non-Coffee Based)',
+                    'Add Ons'
+                ];
+
+                drinkOptions.forEach(function (option) {
+                    var optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    subcategorySelect.appendChild(optionElement);
+                });
+            }
+        } else {
+            // If not, hide the subcategory selector and clear options
+            subcategoryContainer.style.display = 'none';
+            ProductSubcategoryLabel.style.display = 'none';
+            subcategorySelect.innerHTML = '';
+        }
+
+
+}
+
+function handleCategoryChangeEdit() {
+    var categorySelect = document.getElementById('ProductCategoryEdit');
+    var subcategorySelect = document.getElementById('ProductSubcategoryEdit');
+    var subcategoryContainer = document.getElementById('subcategoryContainerEdit');
+    var ProductSubcategoryLabel = document.getElementById('ProductSubcategoryLabelEdit');
+
+    if (categorySelect && subcategorySelect && subcategoryContainer && ProductSubcategoryLabel) {
+        if (categorySelect.value === 'All Day Breakfast' || categorySelect.value === 'Coffee & Drinks') {
+            subcategoryContainer.style.display = 'block';
+            ProductSubcategoryLabel.style.display = 'block';
+
+            // Clear existing options
+            subcategorySelect.innerHTML = '';
+
+            if (categorySelect.value === 'All Day Breakfast') {
+                var breakfastOptions = [
+                    'Rice Meal',
+                    'Waffles',
+                ];
+
+                breakfastOptions.forEach(function (optionB) {
+                    var optionBElement = document.createElement('option');
+                    optionBElement.value = optionB;
+                    optionBElement.textContent = optionB;
+                    subcategorySelect.appendChild(optionBElement);
+                });
+            } else if (categorySelect.value === 'Coffee & Drinks') {
+                var drinkOptions = [
+                    'Refreshers',
+                    'Fruit Shakes',
+                    'Tea',
+                    'Coffee',
+                    'Non-Coffee Based',
+                    'Iced Blended (Coffee Based)',
+                    'Iced Blended (Non-Coffee Based)',
+                    'Add Ons'
+                ];
+
+                drinkOptions.forEach(function (option) {
+                    var optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    subcategorySelect.appendChild(optionElement);
+                });
+            }
+        } else {
+            // If not, hide the subcategory selector and clear options
+            subcategoryContainer.style.display = 'none';
+            ProductSubcategoryLabel.style.display = 'none';
+            subcategorySelect.innerHTML = '';
+        }
+    } else {
+        console.error('One or more form elements not found in handleCategoryChange');
+    }
+}
+
+
 
 function addItem() {
     // Retrieve form data
@@ -152,13 +312,24 @@ function addItem() {
     var product_img = document.getElementById('itemImage').files[0]; // Get the selected image file
     var product_description = document.getElementById('Description').value;
     var product_price = document.getElementById('Price').value;
+    var product_category = document.getElementById('ProductCategory').value; // Assuming the category dropdown has the id 'ProductCategory'
+    var product_subcategory = document.getElementById('ProductSubcategory').value; // Assuming the subcategory dropdown has the id 'ProductSubcategory'
 
     // Create a new FormData object to send data in the POST request
     var formData = new FormData();
     formData.append('product_name', product_name);
     formData.append('product_img', product_img); // Append the image file to the FormData
-    formData.append('product_description', product_description); // Corrected line
+    formData.append('product_description', product_description);
     formData.append('product_price', product_price);
+    formData.append('product_category', product_category);
+
+    // If a subcategory is selected, append it to the FormData
+    if (product_subcategory) {
+        formData.append('product_subcategory', product_subcategory);
+    }
+
+    console.log('Category:', product_category);
+console.log('Subcategory:', product_subcategory);
 
     // Make an AJAX request
     var xhr = new XMLHttpRequest();
@@ -186,51 +357,9 @@ function addItem() {
     // Send the request with form data
     xhr.send(formData);
 }
-document.addEventListener('DOMContentLoaded', function () {
-    // Fetch and display recently added items when the document is fully loaded
-    displayRecentlyAdded();
-});
 
-function displayRecentlyAdded() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_all_items.php', true);
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
 
-            if (data && data.length > 0) {
-                // Clear existing rows in the table
-                var tbody = document.getElementById('tableBody');
-                tbody.innerHTML = '';
 
-                // Iterate through all rows and add them to the table
-                for (var i = 0; i < data.length; i++) {
-                    var newRow = document.createElement('tr');
-                    newRow.innerHTML = `
-                        <td>${data[i].product_ID}</td>
-                        <td><img src="${data[i].product_img}" alt="Image" style="width: 50px; height: 50px;"></td>
-                        <td>${data[i].product_name}</td>
-                        <td>${data[i].product_description}</td>
-                        <td>${data[i].product_price}</td>
-                        <td><span class="btn edit" onclick="openEditPopup(${data[i].product_ID})">Edit</span></td>
-                        <td><span class="btn delete" onclick="deleteItem(${data[i].product_ID})">Delete</span></td>
-                    `;
-
-                    // Add the new row to the tbody
-                    tbody.appendChild(newRow);
-                }
-            }
-        } else {
-            console.error('Error fetching recently added data:', xhr.statusText);
-        }
-    };
-    xhr.onerror = function () {
-        console.error('Network error');
-    };
-
-    // Send the request to get all items
-    xhr.send();
-}
 
 
 
@@ -257,6 +386,9 @@ document.addEventListener('DOMContentLoaded', function () {
         addValueIcons.forEach(function (addValueIcon) {
             addValueIcon.addEventListener("click", function () {
                 // Create the card container
+
+         
+
                 var cardContainer = document.createElement("div");
                 cardContainer.classList.add("popup-card-container");
 
@@ -297,6 +429,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     <br>
                     
+                    <label for="ProductCategory">Category:</label>
+                        <div>
+                            <select id="ProductCategory" name="ProductCategory" class="form-control" onchange="handleCategoryChange()">
+                                <option value="">----</option>
+                                <option value="Best Sellers & Signature Dishes">Best Sellers & Signature Dishes</option>
+                                <option value="All Day Breakfast">All Day Breakfast</option>
+                                <option value="Appetizers & Starters">Appetizers & Starters</option>
+                                <option value="Soup">Soup</option>
+                                <option value="Salad">Salad</option>
+                                <option value="Pasta">Pasta</option>
+                                <option value="Burgers & Sandwiches">Burgers & Sandwiches</option>
+                                <option value="Pizzas">Pizzas</option>
+                                <option value="Beef">Beef</option>
+                                <option value="Seafood">Seafood</option>
+                                <option value="Chicken">Chicken</option>
+                                <option value="Pork">Pork</option>
+                                <option value="Vegetables">Vegetables</option>
+                                <option value="Rice Bowlers">Rice Bowlers</option>
+                                <option value="Desserts & Pastries">Desserts & Pastries</option>
+                                <option value="Coffee & Drinks">Coffee & Drinks</option>
+                            </select>
+                        </div>
+                        <br>
+
+                        <label id="ProductSubcategoryLabel" for="ProductSubcategory">Subcategory:</label>
+                        <div id="subcategoryContainer">
+                            <select id="ProductSubcategory" name="ProductSubcategory" class="form-control">
+                                <option value="">----</option>
+                            </select>
+                        </div>
+                        <br>
+
+
                     <div class="btn-container">
                     <button class="btn-close" type="button" onclick="closePopup()">Close</button>
                     <button class="btn-add" type="button" onclick="addItem()">Add Item</button>
@@ -374,6 +539,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 cardContainer.appendChild(cardContent);
                 document.body.appendChild(cardContainer);
                 cardContainer.style.zIndex = "9999";
+
+                var subcategoryContainer = document.getElementById('subcategoryContainer');
+                var ProductSubcategoryLabel = document.getElementById('ProductSubcategoryLabel');
+                
+                subcategoryContainer.style.display = 'none';
+                ProductSubcategoryLabel.style.display ='none';
+
             });
         });
 
@@ -426,11 +598,19 @@ function openEditPopup(product_ID) {
         var productNameEdit = document.querySelector('#ProductNameEdit');
         var descriptionEdit = document.querySelector('#DescriptionEdit');
         var priceEdit = document.querySelector('#PriceEdit');
+        var categoryEdit = document.querySelector('#ProductCategoryEdit'); // Assuming the category dropdown has the id 'ProductCategoryEdit'
+        var subcategoryEdit = document.querySelector('#ProductSubcategoryEdit'); // Assuming the subcategory dropdown has the id 'ProductSubcategoryEdit'
+
+        
 
         if (productNameEdit && descriptionEdit && priceEdit) {
             productNameEdit.value = itemDetails.product_name || '';
             descriptionEdit.value = itemDetails.product_description || '';
             priceEdit.value = itemDetails.product_price || '';
+            categoryEdit.value = itemDetails.product_category || '';
+            subcategoryEdit.value = itemDetails.product_subcategory || '';
+
+            categoryEdit.addEventListener('change', handleCategoryChangeEdit);
         } else {
             console.error('One or more form elements not found.');
         }
@@ -444,6 +624,8 @@ function openEditPopup(product_ID) {
                 console.error('Image element not found.');
             }
         }
+
+        
     
             // Continue with form creation
             cardContent.innerHTML = `
@@ -471,6 +653,38 @@ function openEditPopup(product_ID) {
                         <label for="PriceEdit">Price:</label>
                         <div>
                             <input type="number" id="PriceEdit" name="Price" class="form-control"><br>
+                        </div>
+                        <br>
+
+                        <label for="ProductCategoryEdit">Category:</label>
+                        <div>
+                            <select id="ProductCategoryEdit" name="ProductCategoryEdit" class="form-control" onchange="handleCategoryChangeEdit()">
+                                <option value="">----</option>
+                                <option value="Best Sellers & Signature Dishes">Best Sellers & Signature Dishes</option>
+                                <option value="All Day Breakfast">All Day Breakfast</option>
+                                <option value="Appetizers & Starters">Appetizers & Starters</option>
+                                <option value="Soup">Soup</option>
+                                <option value="Salad">Salad</option>
+                                <option value="Pasta">Pasta</option>
+                                <option value="Burgers & Sandwiches">Burgers & Sandwiches</option>
+                                <option value="Pizzas">Pizzas</option>
+                                <option value="Beef">Beef</option>
+                                <option value="Seafood">Seafood</option>
+                                <option value="Chicken">Chicken</option>
+                                <option value="Pork">Pork</option>
+                                <option value="Vegetables">Vegetables</option>
+                                <option value="Rice Bowlers">Rice Bowlers</option>
+                                <option value="Desserts & Pastries">Desserts & Pastries</option>
+                                <option value="Coffee & Drinks">Coffee & Drinks</option>
+                            </select>
+                        </div>
+                        <br>
+
+                        <label id="ProductSubcategoryLabelEdit" for="ProductSubcategory">Subcategory:</label>
+                        <div id="subcategoryContainerEdit">
+                            <select id="ProductSubcategoryEdit" name="ProductSubcategoryEdit" class="form-control">
+                                <option value="">----</option>
+                            </select>
                         </div>
                         <br>
                         
@@ -546,6 +760,15 @@ function openEditPopup(product_ID) {
             cardContainer.appendChild(cardContent);
             document.body.appendChild(cardContainer);
             cardContainer.style.zIndex = "9999";
+
+            var subcategoryContainer = document.getElementById('subcategoryContainerEdit');
+            var ProductSubcategoryLabel = document.getElementById('ProductSubcategoryLabelEdit');
+                
+            subcategoryContainer.style.display = 'none';
+            ProductSubcategoryLabel.style.display ='none';
+
+
+
         }
     };
 
@@ -564,10 +787,10 @@ function editItem(product_ID) {
             // Update form fields with the fetched item details
             // Inside editItem function
             document.querySelector('#ProductNameEdit').value = itemDetails.product_name;
-document.querySelector('#DescriptionEdit').value = itemDetails.product_description;
-document.querySelector('#PriceEdit').value = itemDetails.product_price;
-
-
+            document.querySelector('#DescriptionEdit').value = itemDetails.product_description;
+            document.querySelector('#PriceEdit').value = itemDetails.product_price;
+            document.querySelector('#ProductCategoryEdit').value = itemDetails.product_category;
+            document.querySelector('#ProductSubcategoryEdit').value = itemDetails.product_subcategory;
 
             // If there is a new image, update the image field
             if (itemDetails.NewImage) {
@@ -595,13 +818,14 @@ document.querySelector('#PriceEdit').value = itemDetails.product_price;
     xhr.send();
 }
 
-
 function updateItem(product_ID) {
     // Retrieve form data
     var product_name = document.getElementById('ProductNameEdit').value;
     var product_img = document.getElementById('itemImageEdit').files[0]; // Get the selected image file
     var product_description = document.getElementById('DescriptionEdit').value;
     var product_price = document.getElementById('PriceEdit').value;
+    var product_category = document.getElementById('ProductCategoryEdit').value;
+    var product_subcategory = document.getElementById('ProductSubcategoryEdit').value;
 
     // Create a new FormData object to send data in the POST request
     var formData = new FormData();
@@ -609,6 +833,8 @@ function updateItem(product_ID) {
     formData.append('product_img', product_img);
     formData.append('product_description', product_description);
     formData.append('product_price', product_price);
+    formData.append('product_category', product_category);
+    formData.append('product_subcategory', product_subcategory);
 
     // Make an AJAX request to update the item
     var xhr = new XMLHttpRequest();
@@ -636,6 +862,7 @@ function updateItem(product_ID) {
     // Send the request with form data
     xhr.send(formData);
 }
+
 
 function deleteItem(product_ID) {
     // Confirm with the user before proceeding with the deletion
