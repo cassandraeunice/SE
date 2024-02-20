@@ -13,7 +13,8 @@ if ($conn->connect_error) {
     exit();
 }
 
-$product_ID = $_GET['product_ID'];
+$product_ID = isset($_GET['product_ID']) ? (int)$_GET['product_ID'] : 0;
+$product_ID = $conn->real_escape_string($product_ID);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
@@ -43,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if an image is uploaded
     if (!empty($_FILES['product_img']['name'])) {
-        $targetDir = "../images/";  // Change this to your desired upload directory
+        $targetDir = "../../images/";  // Change this to your desired upload directory
         $imageFileType = strtolower(pathinfo($_FILES["product_img"]["name"], PATHINFO_EXTENSION));
-        $targetFile = $targetDir . uniqid() . '.' . $imageFileType;
+        $targetFile = $targetDir . basename($_FILES["product_img"]["name"]);
 
         // Upload the new image
         if (move_uploaded_file($_FILES["product_img"]["tmp_name"], $targetFile)) {

@@ -28,7 +28,8 @@ if (!$result) {
 
     while ($row = $result->fetch_assoc()) {
         // Adjust the image path based on your directory structure
-        $row['product_img'] = "../images/" . $row['product_img'];
+        $row['product_img'] = "../../images/" . basename($row['product_img']);
+
 
         if (file_exists($row['product_img'])) {
             $imageData = base64_encode(file_get_contents($row['product_img']));

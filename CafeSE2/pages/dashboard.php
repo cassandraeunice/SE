@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', displayRecentlyAdded);
 
 function displayRecentlyAdded() {
     var xhr = new XMLHttpRequest();
-    var url = '../pages/ProductOperations/get_all_items.php';
+    var url = 'ProductOperations/get_all_items.php';
     xhr.open('GET', url, true);
 
     xhr.onload = function () {
@@ -353,7 +353,7 @@ function addItem() {
 
     // Make an AJAX request
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '../pages/ProductOperations/add_menu.php', true);
+    xhr.open('POST', 'ProductOperations/add_menu.php', true);
     xhr.onload = function () {
         if (xhr.status === 200) {
             console.log(xhr.responseText);
@@ -609,7 +609,7 @@ function openEditPopup(product_ID) {
 
     // Fetch item details from the server using AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '../pages/ProductOperations/get_all_items.php?product_ID=' + product_ID, true);
+    xhr.open('GET', 'ProductOperations/get_all_items.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
     if (xhr.status === 200) {
         var itemDetails = JSON.parse(xhr.responseText);
@@ -799,7 +799,7 @@ function openEditPopup(product_ID) {
 function editItem(product_ID) {
     // Fetch item details from the server using AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '../pages/ProductOperations/get_all_items.php?product_ID=' + product_ID, true);
+    xhr.open('GET', 'ProductOperations/get_all_items.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
             var itemDetails = JSON.parse(xhr.responseText);
@@ -857,7 +857,7 @@ function updateItem(product_ID) {
 
     // Make an AJAX request to update the item
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '../pages/ProductOperations/edit_menu.php?product_ID=' + product_ID, true);
+    xhr.open('POST', 'ProductOperations/edit_menu.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
             try {
@@ -898,7 +898,7 @@ function deleteItem(product_ID) {
     if (confirmDelete) {
         // Make an AJAX request to the PHP script for deletion
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../pages/ProductOperations/delete_menu.php', true);
+        xhr.open('POST', 'ProductOperations/delete_menu.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         
         // Handle the response from the server

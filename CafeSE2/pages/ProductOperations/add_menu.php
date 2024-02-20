@@ -22,7 +22,7 @@ if (isset($_FILES["product_img"]) && $_FILES["product_img"]["error"] == UPLOAD_E
     }
 
     $image = $_FILES["product_img"]["name"];
-    $target_dir = "../images/";
+    $target_dir = "../../images/";
     $target_file = $target_dir . basename($image);
 
     if (move_uploaded_file($_FILES["product_img"]["tmp_name"], $target_file)) {
