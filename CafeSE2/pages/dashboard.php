@@ -146,53 +146,74 @@
     <script src="../Script/dashboard.js"></script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    // Fetch and display recently added items when the document is fully loaded
-    displayRecentlyAdded();
-});
-
+document.addEventListener('DOMContentLoaded', displayRecentlyAdded);
 
 function displayRecentlyAdded() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_all_items.php', true);
+    var url = '../pages/ProductOperations/get_all_items.php';
+    xhr.open('GET', url, true);
+
     xhr.onload = function () {
         if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
+            try {
+                var data = JSON.parse(xhr.responseText);
+                console.log(data);
 
-            if (data && data.length > 0) {
-                // Clear existing rows in the table
-                var tbody = document.getElementById('tableBody');
-                tbody.innerHTML = '';
-
-                // Iterate through all rows and add them to the table
-                for (var i = 0; i < data.length; i++) {
-                    var newRow = document.createElement('tr');
-                    newRow.innerHTML = `
-                        <td>${data[i].product_ID}</td>
-                        <td><img src="${data[i].product_img}" alt="Image" style="width: 50px; height: 50px;"></td>
-                        <td>${data[i].product_name}</td>
-                        <td>${data[i].product_description}</td>
-                        <td>${data[i].product_price}</td>
-                        <td>${data[i].product_category}</td> <!-- Display product category -->
-                        <td><span class="btn edit" onclick="openEditPopup(${data[i].product_ID})">Edit</span></td>
-                        <td><span class="btn delete" onclick="deleteItem(${data[i].product_ID})">Delete</span></td>
-                    `;
-
-                    // Add the new row to the tbody
-                    tbody.appendChild(newRow);
+                if (data && data.length > 0) {
+                    displayData(data);
+                } else {
+                    console.log('Data is an empty array or not an array:', data);
+                    displayError('No data available');
                 }
+            } catch (error) {
+                console.error('Error parsing JSON response:', error);
+                displayError('Invalid JSON response');
             }
         } else {
             console.error('Error fetching recently added data:', xhr.statusText);
+            displayError('Failed to fetch data');
         }
     };
+
     xhr.onerror = function () {
         console.error('Network error');
+        displayError('Network error');
     };
 
-    // Send the request to get all items
     xhr.send();
 }
+
+
+function displayData(data) {
+    var tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+
+    data.forEach(function (item) {
+        var newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${item.product_ID}</td>
+            <td><img src="${item.product_img}" alt="Image" style="width: 50px; height: 50px;"></td>
+            <td>${item.product_name}</td>
+            <td>${item.product_description}</td>
+            <td>${item.product_price}</td>
+            <td>${item.product_category}</td>
+            <td><span class="btn edit" onclick="openEditPopup(${item.product_ID})">Edit</span></td>
+            <td><span class="btn delete" onclick="deleteItem(${item.product_ID})">Delete</span></td>
+        `;
+        tbody.appendChild(newRow);
+    });
+}
+
+function displayError(message, details) {
+    console.error('Error:', message);
+    if (details) {
+        console.error('Details:', details);
+    }
+}
+
+
+
+
 
 function handleCategoryChange() {
     var categorySelect = document.getElementById('ProductCategory');
@@ -322,18 +343,17 @@ function addItem() {
     formData.append('product_description', product_description);
     formData.append('product_price', product_price);
     formData.append('product_category', product_category);
+    
 
     // If a subcategory is selected, append it to the FormData
     if (product_subcategory) {
         formData.append('product_subcategory', product_subcategory);
     }
 
-    console.log('Category:', product_category);
-console.log('Subcategory:', product_subcategory);
 
     // Make an AJAX request
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'add_menu.php', true);
+    xhr.open('POST', '../pages/ProductOperations/add_menu.php', true);
     xhr.onload = function () {
         if (xhr.status === 200) {
             console.log(xhr.responseText);
@@ -589,7 +609,7 @@ function openEditPopup(product_ID) {
 
     // Fetch item details from the server using AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_all_items.php?product_ID=' + product_ID, true);
+    xhr.open('GET', '../pages/ProductOperations/get_all_items.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
     if (xhr.status === 200) {
         var itemDetails = JSON.parse(xhr.responseText);
@@ -779,7 +799,7 @@ function openEditPopup(product_ID) {
 function editItem(product_ID) {
     // Fetch item details from the server using AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_all_items.php?product_ID=' + product_ID, true);
+    xhr.open('GET', '../pages/ProductOperations/get_all_items.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
             var itemDetails = JSON.parse(xhr.responseText);
@@ -817,7 +837,6 @@ function editItem(product_ID) {
     // Send the request to get item details
     xhr.send();
 }
-
 function updateItem(product_ID) {
     // Retrieve form data
     var product_name = document.getElementById('ProductNameEdit').value;
@@ -838,21 +857,29 @@ function updateItem(product_ID) {
 
     // Make an AJAX request to update the item
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'edit_menu.php?product_ID=' + product_ID, true);
+    xhr.open('POST', '../pages/ProductOperations/edit_menu.php?product_ID=' + product_ID, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
-            console.log(xhr.responseText);
+            try {
+                var response = JSON.parse(xhr.responseText);
+                console.log(response);
 
-            // Notify the user
-            alert("Item updated successfully");
+                // Notify the user
+                alert(response.success ? "Item updated successfully" : "Failed to update item");
 
-            // Close the popup
-            closePopup();
+                if (response.success) {
+                    // Close the popup
+                    closePopup();
 
-            // Fetch and display the most recently added item
-            displayRecentlyAdded();
+                    // Fetch and display the most recently added item
+                    displayRecentlyAdded();
+                }
+            } catch (e) {
+                console.error('Error parsing JSON response:', e);
+            }
         } else {
-            console.error(xhr.statusText);
+            console.error('HTTP request failed with status:', xhr.status);
+            console.log(xhr.responseText); // Log the entire response for debugging
         }
     };
     xhr.onerror = function () {
@@ -871,7 +898,7 @@ function deleteItem(product_ID) {
     if (confirmDelete) {
         // Make an AJAX request to the PHP script for deletion
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'delete_menu.php', true);
+        xhr.open('POST', '../pages/ProductOperations/delete_menu.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         
         // Handle the response from the server
