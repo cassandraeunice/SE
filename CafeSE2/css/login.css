@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Argent');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
-  --cream-color: #FFF5E9;
-  --coffee-color: #230C02;
+  --cream-color: #FFF3E2;
+  --coffee-color: #8F5E36;
   --coffee-opacity: 35, 12, 2;
   --cream-opacity: 255, 245, 233;
   --caramel-color: #9C6F44;
@@ -10,7 +12,6 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Fanwood Text', serif;
 }
 
 body{
@@ -33,6 +34,7 @@ body{
 .header-container .main-text{
   margin: -10px;
   font-size: 50px;
+  font-family: 'Fanwood Text', serif;
 }
 
 .header-container .sub-text {
@@ -47,25 +49,28 @@ form {
   justify-content: center;
   width: 580px;
   height: 380px;
-    color: var(--cream-color);
-    background-color: var(--coffee-color);
-    border-radius: 30px;
-  }
+  margin-top: 30px;
+  color: var(--cream-color);
+  background-color: var(--coffee-color);
+  border-radius: 30px;
+}
 
   form .login-header{
     font-size: 40px;
     margin: 0;
-  }
+}
   
   input[type=email], input[type=password] {
     width: 380px;
-    height: 50px;
+    height: 40px;
     padding: 12px 20px;
     margin: 8px 0;
+    margin-top: 15px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-size: 25px;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
     border-radius: 10px;
     background-color: var(--cream-color);
     color: var(--coffee-color);
@@ -85,14 +90,16 @@ form {
   }
   
   button {
-    background-color: var(--caramel-color);
-    color: var(--cream-color);
+    background-color: var(--cream-color);
+    color: var(--coffee-color);
     font-size: 25px;
+    font-family: 'Fanwood Text', serif;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     width: 200px;
     height: 50px;
+    margin-top: 15px;
   }
   
   button:hover {
@@ -107,7 +114,8 @@ form {
   }
 
   .login-container .login-header {
-    margin-left: -53px;
+    font-family: 'Fanwood Text', serif;
+    margin-left: -10px;
     margin-bottom: 20px;
   }
 
@@ -134,6 +142,7 @@ form {
     }
     form {
       width: 100%;
+      margin-top: 10px;
     }
 
   }

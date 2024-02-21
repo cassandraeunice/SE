@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Argent');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
-  --cream-color: #FFF5E9;
-  --coffee-color: #230C02;
+  --cream-color: #FFF3E2;
+  --coffee-color: #8F5E36;
   --coffee-opacity: 35, 12, 2;
   --cream-opacity: 255, 245, 233;
   --caramel-color: #9C6F44;
@@ -46,10 +48,12 @@ form {
     height: 50px;
     padding: 12px 20px;
     margin: 8px 0;
+    margin-top: 15px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-size: 25px;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
     border-radius: 10px;
     background-color: var(--coffee-color);
     color: var(--cream-color);

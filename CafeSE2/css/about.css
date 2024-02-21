@@ -287,6 +287,94 @@
   }
 
 
+  /* Visit Us */
+.visit-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 768px;
+  background: url("../images/About-Coffee-Background.png");
+  background-position: center;
+  background-size: cover;
+  color: var(--cream-color);
+}
+
+.visit-container i {
+  font-size: 32px;
+  margin-right: 5px;
+}
+
+.visit-title {
+  text-align: center;
+  font-size: 70px;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+.visit-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+  color: var(--cream-color);
+}
+
+.visit-body {
+display: flex;
+gap: 3rem;
+margin: 50px;
+}
+
+.card-img-top {
+width: 100%;
+max-width: 700px;
+}
+
+.card-img-top iframe {
+width: 700px;
+height: 500px;
+}
+
+.visit-text-section {
+display: flex;
+flex-direction: column;
+}
+
+.visit-card-title {
+  font-size: 38px;
+}
+
+.visit-card-text {
+font-size: 24px;
+}
+
+/* BREAKPOINTS */
+@media (max-width: 992px) {
+  .visit-body {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .visit-container {
+    height: auto;
+    background-size: contain;
+  }
+
+  .visit-card iframe {
+    margin-top: 20px;
+    width: 450px;
+    height: 400px;
+  }
+
+  .visit-text-section {
+    gap: 0;
+    margin-top: 0;
+    text-align: center;
+  }
+}
+
 
   /* Footer */
 footer {
