@@ -1,6 +1,7 @@
 <?php
 
-function sanitize_input($data) {
+function sanitize_input($data)
+{
     $data = trim($data); // Remove leading/trailing whitespace
     $data = stripslashes($data); // Remove backslashes
     $data = htmlspecialchars($data); // Convert special characters to HTML entities
@@ -75,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/feedback-form.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <h2 class="welcome-text">Share Your Experience</h2>
@@ -100,10 +103,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label id="label" for="customer_email">Email:</label>
                 <input type="email" class="form-control" id="customer_email" name="customer_email" required placeholder="Enter your email">
             </div>
-            
-            <?php foreach ($questions as $section => $section_questions): ?>
+
+            <?php foreach ($questions as $section => $section_questions) : ?>
                 <h3><?php echo $section; ?></h3>
-                <?php foreach ($section_questions as $question): ?>
+                <?php foreach ($section_questions as $question) : ?>
                     <div class="form-group">
                         <label><?php echo $question['text']; ?></label>
                         <div class="row">
@@ -141,19 +144,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 <?php endforeach; ?>
             <?php endforeach; ?>
-            
+
             <div class="form-group">
                 <label id="label" for="feedback_experience">Comments and Suggestions:</label>
                 <textarea class="form-control" id="feedback_experience" name="feedback_experience"></textarea>
             </div>
 
-            <button class="btn-submit" type="submit">Submit</button>
+            <div class="btn-center">
+                <button class="btn-submit" type="submit">Submit</button>
+            </div>
         </form><br>
     </div>
 </body>
+
 </html>
-
-
-
-
-

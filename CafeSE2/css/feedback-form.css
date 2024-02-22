@@ -39,6 +39,13 @@
     color: var(--dark-color);
 }
 
+.btn-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .btn-submit {
     height: 50px;
     width: 400px;
