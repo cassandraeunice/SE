@@ -18,12 +18,12 @@ $expiry = date("Y-m-d H:i:s", time() + 5 * 60);
 $sql = "UPDATE admin
         SET verification_code = ?,
             code_expiration = ?
-        WHERE admin_email = ?";
+        WHERE admin_ID = 1";
 
 $stmt = $con->prepare($sql);
 
 if ($stmt) {
-    $stmt->bind_param("sss", $verificationCode, $expiry, $email);
+    $stmt->bind_param("ss", $verificationCode, $expiry);
     $stmt->execute();
 
     if ($stmt->error) {
@@ -39,7 +39,7 @@ if ($stmt) {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
         $mail->Port = 587; 
         $mail->Username = "tstac098@gmail.com";
-        $mail->Password = "jiemvpfxddvfowcd";  // Replace with your generated App Password
+        $mail->Password = "kisbuznawvlgosrq";  // Replace with your generated App Password
         $mail->isHtml(true);
 
         $mail->setFrom("tstac098@gmail.com");
