@@ -148,6 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <button class="btn-submit" type="submit">Submit</button>
+            
         </form><br>
     </div>
 </body>

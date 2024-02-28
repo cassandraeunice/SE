@@ -39,9 +39,13 @@
     color: var(--dark-color);
 }
 
+button {
+    text-align: center;
+}
+
 .btn-submit {
     height: 50px;
-    width: 400px;
+    width: 90%;
     align-items: center;
     border: none;
     border-radius: 10px;
@@ -49,5 +53,4 @@
     font-weight: bolder;
     color: var(--cream-color);
     background-color: var(--coffee-color);
-    margin-left: 3px;
 }
