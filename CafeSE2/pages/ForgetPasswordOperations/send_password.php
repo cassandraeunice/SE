@@ -42,7 +42,7 @@ if ($stmt) {
         $mail->Password = "kisbuznawvlgosrq";  // Replace with your generated App Password
         $mail->isHtml(true);
 
-        $mail->setFrom("tstac098@gmail.com");
+        $mail->setFrom("cafesiena@gmail.com");
         $mail->addAddress($email);
         $mail->Subject = "Password Reset Verification Code";
         $mail->Body = "Your verification code is: $verificationCode";
