@@ -18,12 +18,12 @@ $expiry = date("Y-m-d H:i:s", time() + 5 * 60);
 $sql = "UPDATE admin
         SET verification_code = ?,
             code_expiration = ?
-        WHERE admin_ID = 1";
+        WHERE admin_email = ?";
 
 $stmt = $con->prepare($sql);
 
 if ($stmt) {
-    $stmt->bind_param("ss", $verificationCode, $expiry);
+    $stmt->bind_param("sss", $verificationCode, $expiry, $email);
     $stmt->execute();
 
     if ($stmt->error) {
