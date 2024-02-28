@@ -9,17 +9,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cafe_siena";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    echo json_encode(['error' => 'Connection failed: ' . $conn->connect_error]);
-    exit();
-}
+include '../connect.php';
 
 $email = $_POST["email"];
 $verificationCode = sprintf('%06d', mt_rand(0, 999999));
@@ -30,7 +20,7 @@ $sql = "UPDATE admin
             code_expiration = ?
         WHERE admin_email = ?";
 
-$stmt = $conn->prepare($sql);
+$stmt = $con->prepare($sql);
 
 if ($stmt) {
     $stmt->bind_param("sss", $verificationCode, $expiry, $email);
@@ -38,7 +28,7 @@ if ($stmt) {
 
     if ($stmt->error) {
         echo json_encode(['error' => 'SQL Error: ' . $stmt->error]);
-    } elseif ($conn->affected_rows) {
+    } elseif ($con->affected_rows) {
         // Database update was successful, proceed with sending the email
 
         $mail = new PHPMailer(true);
@@ -71,8 +61,8 @@ if ($stmt) {
 
     $stmt->close();
 } else {
-    echo json_encode(['error' => 'Error preparing statement: ' . $conn->error]);
+    echo json_encode(['error' => 'Error preparing statement: ' . $con->error]);
 }
 
-$conn->close();
+$con->close();
 ?>

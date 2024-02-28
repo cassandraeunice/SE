@@ -1,22 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cafe_siena";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    echo json_encode(['error' => 'Connection failed: ' . $conn->connect_error]);
-    exit();
-}
+include '../connect.php';
 
 $verificationCode = $_POST["code"];
 
 $sql = "SELECT * FROM admin
         WHERE verification_code = ?";
 
-$stmt = $conn->prepare($sql);
+$stmt = $con->prepare($sql);
 
 $stmt->bind_param("s", $verificationCode);
 
@@ -49,5 +39,5 @@ if ($user === null) {
 
 // Close database connection
 $stmt->close();
-$conn->close();
+$con->close();
 ?>

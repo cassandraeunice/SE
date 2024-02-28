@@ -1,15 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cafe_siena";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    echo json_encode(['error' => 'Connection failed: ' . $conn->connect_error]);
-    exit();
-}
+include '../connect.php';
 
 $email = "tstac098@gmail.com";  // Replace with your constant email
 $adminID = 1;  // Replace with your constant admin_ID
@@ -27,7 +17,7 @@ $updateSql = "UPDATE admin
             code_expiration = NULL
         WHERE admin_email = ? AND admin_ID = ?";
 
-$updateStmt = $conn->prepare($updateSql);
+$updateStmt = $con->prepare($updateSql);
 
 $updateStmt->bind_param("ssi", $password, $email, $adminID);
 
@@ -43,5 +33,5 @@ if ($updateStmt->affected_rows) {
 $updateStmt->close();
 
 // Close database connection
-$conn->close();
+$con->close();
 ?>

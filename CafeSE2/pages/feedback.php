@@ -1,5 +1,7 @@
 <?php
 
+include 'connect.php';
+
 function sanitize_input($data) {
     $data = trim($data); // Remove leading/trailing whitespace
     $data = stripslashes($data); // Remove backslashes
@@ -7,27 +9,15 @@ function sanitize_input($data) {
     return $data;
 }
 
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cafe_siena";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // Retrieve questions from the database
-$sql = "SELECT * FROM Question";
-$result = $conn->query($sql);
+$sql = "SELECT q.*, s.section_name 
+        FROM Question q
+        INNER JOIN Section s ON q.section_ID = s.section_ID";
+$result = $con->query($sql);
 $questions = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $questions[$row["question_section"]][] = array("id" => $row["question_ID"], "text" => $row["question_text"]);
+        $questions[$row["section_name"]][] = array("id" => $row["question_ID"], "text" => $row["question_text"]);
     }
 }
 
@@ -44,28 +34,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO Customer (customer_first_name, customer_last_name, customer_email)
             VALUES ('$customer_first_name', '$customer_last_name', '$customer_email')
             ON DUPLICATE KEY UPDATE customer_email='$customer_email'";
-    $conn->query($sql);
+    $con->query($sql);
 
     // Get customer ID
-    $customer_id = $conn->insert_id;
+    $customer_id = $con->insert_id;
 
     // Insert feedback
     $sql = "INSERT INTO Feedback (customer_ID, feedback_timestamp, feedback_experience)
             VALUES ('$customer_id', '$feedback_timestamp', '$feedback_experience')";
-    $conn->query($sql);
+    $con->query($sql);
 
     // Get feedback ID
-    $feedback_id = $conn->insert_id;
+    $feedback_id = $con->insert_id;
 
     // Insert ratings
     foreach ($_POST['ratings'] as $question_id => $rating_number) {
         $sql = "INSERT INTO Rating (feedback_ID, question_ID, rating_number)
                 VALUES ('$feedback_id', '$question_id', '$rating_number')";
-        $conn->query($sql);
+        $con->query($sql);
     }
 
     // Close connection
-    $conn->close();
+    $con->close();
 
     // Redirect to thank you page or any other page
     header("Location: thank_you.html");
@@ -97,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" class="form-control" id="customer_last_name" name="customer_last_name" placeholder="Enter your last name">
             </div>
             <div class="form-group">
-                <label id="label" for="customer_email">Email:</label>
+                <label id="label" for="customer_email">Email*:</label>
                 <input type="email" class="form-control" id="customer_email" name="customer_email" required placeholder="Enter your email">
             </div>
             
@@ -148,7 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <button class="btn-submit" type="submit">Submit</button>
-            
         </form><br>
     </div>
 </body>
