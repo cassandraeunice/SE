@@ -1,35 +1,90 @@
 <?php
-header('Content-Type: application/json');
-
-$inputJSON = file_get_contents('php://input');
-$input = json_decode($inputJSON, true);
+session_start(); // Start session to persist login status
 
 include 'connect.php';
 
-if ($input && isset($input['email']) && isset($input['psw'])) {
-    $email = $input['email'];
-    $password = $input['psw'];
+$error_message = ""; // Initialize error message variable
 
-    $sql = "SELECT * FROM admin WHERE admin_email = '$email'";
-    $result = $con->query($sql);
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['psw'];
 
-    if ($result && $result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    // Prepare SQL statement to retrieve admin details based on email
+    $stmt = $con->prepare("SELECT admin_ID, admin_password FROM Admin WHERE admin_email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        error_log("Entered Password: $password, Stored Password: {$user['admin_password']}");
+    // Check if email exists
+    if ($result->num_rows == 1) {
+        // Email exists, fetch the row
+        $row = $result->fetch_assoc();
+        
+        // Verify password
+        if ($password == $row['admin_password']) {
+            // Password is correct, set session variables
+            $_SESSION['admin_ID'] = $row['admin_ID'];
+            $_SESSION['logged_in'] = true;
 
-        if ($password === $user['admin_password']) {
-            echo json_encode(['success' => true, 'message' => 'Login successful']);
+            // Redirect to dashboard or desired page upon successful login
+            header("Location: admin_menu.php");
             exit();
+        } else {
+            $error_message = "Invalid Email or Password";
         }
+    } else {
+        $error_message = "Invalid Email or Password";
     }
 
-    echo json_encode(['success' => false, 'message' => 'Login failed. Please check your email and password.']);
-    exit();
-} else {
-    echo json_encode(['error' => 'Invalid data']);
-    exit();
+    // Close connections
+    $stmt->close();
 }
-
-$con->close(); // Move this line to the end of the script
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Siena</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link href='https://fonts.googleapis.com/css?family=Fanwood Text' rel='stylesheet'>
+</head>
+<body>
+
+<div class="header-container">
+    <p class="main-text">CAFÉ SIENA</p>
+    <p class="sub-text">A taste of comfort</p>
+</div>  
+
+<!-- Login Form -->
+<form id="loginForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+  <div class="login-container">
+      <p class="login-header">Login to your account</p>
+
+      <label for="email">Email</label>
+      <input type="email" placeholder="Enter Email" name="email" required>
+
+      <label for="psw">Password</label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <span class="psw"><a href="forgot-password.html">Forgot password?</a></span>
+
+      <button type="submit">Login</button>
+
+  </div>
+
+</form>
+
+<!-- JavaScript to display alert without interrupting page -->
+<script>
+    window.onload = function() {
+        <?php if (!empty($error_message)): ?>
+            alert('<?php echo $error_message; ?>');
+        <?php endif; ?>
+    };
+</script>
+
+</body>
+</html>
