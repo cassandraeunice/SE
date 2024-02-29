@@ -42,7 +42,10 @@ if ($stmt) {
         $mail->Password = "kisbuznawvlgosrq";  // Replace with your generated App Password
         $mail->isHtml(true);
 
-        $mail->setFrom("cafesiena@gmail.com");
+        $senderEmail = "cafesiena@gmail.com";
+        $senderName = "Cafe Siena";  
+
+        $mail->setFrom($senderEmail, $senderName);
         $mail->addAddress($email);
         $mail->Subject = "Password Reset Verification Code";
         $mail->Body = "Your verification code is: $verificationCode";
@@ -56,7 +59,8 @@ if ($stmt) {
             echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
         }
     } else {
-        echo json_encode(['error' => 'No rows updated.']);
+        echo "<script>alert('No existing account found.');</script>";
+        header("Location: ../forgot-password.html");
     }
 
     $stmt->close();
