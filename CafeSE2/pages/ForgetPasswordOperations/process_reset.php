@@ -8,7 +8,7 @@ $password = $_POST["psw"];
 $confirmPassword = $_POST["confirm-psw"];
 
 if (strlen($password) < 8 || !preg_match("/[a-z]/i", $password) || !preg_match("/[0-9]/", $password) || $password !== $confirmPassword) {
-    die("Invalid password");
+    echo "<script>alert('Password must contain Uppercase, Lowercase, Numbers, and Symbols!'); window.location.replace('../password-change.html');</script>";
 }
 
 $updateSql = "UPDATE admin
