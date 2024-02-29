@@ -70,6 +70,7 @@ if(isset($_POST['submit'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Category</title>
+    <!-- <link rel="stylesheet" href="../../css/add-category.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -78,11 +79,11 @@ if(isset($_POST['submit'])){
         <h2>Add Category</h2>
         <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label>Category Name</label>
+                <label>Category Name</label><br>
                 <input type="text" class="form-control" placeholder="Enter category name" name="category_name" required>
             </div>
             <div class="mb-3">
-                <label>Category Image</label>
+                <label>Category Image</label><br>
                 <input type="file" class="form-control" name="category_image" required>
             </div>
             <button type="submit" class="btn btn-primary" name="submit">Submit</button>

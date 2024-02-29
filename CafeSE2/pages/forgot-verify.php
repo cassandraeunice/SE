@@ -29,13 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["email"])) {
 <body>
 
     <!-- Forgot Verify Form -->
-    <<form action="ForgetPasswordOperations/reset_password.php" method="post">
+    <form action="ForgetPasswordOperations/reset_password.php" method="post">
       
         <div class="verify-container">
           <p class="verify-header">Verification Code</p>
 
           <label for="code">Input Email Verification Code</label>
-          <input type="text" placeholder="Input Email Code..." name="code" required>
+          <input class="verification-code" type="text" placeholder="Input Email Code..." name="code" required>
           <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>">
 
           <button type="submit">Enter</button>
