@@ -35,10 +35,6 @@
   text-decoration: none;
 }
 
-.navbar-links{
-  margin-right: 488px;
-}
-
 .navbar-links a{
   font-size: 20px;
   color: var(--cream-color);
@@ -119,7 +115,7 @@
   }
 
   #check:checked~.navbar-links {
-    height: 13.7rem;
+    height: 16rem;
   }
 
   .navbar-links a {
