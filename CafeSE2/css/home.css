@@ -262,8 +262,8 @@
   flex-direction: row;
   border-radius: 166px;
   border: none;
-  background-color: var(--caramel-color);
-  color: var(--cream-color);
+  background-color: var(--cream-color);
+  color: var(--coffee-color);
   padding: 15px;
   justify-content: center;
 }
@@ -316,8 +316,8 @@
   border-radius: 60px;
   align-items: center;
   justify-content: center;
-  background-color: var(--caramel-color);
-  color: var(--cream-color);
+  background-color: var(--cream-color);
+  color: var(--coffee-color);
   border: none;
   font-size: 20px;
   float: right;
@@ -551,7 +551,7 @@ footer {
 }
 
 .social-icons i:hover{
-  color: var(--cream-color);
+  color: var(--caramel-color);
 }
 
 .bottom-bar {

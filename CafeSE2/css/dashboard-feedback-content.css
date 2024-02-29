@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    --cream-color: #FFF3E2;
+    --coffee-color: #8F5E36;
+    --caramel-color: #9C6F44;
+    --dark-color: #271300;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 230px;
+    background-color: var(--coffee-color);
+    color: var(--cream-color);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    font-size: 18px;
+    display: block;
+    color: var(--cream-color);
+    text-decoration: none;
+    padding: 10px;
+}
+
+.sidebar ul li a:hover {
+    color: var(--caramel-color);
+    background-color: var(--cream-color);
+}
+
+/* Main Content Area Styles */
+.container {
+    margin-left: 270px;
+    padding: 20px;
+    background-color: var(--cream-color);
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.container h2 {
+    font-size: 30px;
+    color: var(--dark-color);
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.table thead th {
+    background-color: var(--coffee-color);
+    color: var(--cream-color);
+}
+
+.table tbody tr:hover {
+    background-color: var(--cream-color);
+}
+
+/* Button Styles */
+.btn {
+    height: 45px;
+    width: 160px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: var(--dark-color);
+}
+
+.btn a {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--cream-color);
+    text-decoration: none;
+}
+
+/* Additional Spacing */
+.table tr td, .table tr th {
+    padding: 10px;
+}
