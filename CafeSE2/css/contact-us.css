@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Argent');
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
 
 :root {
@@ -13,13 +12,10 @@
 
 * {
     background-color: var(--cream-color);
+    /* font-family: 'Montserrat', sans-serif; */
 }
 
-.container {
-    width: 100%;
-}
-
-.welcome-text {
+h2 {
     margin-top: 25px;
     font-family: 'Fanwood Text', serif;
     font-weight: bold;
@@ -28,7 +24,7 @@
     color: var(--dark-color);
 }
 
-.message {
+.welcome-message {
     margin-top: -20px;
     margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -39,12 +35,18 @@
     color: var(--coffee-color);
 }
 
-#label {
+label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 20px;
     color: var(--dark-color);
+    
 }
+
+::placeholder {
+    color: rgba(var(--cream-opacity), 0.7);
+    background-color: var(--coffee-color);
+  }
 
 input[type=text], input[type=email] {
     width: 410px;
@@ -63,41 +65,12 @@ input[type=text], input[type=email] {
     color: var(--cream-color);
 }
 
-::placeholder {
-    color: rgba(var(--cream-opacity), 0.7);
-    background-color: var(--coffee-color);
-}
-
-h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 30px;
-    color: var(--dark-color);
-    margin-top: -5px;
-    margin-bottom: 5px;
-}
-
-.question {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--dark-color);
-    margin-top: -20px;
-}
-
-.form-check-label {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--dark-color);
-    margin-top: -15px;
-}
-
 textarea {
     width: 410px;
     height: 300px;
     padding: 12px 20px;
     margin: 8px 0;
+    margin-top: -15px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -126,8 +99,5 @@ button {
     cursor: pointer;
     width: 250px;
     height: 50px;
-}
-
-span {
-    color: red;
+    
 }

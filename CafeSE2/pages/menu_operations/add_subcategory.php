@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Subcategory</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/add-subcategory.css">
 </head>
 
 <body>
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         <h2>Add Subcategory</h2>
         <form method="post">
             <div class="mb-3">
-                <label>Category</label>
+                <label>Category:</label>
                 <select class="form-select" name="category_ID" required>
                     <option value="">Select Category</option>
                     <?php foreach ($categories as $category) : ?>
@@ -55,11 +55,13 @@ if (isset($_POST['submit'])) {
                 </select>
             </div>
             <div class="mb-3">
-                <label>Subcategory Name</label>
+                <label>Subcategory Name:</label>
                 <input type="text" class="form-control" placeholder="Enter subcategory name" name="subcategory_name" required>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-            <a href="../admin_menu.php" class="btn btn-secondary">Back</a>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <a href="../admin_menu.php" class="btn btn-secondary">Back</a>
+            </div>
         </form>
     </div>
 </body>

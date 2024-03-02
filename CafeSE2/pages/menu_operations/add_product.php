@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Product</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/add-product.css">
 </head>
 
 <body>
@@ -83,11 +83,11 @@ if(isset($_POST['submit'])){
         <h2>Add Product</h2>
         <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label>Product Name</label>
+                <label>Product Name:</label>    
                 <input type="text" class="form-control" placeholder="Enter product name" name="product_name" required>
             </div>
             <div class="mb-3">
-                <label>Product Category</label>
+                <label>Product Category:</label>
                 <select class="form-select" id="category" name="product_category" required>
                     <option value="">Select Category</option>
                     <?php foreach($categories as $category): ?>
@@ -96,25 +96,27 @@ if(isset($_POST['submit'])){
                 </select>
             </div>
             <div class="mb-3">
-                <label>Product Subcategory (Optional)</label>
+                <label>Product Subcategory (Optional):</label>
                 <select class="form-select" id="subcategory" name="product_subcategory">
                     <option value="">Select Subcategory</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label>Product Description</label>
+                <label>Product Description:</label><br></br>
                 <textarea class="form-control" placeholder="Enter product description" name="product_description" required></textarea>
             </div>
             <div class="mb-3">
-                <label>Product Image</label>
-                <input type="file" class="form-control" name="product_image" required>
+                <label>Product Image:</label><br></br>
+                <input type="file" class="custom-file-input" name="product_image" required>
             </div>
             <div class="mb-3">
-                <label>Product Price</label>
+                <label>Product Price:</label>
                 <input type="number" class="form-control" placeholder="Enter product price" name="product_price" required>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-            <a href="../admin_menu.php" class="btn btn-secondary">Back</a>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <a href="../admin_menu.php" class="btn btn-secondary">Back</a>
+            </div>
         </form>
     </div>
 

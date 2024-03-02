@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Question</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/add-question.css">
 </head>
 
 <body>
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         <h2>Add Question</h2>
         <form method="post">
             <div class="mb-3">
-                <label>Section</label>
+                <label>Section:</label>
                 <select class="form-select" name="section_ID" required>
                     <option value="">Select Section</option>
                     <?php foreach ($sections as $section) : ?>
@@ -55,11 +55,14 @@ if (isset($_POST['submit'])) {
                 </select>
             </div>
             <div class="mb-3">
-                <label>Question Text</label>
+                <label>Question Text:</label>
                 <input type="text" class="form-control" placeholder="Enter question text" name="question_text" required>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-            <a href="../admin_feedback_content.php" class="btn btn-secondary">Back</a>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <a href="../admin_feedback_content.php" class="btn btn-secondary">Back</a>
+            </div>
+            
         </form>
     </div>
 </body>

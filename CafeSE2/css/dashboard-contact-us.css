@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 :root {
     --cream-color: #FFF3E2;
@@ -23,12 +23,11 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 230px; 
+    width: 230px;
     background-color: var(--coffee-color);
     color: var(--cream-color);
     padding: 20px;
-    overflow-y: auto; 
-    max-height: 100vh; 
+    overflow-y: auto;
 }
 
 .sidebar h2 {
@@ -57,11 +56,11 @@ body {
 
 /* Main Content Area Styles */
 .container {
-    margin-left: 270px; 
+    margin-left: 270px;
     padding: 20px;
     background-color: var(--cream-color);
-    min-height: 100vh; 
-    overflow-y: auto; 
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
 .container h2 {
@@ -72,8 +71,8 @@ body {
 /* Table Styles */
 .table {
     width: 100%;
+    margin-top: 10px;
     margin-bottom: 20px;
-    table-layout: fixed; /* Use fixed layout */
 }
 
 .table thead th {
@@ -85,38 +84,14 @@ body {
     background-color: var(--cream-color);
 }
 
+/* Additional Spacing */
 .table tr td, .table tr th {
     padding: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
-.table img {
-    max-width: 100px;
-    max-height: 100px;
-    object-fit: cover; /* Ensures images maintain aspect ratio */
-}
-
-/* Button Styles */
-.btn {
-    height: 45px;
-    width: 160px;
-    border: none;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    background-color: var(--dark-color);
-}
-
-.btn a {
-    font-size: 15px;
-    font-weight: bold;
-    color: var(--cream-color);
+#sort {
+    font-weight: 700;
     text-decoration: none;
-}
-
-/* Responsive Design */
-.table-container {
-    overflow-x: auto;
+    color: var(--dark-color);
+    cursor: pointer;
 }

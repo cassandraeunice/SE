@@ -49,7 +49,7 @@ $result = mysqli_query($con, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard-feedback-record.css">
+    <link rel="stylesheet" href="../css/dashboard-contact-us.css">
 </head>
 
 <body>
@@ -69,7 +69,7 @@ $result = mysqli_query($con, $sql);
     <div class="container">
         <h2>Contact Us Record</h2>
         <div>
-            <a href="?sort=1" class="btn btn-primary">Sort by Not Responded</a>
+            <a href="?sort=1" class="btn btn-primary" id="sort">Sort by Not Responded</a>
         </div>
         <table class="table">
             <thead>

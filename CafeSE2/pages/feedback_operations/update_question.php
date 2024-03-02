@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Question</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/update-question.css">
 </head>
 
 <body>
@@ -72,8 +72,10 @@ if (isset($_POST['submit'])) {
                 <label>Question Text</label>
                 <input type="text" class="form-control" placeholder="Enter question text" name="question_text" value="<?php echo $question['question_text']; ?>" required>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-            <a href="../admin_feedback_content.php" class="btn btn-secondary">Back</a>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <a href="../admin_feedback_content.php" class="btn btn-secondary">Back</a>
+            </div>
         </form>
     </div>
 </body>

@@ -70,24 +70,25 @@ if(isset($_POST['submit'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Category</title>
-    <!-- <link rel="stylesheet" href="../../css/add-category.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/add-category.css">
 </head>
 
 <body>
-    <div class="container my-5">
+    <div class="container">
         <h2>Add Category</h2>
         <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label>Category Name</label><br>
+                <label>Category Name:</label><br>
                 <input type="text" class="form-control" placeholder="Enter category name" name="category_name" required>
             </div>
             <div class="mb-3">
-                <label>Category Image</label><br>
-                <input type="file" class="form-control" name="category_image" required>
+                <label>Category Image:</label><br>
+                <input class="custom-file-input" type="file" name="category_image" required>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-            <a href="../admin_menu.php" class="btn btn-secondary">Back</a>
+            <div class="button-container"> 
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <a href="../admin_menu.php" class="btn btn-secondary">Back</a>
+            </div>
         </form>
     </div>
 </body>
