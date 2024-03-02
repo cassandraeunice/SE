@@ -18,6 +18,7 @@ include 'connect.php';
         <ul>
             <li><a href="admin_menu.php">Menu Content</a></li>
             <li><a href="#">Home Content</a></li>
+            <li><a href="admin_contact_us.php">Contact Us Record</a></li>
             <li><a href="admin_feedback_content.php">Feedback Content</a></li>
             <li><a href="admin_feedback_record.php">Feedback Record</a></li>
             <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
@@ -26,6 +27,7 @@ include 'connect.php';
     </div>
 
     <div class="container">
+        <!--
         <h2>Question Sections</h2>
         <button class="btn btn-primary m-5"><a href="feedback_operations/add_section.php" class="text-light">Add Section</a></button>
         <table class="table">
@@ -57,6 +59,7 @@ include 'connect.php';
                 ?>
             </tbody>
         </table>
+        -->
 
         <h2>Questions</h2>
         <button class="btn btn-primary m-5"><a href="feedback_operations/add_question.php" class="text-light">Add Question</a></button>
@@ -71,7 +74,7 @@ include 'connect.php';
             </thead>
             <tbody>
                 <?php
-                $question_query = "SELECT q.*, s.section_name FROM Question q INNER JOIN Section s ON q.section_ID = s.section_ID";
+                $question_query = "SELECT q.*, s.section_name FROM Question q INNER JOIN Section s ON q.section_ID = s.section_ID WHERE q.archive_value = 0";
                 $question_result = mysqli_query($con, $question_query);
                 if ($question_result) {
                     while ($row = mysqli_fetch_assoc($question_result)) {

@@ -29,7 +29,7 @@
     <body>
 
         <!-- Forgot Verify Form -->
-        <form action="ForgetPasswordOperations/reset_password.php" method="post">
+        <form action="forget_password_operations/reset_password.php" method="post">
         
             <div class="verify-container">
             <p class="verify-header">Verification Code</p>

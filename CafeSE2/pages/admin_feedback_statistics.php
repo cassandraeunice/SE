@@ -60,6 +60,7 @@ $resultMonthlyQuestionAverage = mysqli_query($con, $sqlMonthlyQuestionAverage);
         <ul>
             <li><a href="admin_menu.php">Menu Content</a></li>
             <li><a href="#">Home Content</a></li>
+            <li><a href="admin_contact_us.php">Contact Us Record</a></li>
             <li><a href="admin_feedback_content.php">Feedback Content</a></li>
             <li><a href="admin_feedback_record.php">Feedback Record</a></li>
             <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>

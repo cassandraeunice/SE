@@ -4,8 +4,8 @@ include '../connect.php';
 if(isset($_GET['question_id'])){
     $question_id = $_GET['question_id'];
 
-    // Delete the question from the database
-    $sql = "DELETE FROM Question WHERE question_ID = $question_id";
+    // Update the archive_value flag for the question
+    $sql = "UPDATE Question SET archive_value = 1 WHERE question_ID = $question_id";
     $result = mysqli_query($con, $sql);
 
     if($result){

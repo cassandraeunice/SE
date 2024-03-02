@@ -53,14 +53,14 @@ if ($stmt) {
         try {
             $mail->send();
             // Perform the redirection before sending any output
-            header("Location: ../forgot-verify.php");
+            header("Location: ../forgot_verify.php");
             exit();
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
         }
     } else {
         echo "<script>alert('No existing account found.');</script>";
-        header("Location: ../forgot-password.html");
+        header("Location: ../forgot_password.html");
     }
 
     $stmt->close();

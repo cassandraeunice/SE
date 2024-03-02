@@ -13,7 +13,7 @@ function sanitize_input($data)
 // Retrieve questions from the database
 $sql = "SELECT q.*, s.section_name 
         FROM Question q
-        INNER JOIN Section s ON q.section_ID = s.section_ID";
+        INNER JOIN Section s ON q.section_ID = s.section_ID WHERE q.archive_value = 0";
 $result = $con->query($sql);
 $questions = array();
 if ($result->num_rows > 0) {

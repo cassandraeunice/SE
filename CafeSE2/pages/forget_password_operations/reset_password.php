@@ -18,8 +18,8 @@ $user = $result->fetch_assoc();
 
 if ($user === null) {
     // Verification code not found
-    echo "<script>alert('Verification not found');";
-    echo "window.location.href='../forgot-verify.php';</script>";
+    echo "<script>alert('Verification code is incorrect');";
+    echo "window.location.href='../forgot_verify.php';</script>";
     exit();
 } else {
     // Check if the code has expired
@@ -28,11 +28,11 @@ if ($user === null) {
     if ($codeExpiration <= time()) {
         // Code has expired
         echo "<script>alert('Code has expired');</script>";
-        echo "<script>window.location.href='../forgot-verify.php';</script>";
+        echo "<script>window.location.href='../forgot_verify.php';</script>";
         exit();
     } else {
         // Verification code is correct, redirect to password-change.html
-        echo "<script>window.location.href='../password-change.html';</script>";
+        echo "<script>window.location.href='../password_change.html';</script>";
         exit();
     }
 }
