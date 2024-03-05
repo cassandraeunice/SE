@@ -10,24 +10,24 @@ include 'connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="../css/dashboard-menu.css">
-    
+
 </head>
 
 <body>
     <div class="sidebar">
         <h2>Admin Dashboard</h2>
         <ul>
+            <li><a href="admin_home.php">Home Content</a></li>
             <li><a href="admin_menu.php">Menu Content</a></li>
-            <li><a href="#">Home Content</a></li>
             <li><a href="admin_contact_us.php">Contact Us Record</a></li>
             <li><a href="admin_feedback_content.php">Feedback Content</a></li>
             <li><a href="admin_feedback_record.php">Feedback Record</a></li>
             <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
-            <li><a href="#">About Content</a></li>
+            <li><a href="admin_about_us.php">About Us Content</a></li>
             <li><a href="admin_account.php">Account</a></li>
         </ul>
     </div>
-    
+
     <div class="container">
         <h2>Menu Product</h2>
         <button class="btn btn-primary m-5"><a href="menu_operations/add_product.php" class="text-light">Add Product</a></button>

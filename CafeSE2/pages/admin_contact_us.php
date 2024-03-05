@@ -2,9 +2,9 @@
 include 'connect.php';
 
 // Check if contact_id is provided in the URL and toggle status
-if(isset($_GET['contact_id'])) {
+if (isset($_GET['contact_id'])) {
     $contact_id = $_GET['contact_id'];
-    
+
     // Fetch current responded status
     $status_query = "SELECT contact_respond_value FROM ContactUs WHERE contact_id = $contact_id";
     $status_result = mysqli_query($con, $status_query);
@@ -24,7 +24,7 @@ if(isset($_GET['contact_id'])) {
 }
 
 // Check if the button to arrange by "Not Responded" is clicked
-if(isset($_GET['sort'])) {
+if (isset($_GET['sort'])) {
     // Add ORDER BY clause to SQL query to order by "Not Responded" status first
     $sql = "SELECT c.*, CONCAT(c.contact_first_name, ' ', c.contact_last_name) AS customer_name,
             c.contact_email AS email, c.contact_subject AS subject, c.contact_message AS message,
@@ -53,20 +53,20 @@ $result = mysqli_query($con, $sql);
 </head>
 
 <body>
-<div class="sidebar">
+    <div class="sidebar">
         <h2>Admin Dashboard</h2>
         <ul>
+            <li><a href="admin_home.php">Home Content</a></li>
             <li><a href="admin_menu.php">Menu Content</a></li>
-            <li><a href="#">Home Content</a></li>
             <li><a href="admin_contact_us.php">Contact Us Record</a></li>
             <li><a href="admin_feedback_content.php">Feedback Content</a></li>
             <li><a href="admin_feedback_record.php">Feedback Record</a></li>
             <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
-            <li><a href="#">About Content</a></li>
+            <li><a href="admin_about_us.php">About Us Content</a></li>
             <li><a href="admin_account.php">Account</a></li>
         </ul>
     </div>
-    
+
     <div class="container">
         <h2>Contact Us Record</h2>
         <div>
@@ -104,7 +104,7 @@ $result = mysqli_query($con, $sql);
                             <td>' . $timestamp . '</td>
                             <td>' . $status . '</td>
                             <td>
-                                <a href="?contact_id=' . $contact_id . '" class="btn btn-primary">Toggle Status</a>
+                                <a href="?contact_id=' . $contact_id . '" class="btn btn-primary">Change Status</a>
                             </td>
                         </tr>';
                     }
