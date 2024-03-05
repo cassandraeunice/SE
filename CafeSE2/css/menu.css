@@ -195,37 +195,6 @@
   color: var(--cream-color);
 }
 
-.menu-toolbar {
-  width: 450px;
-  height: 40px;
-  font-size: 25px;
-  margin-top: 25px;
-  padding-bottom: 25px;
-  border: 1px solid var(--coffee-color);
-  border-radius: 20px;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-}
-
-.menu-toolbar a {
-  text-decoration: none;
-  color: var(--coffee-color);
-  border-radius: 20px;
-  width: 160px;
-  height: 40px;
-}
-
-.menu-toolbar a:hover {
-  background-color: var(--coffee-color);
-  color: var(--cream-color);
-}
-
-.menu-toolbar .active {
-  background-color: var(--coffee-color);
-  color: var(--cream-color);
-}
-
 .menu-display {
   display: flex;
   width: 100%;
