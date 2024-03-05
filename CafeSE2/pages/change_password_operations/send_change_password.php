@@ -24,7 +24,7 @@ if (isset($_GET["email"])) {
     $stmt = $con->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("sss", $verificationCode, $expiry, $email);
+        $stmt->bind_param("ssi", $verificationCode, $expiry, $email);
         $stmt->execute();
 
         if ($stmt->error) {
@@ -45,23 +45,21 @@ if (isset($_GET["email"])) {
 
             $senderEmail = "cafesiena@gmail.com";
             $senderName = "Cafe Siena";
-            $mail->Subject = "Forgot Password Verification Code";
-            $mail->Body = "Your verification code is: $verificationCode";
 
             $mail->setFrom($senderEmail, $senderName);
             $mail->addAddress($email);
-            $mail->Subject = "Password Reset Verification Code";
+            $mail->Subject = "Change Password Verification Code";
             $mail->Body = "Your verification code is: $verificationCode";
 
             try {
                 $mail->send();
-                header("Location: ./forgot_verify.php");
+                header("Location: ./change_verify.php");
                 exit();
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
             }
         } else {
-            echo "<script>alert('No existing account found.'); window.location.href = './forgot_password.php';</script>"; 
+            echo "<script>alert('No existing account found.'); window.location.href = './change_password.php';</script>"; 
         }
 
         $stmt->close();
@@ -71,7 +69,6 @@ if (isset($_GET["email"])) {
 
     $con->close();
 } else {
-    echo "<script>alert('Error: \"email\" key is not set in the GET data.');</script>";
-
+    echo "<script>alert('Error: \"email\" or \"oldPass\" key is not set in the GET data.');</script>";
 }
 ?>

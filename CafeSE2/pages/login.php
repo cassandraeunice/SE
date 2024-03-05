@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <label for="psw">Password</label>
       <input type="password" placeholder="Enter Password" name="psw" required>
-      <span class="psw"><a href="forgot_password.php">Forgot password?</a></span>
+      <span class="psw"><a href="./forget_password_operations/forgot_password.php">Forgot password?</a></span>
 
       <button type="submit">Login</button>
 

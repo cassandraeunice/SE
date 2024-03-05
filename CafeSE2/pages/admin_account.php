@@ -31,12 +31,12 @@ include 'connect.php';
     <div class="container">
         <div id="admin_account" class="admin_account_content">
             <h2>Account Settings</h2>
-            <div class="account-details">
+            <div class="account-details">   
                 <p><strong>Email:</strong> admin@example.com</p>
             </div>
-            <button class="btn btn-primary m-5"><a href="change_email.php" class="text-light">Change Email</a></button>
+            <button class="btn btn-primary m-5"><a href="./change_email_operations/change_email.php" class="text-light">Change Email</a></button>
             <p><strong>Last Updated Email:</strong> [Last Updated Timestamp]</p>
-            <button class="btn btn-primary m-5"><a href="change_password.php" class="text-l ight">Change
+            <button class="btn btn-primary m-5"><a href="./change_password_operations/change_password.php" class="text-l ight">Change
                     Password</a></button>
             <p><strong>Last Updated Password:</strong> [Last Updated Timestamp]</p>
 

@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '../connect.php';
 
 $error_message = "";
 
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows == 0) {
             $error_message = "Email does not exist. Please enter a valid email address.";
         } else {
-            header("Location: ./forget_password_operations/send_password.php?email=" . urlencode($email));
+            header("Location: ./send_password.php?email=" . urlencode($email));
             exit();
         }
     }
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafe Siena</title>
-    <link rel="stylesheet" href="../css/forgot-password.css">
+    <link rel="stylesheet" href="../../css/forgot-password.css">
     <link href='https://fonts.googleapis.com/css?family=Fanwood Text' rel='stylesheet'>
 </head>
 <body>
