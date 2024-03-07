@@ -185,41 +185,28 @@
 /* Menu Display */
 .display-container {
   width: 100%;
-  height: 1750px;
+  height: auto;
   background: url("../images/Menu-Background.png");
   background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  align-items: center;
   color: var(--cream-color);
 }
 
 .menu-display {
   display: flex;
   width: 100%;
-  height: 90%;
-  overflow: scroll;
-  flex-direction: column;
-  align-items: center;
-}
-
-.menu-display::-webkit-scrollbar {
-  display: none;
-}
-
-#add-plus {
-  color: var(--coffee-color);
-  font-size: 45px;
-  cursor: pointer;
-  display: flex;
-  align-self: flex-end;
-  margin-right: 35px;
+  height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 50px;
 }
 
 .card-menu {
-  width: 800px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   flex-direction: row;
   border-radius: 65px;
   border: none;
@@ -228,12 +215,12 @@
   padding: 15px;
   justify-content: center;
   margin: 30px;
+  cursor: pointer;
 }
 
 .card-menu img {
-  width: 140px;
-  height: 135px;
-  
+  width: 100%;
+  height: 100%;
 }
 
 .card-body {
@@ -241,35 +228,9 @@
   justify-content: space-between;
 }
 
-.text-section {
-  margin-left: 10px;
-  margin-right: 0px;
-  width: 562px;
-}
-
 .card-title {
   font-size: 30px;
-}
-
-.card-text {
-  font-size: 20px;
-}
-
-#price {
-  margin-top: -15px;
-  color: var(--coffee-color);
-  font-weight: bold;
-}
-
-.cta-section {
-  display: flex;
-  font-size: 30px;
-  flex-direction: row;
-  align-self: flex-start;
-  color: var(--coffee-color);
-  margin-right: 15px;
-  gap: 10px;
-  cursor: pointer;
+  position: absolute;
 }
 
 /* BREAKPOINTS */
@@ -277,52 +238,7 @@
   .display-container {
     background-size: contain;
   }
-
-  .card-menu {
-    width: 400px;
-    height: 150px;
-    flex-direction: column;
-    border-radius: 65px;
-    border: none;
-    background-color: var(--caramel-color);
-    color: var(--cream-color);
-    padding: 15px;
-    justify-content: center;
-    margin: 30px;
-  }
   
-  .card-menu img {
-    width: 125px;
-    height: 120px;
-    
-  }
-  
-  .card-body {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .text-section {
-    margin-left: 10px;
-    margin-right: 0px;
-    width: 462px;
-  }
-  
-  .card-title {
-    font-size: 25px;
-  }
-  
-  .card-text {
-    font-size: 15px;
-  }
-
-  .cta-section {
-    font-size: 20px;
-  }
-
-  #add-plus {
-    margin-top: 40px;
-  }
 }
 
 /* Footer */
