@@ -10,6 +10,14 @@ include 'connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard-feedback-content.css">
+    <script>
+        function confirmDelete(questionId) {
+            var result = confirm("Are you sure you want to delete?");
+            if (result) {
+                window.location.href = 'feedback_operations/delete_question.php?question_id=' + questionId;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -88,7 +96,7 @@ include 'connect.php';
                             <td>' . $section_name . '</td>
                             <td>
                             <button class="btn btn-primary"><a href="feedback_operations/update_question.php?question_id=' . $question_id . '" class="text-light">Update</a></button>
-                            <button class="btn btn-danger"><a href="feedback_operations/delete_question.php?question_id=' . $question_id . '" class="text-light">Delete</a></button>
+                            <button class="btn btn-danger" onclick="confirmDelete(' . $question_id . ')"><a class="text-light">Delete</a></button>
                             </td>
                         </tr>';
                     }

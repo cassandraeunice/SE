@@ -22,14 +22,14 @@ if (isset($_POST['submit'])) {
     $new_question_text = $_POST['question_text'];
     $new_section_ID = $_POST['section_ID'];
 
-    // Check if the updated question text already exists in the database for the selected section
-    $check_query = "SELECT * FROM Question WHERE question_text = '$new_question_text' AND section_ID = '$new_section_ID' AND question_ID != $question_id";
+    // Check if the updated question text already exists in the database for the selected section and is not archived
+    $check_query = "SELECT * FROM Question WHERE question_text = '$new_question_text' AND section_ID = '$new_section_ID' AND question_ID != $question_id AND archive_value = 0";
     $check_result = mysqli_query($con, $check_query);
     $existing_question = mysqli_fetch_assoc($check_result);
 
     if ($existing_question) {
-        // If the updated question text already exists for the selected section, display an error message
-        echo "Question text already exists for the selected section.";
+        // If the updated question text already exists for the selected section and is not archived, display an error message
+        echo "<script>window.onload = function() { alert('Question text already exists for the selected section.'); }</script>";
     } else {
         // Update the question in the database
         $update_query = "UPDATE Question SET question_text = '$new_question_text', section_ID = '$new_section_ID' WHERE question_ID = $question_id";

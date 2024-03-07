@@ -10,16 +10,16 @@ if (isset($_POST['submit'])) {
     $section_ID = $_POST['section_ID'];
     $question_text = $_POST['question_text'];
 
-    // Check if the question text already exists for the selected section
-    $check_query = "SELECT * FROM Question WHERE question_text = '$question_text' AND section_ID = '$section_ID'";
+    // Check if the question text already exists for the selected section and is not archived
+    $check_query = "SELECT * FROM Question WHERE question_text = '$question_text' AND section_ID = '$section_ID' AND archive_value = 0";
     $check_result = mysqli_query($con, $check_query);
     $existing_question = mysqli_fetch_assoc($check_result);
 
     if ($existing_question) {
-        // Question text already exists for the selected section, display an error message
-        echo "Question text already exists for the selected section.";
+        // Question text already exists for the selected section and is not archived, display an error message
+        echo "<script>window.onload = function() { alert('Question text already exists for the selected section.'); }</script>";
     } else {
-        // Question text does not exist for the selected section, proceed with insertion
+        // Question text does not exist for the selected section or is archived, proceed with insertion
         $sql = "INSERT INTO Question (section_ID, question_text) VALUES ('$section_ID', '$question_text')";
         $result = mysqli_query($con, $sql);
         if ($result) {
