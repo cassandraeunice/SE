@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         
         // Verify password
-        if ($password == $row['admin_password']) {
+        if (password_verify($password,$row['admin_password'])) {
             // Password is correct, set session variables
             $_SESSION['admin_ID'] = $row['admin_ID'];
             $_SESSION['logged_in'] = true;
