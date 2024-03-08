@@ -11,7 +11,7 @@
 }
 
 * {
-    background-color: var(--cream-color);
+    background: url("../images/Cream-Background.png");
     /* font-family: 'Montserrat', sans-serif; */
 }
 
@@ -101,3 +101,5 @@ button {
     height: 50px;
     
 }
+
+

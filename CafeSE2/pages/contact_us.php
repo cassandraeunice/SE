@@ -45,7 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
+
+   
     <div class="container">
+   
         <h2>Contact Us</h2>
         <p class="welcome-message">Welcome to our Contact Us page! We're here to assist you—feel free to drop us a message anytime.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
