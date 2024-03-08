@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
 
     if($existing_subcategory) {
         // Subcategory name already exists in the database for the selected category, display an error message
-        echo "Subcategory name already exists for the selected category.";
+        echo "<script>window.onload = function() { alert('Subcategory name already exists for the selected category.'); }</script>";
     } else {
         // Update the subcategory in the database
         $sql = "UPDATE Subcategory SET subcategory_name='$subcategory_name', category_ID=$category_ID WHERE subcategory_ID=$id";
@@ -45,12 +45,18 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Subcategory</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function confirmUpdate() {
+            var result = confirm("Are you sure you want to update?");
+            return result;
+        }
+    </script>
 </head>
 
 <body>
     <div class="container my-5">
         <h2>Update Subcategory</h2>
-        <form method="post">
+        <form method="post" onsubmit="return confirmUpdate()">
         <div class="mb-3">
                 <label>Category</label>
                 <select class="form-select" name="category_ID" required>

@@ -10,7 +10,42 @@ include 'connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="../css/dashboard-menu.css">
+    <script>
+    function confirmDeleteProduct(productId) {
+        var result = confirm("Are you sure you want to delete this product?");
+        if (result) {
+            window.location.href = 'menu_operations/delete_product.php?product_id=' + productId;
+        }
+    }
 
+    function confirmDeleteCategory(categoryId) {
+        var result = confirm("Are you sure you want to delete this category?");
+        if (result) {
+            window.location.href = 'menu_operations/delete_category.php?category_id=' + categoryId;
+        }
+    }
+
+    function confirmDeleteSubcategory(subcategoryId) {
+        var result = confirm("Are you sure you want to delete this subcategory?");
+        if (result) {
+            window.location.href = 'menu_operations/delete_subcategory.php?subcategory_id=' + subcategoryId;
+        }
+    }
+    
+    window.onload = function() {
+        if (window.location.hash === '#product_error') {
+            alert("Must delete subcategories that are under this category first");
+            window.location.href="admin_menu.php";
+        }
+    }
+
+    window.onload = function() {
+        if (window.location.hash === '#category_error') {
+            alert("Must delete subcategories that are under this category first");
+            window.location.href="admin_menu.php";
+        }
+    }
+</script>
 </head>
 
 <body>
@@ -68,7 +103,7 @@ include 'connect.php';
                             <td>' . $product_price . '</td>
                             <td>
                             <button class="btn btn-primary"><a href="menu_operations/update_product.php?product_id=' . $product_id . '" class="text-light">Update</a></button>
-                            <button class="btn btn-danger"><a href="menu_operations/delete_product.php?product_id=' . $product_id . '" class="text-light">Delete</a></button>
+                            <button class="btn btn-danger" onclick="confirmDeleteProduct(' . $product_id . ')"><a class="text-light">Delete</a></button>
                             </td>
                         </tr>';
                         }
@@ -105,7 +140,7 @@ include 'connect.php';
                                 <td><img src="../category_images/' . $category_image . '" style="max-width: 100px; max-height: 100px;"></td> <!-- Display category image -->
                                 <td>
                                 <button class="btn btn-primary"><a href="menu_operations/update_category.php?category_id=' . $category_id . '" class="text-light">Update</a></button>
-                                <button class="btn btn-danger"><a href="menu_operations/delete_category.php?category_id=' . $category_id . '" class="text-light">Delete</a></button>
+                                <button class="btn btn-danger" onclick="confirmDeleteCategory(' . $category_id . ')"><a class="text-light">Delete</a></button>
                                 </td>
                             </tr>';
                         }
@@ -141,7 +176,7 @@ include 'connect.php';
                                 <td>' . $category_name . '</td>
                                 <td>
                                 <button class="btn btn-primary"><a href="menu_operations/update_subcategory.php?subcategory_id=' . $subcategory_id . '" class="text-light">Update</a></button>
-                                <button class="btn btn-danger"><a href="menu_operations/delete_subcategory.php?subcategory_id=' . $subcategory_id . '" class="text-light">Delete</a></button>
+                                <button class="btn btn-danger" onclick="confirmDeleteSubcategory(' . $subcategory_id . ')"><a class="text-light">Delete</a></button>
                                 </td>
                             </tr>';
                         }

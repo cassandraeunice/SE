@@ -37,18 +37,23 @@ if(isset($_POST['submit'])){
 
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Content</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function confirmUpdate() {
+            var result = confirm("Are you sure you want to update?");
+            return result;
+        }
+    </script>
 </head>
 
 <body>
     <div class="container my-5">
         <h2>Update Content</h2>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" onsubmit="confirmUpdate()">
             <div class="mb-3">
                 <label>Content Text</label>
                 <input type="text" class="form-control" name="content_text" value="<?php echo $content['content_text']; ?>" required>

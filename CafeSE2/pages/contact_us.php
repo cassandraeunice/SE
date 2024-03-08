@@ -3,20 +3,17 @@
 $firstName = $lastName = $email = $subject = $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $email = $_POST['email'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
 
-    // Include your database connection file
     include 'connect.php';
 
     // Get admin ID
-    $admin_ID = 1; // Change this to the admin ID
+    $admin_ID = 1;
 
-    // Insert data into database
     $sql = "INSERT INTO ContactUs (admin_ID, contact_first_name, contact_last_name, contact_email, contact_subject, contact_message) 
             VALUES ('$admin_ID', '$firstName', '$lastName', '$email', '$subject', '$message')";
     $result = mysqli_query($con, $sql);
@@ -27,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
     }
 
-    // Close connection
     mysqli_close($con);
 }
 ?>

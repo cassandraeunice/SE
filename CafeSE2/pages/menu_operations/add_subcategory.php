@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
 
     if ($existing_subcategory) {
         // Subcategory name already exists for the selected category, display an error message
-        echo "Subcategory name already exists for the selected category.";
+        echo "<script>window.onload = function() { alert('Subcategory name already exists for the selected category.'); }</script>";
     } else {
         // Subcategory name does not exist for the selected category, proceed with insertion
         $sql = "INSERT INTO Subcategory (subcategory_name, category_ID) VALUES ('$subcategory_name', '$category_ID')";

@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 
     if($existing_category) {
         // Category name already exists, display an error message
-        echo "Category name already exists.";
+        echo "<script>window.onload = function() { alert('Category name already exists.'); }</script>";
     } else {
         // Image upload
         $target_dir = "../../category_images/";
@@ -25,21 +25,21 @@ if(isset($_POST['submit'])){
             if($check !== false) {
                 $uploadOk = 1;
             } else {
-                echo "File is not an image.";
+                echo "<script>window.onload = function() { alert('File is not an image.'); }</script>";
                 $uploadOk = 0;
             }
         }
 
         // Check file size
-        if ($_FILES["category_image"]["size"] > 500000) {
-            echo "Sorry, your file is too large.";
+        if ($_FILES["category_image"]["size"] > 10 * 1024 * 1024) {
+            echo "<script>window.onload = function() { alert('Sorry, your file is too large.'); }</script>";
             $uploadOk = 0;
         }
 
         // Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif" ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            echo "<script>window.onload = function() { alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.'); }</script>";
             $uploadOk = 0;
         }
 
@@ -56,7 +56,7 @@ if(isset($_POST['submit'])){
                     echo "Error: " . $sql . "<br>" . mysqli_error($con);
                 }
             } else {
-                echo "Sorry, there was an error uploading your file.";
+                echo "<script>window.onload = function() { alert('Sorry, there was an error uploading your file.'); }</script>";
             }
         }
     }

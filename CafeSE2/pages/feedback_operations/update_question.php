@@ -53,12 +53,18 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Question</title>
     <link rel="stylesheet" href="../../css/update-question.css">
+    <script>
+        function confirmUpdate() {
+            var result = confirm("Are you sure you want to update?");
+            return result;
+        }
+    </script>
 </head>
 
 <body>
     <div class="container my-5">
         <h2>Update Question</h2>
-        <form method="post">
+        <form method="post" onsubmit="return confirmUpdate()">
             <div class="mb-3">
                 <label>Section</label>
                 <select class="form-select" name="section_ID" required>

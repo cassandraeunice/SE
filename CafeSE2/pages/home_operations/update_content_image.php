@@ -32,12 +32,18 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Image</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function confirmUpdate() {
+            var result = confirm("Are you sure you want to update?");
+            return result;
+        }
+    </script>
 </head>
 
 <body>
     <div class="container my-5">
         <h2>Update Image</h2>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" onsubmit="return confirmUpdate()">
             <div class="mb-3">
                 <input type="file" class="form-control" name="content_image" required>
             </div>
