@@ -17,15 +17,15 @@ body {
     padding: 0;
     min-height: 100vh;
     background-color: var(--cream-color);
-    display: flex; /* Use Flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }
 
 /* Main Content Area Styles */
 .container {
     border-radius: 20px;
-    height: 400px;
+    height: 350px;
     width: 500px;
     padding: 20px;
     background-color: var(--coffee-color);
@@ -34,6 +34,7 @@ body {
 
 .container h2 {
     text-align: center;
+    margin-top: -10px;
     font-weight: 700;
     font-size: 30px;
     color: var(--cream-color);
@@ -67,49 +68,27 @@ input[type="text"] {
     background-color: var(--cream-color);
 }
 
-input[type="file"] {
-    width: 500px;
-    height: 50px;
-    padding: 12px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-size: 18px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    border-radius: 10px;
+input[type="file"]::file-selector-button {
+    margin-top: 10px;
+    height: 40px;
+    width: 150px;
+    font-size: 20px;
+    border: 2px solid var(--cream-color);
+    padding: 0.2em 0.4em;
+    border-radius: 0.2em;
     background-color: var(--cream-color);
     color: var(--coffee-color);
-}
-
-.custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-}
-
-.custom-file-input::before {
-    content: 'Choose File';
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: inline-block;
     cursor: pointer;
-    background-color: var(--dark-color);
+}
+
+.custom-file-input {
+    font-size: 20px;
     color: var(--cream-color);
-}
-
-.custom-file-input:hover::before {
-    border-color: black;
-}
-
-.custom-file-input:active::before {
-    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 
 .button-container {
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center children vertically */
+    flex-direction: column; 
     align-items: center;
     
 }
@@ -125,26 +104,8 @@ button {
     cursor: pointer;
     width: 200px;
     height: 40px;
-    display: block; /* Ensure button is a block-level element */
-    margin-bottom: 20px; /* Add some space below the button */
-}
-
-.button-container a {
-    background-color: var(--cream-color);
-    color: var(--coffee-color);
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 200px;
-    height: 40px;
-    text-align: center;
-    text-decoration: none;
-    display: flex; /* Use Flexbox */
-    justify-content: center; /* Center text horizontally */
-    align-items: center; /* Center text vertically */
+    display: block;
+    margin-top: 15px;
 }
 
 /* Form Styles */

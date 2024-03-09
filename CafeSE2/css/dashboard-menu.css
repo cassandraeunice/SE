@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 
 :root {
     --cream-color: #FFF3E2;
@@ -111,7 +112,7 @@ body {
 
 .btn a {
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 400;
     color: var(--cream-color);
     text-decoration: none;
 }

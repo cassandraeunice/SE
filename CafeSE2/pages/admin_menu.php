@@ -201,7 +201,7 @@ $offset = ($current_page - 1) * $records_per_page;
             echo '</div>';
             ?>
         </div>
-
+        
         <h2>Menu Category</h2>
         <button class="btn btn-primary m-5"><a href="menu_operations/add_category.php" class="text-light">Add Category</a></button>
         <div class="table-container">
@@ -277,5 +277,4 @@ $offset = ($current_page - 1) * $records_per_page;
 
     </div>
 </body>
-
 </html>

@@ -25,7 +25,7 @@ body {
 /* Main Content Area Styles */
 .container {
     border-radius: 20px;
-    height: 370px;
+    height: 330px;
     width: 500px;
     padding: 20px;
     background-color: var(--coffee-color);
@@ -34,6 +34,7 @@ body {
 
 .container h2 {
     text-align: center;
+    margin-top: -10px;
     font-weight: 700;
     font-size: 30px;
     color: var(--cream-color);
@@ -103,25 +104,7 @@ button {
     width: 200px;
     height: 40px;
     display: block; /* Ensure button is a block-level element */
-    margin-bottom: 20px; /* Add some space below the button */
-}
-
-.button-container a {
-    background-color: var(--cream-color);
-    color: var(--coffee-color);
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 200px;
-    height: 40px;
-    text-align: center;
-    text-decoration: none;
-    display: flex; /* Use Flexbox */
-    justify-content: center; /* Center text horizontally */
-    align-items: center; /* Center text vertically */
+    margin-top: 15px; /* Add some space below the button */
 }
 
 /* Form Styles */
