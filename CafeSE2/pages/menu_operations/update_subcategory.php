@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script>
         function confirmUpdate() {
-            var result = confirm("Are you sure you want to update?");
+            var result = confirm("Updating this subcategory will also update associated products. Are you sure you want to proceed?");
             return result;
         }
     </script>
