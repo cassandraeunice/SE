@@ -172,7 +172,11 @@ $result = mysqli_query($con, $sql);
 
             // Previous button
             if ($current_page > 1) {
-                echo '<a href="admin_contact_us.php?page=' . ($current_page - 1) . '">Previous</a>';
+                echo '<a href="admin_contact_us.php?page=' . ($current_page - 1);
+                if (isset($_GET['sort'])) {
+                    echo '&sort=1';
+                }
+                echo '">Previous</a>';
             }
 
             // Page numbers
@@ -180,7 +184,11 @@ $result = mysqli_query($con, $sql);
                 if ($i == $current_page) {
                     echo '<span class="current">' . $i . '</span>';
                 } else {
-                    echo '<a href="admin_contact_us.php?page=' . $i . '">' . $i . '</a>';
+                    echo '<a href="admin_contact_us.php?page=' . $i;
+                    if (isset($_GET['sort'])) {
+                        echo '&sort=1';
+                    }
+                    echo '">' . $i . '</a>';
                 }
             }
 
@@ -191,12 +199,20 @@ $result = mysqli_query($con, $sql);
 
             // Last page (if not already included)
             if ($current_page + 2 < $total_pages) {
-                echo '<a href="admin_contact_us.php?page=' . $total_pages . '">' . $total_pages . '</a>';
+                echo '<a href="admin_contact_us.php?page=' . $total_pages;
+                if (isset($_GET['sort'])) {
+                    echo '&sort=1';
+                }
+                echo '">' . $total_pages . '</a>';
             }
 
             // Next button
             if ($current_page < $total_pages) {
-                echo '<a href="admin_contact_us.php?page=' . ($current_page + 1) . '">Next</a>';
+                echo '<a href="admin_contact_us.php?page=' . ($current_page + 1);
+                if (isset($_GET['sort'])) {
+                    echo '&sort=1';
+                }
+                echo '">Next</a>';
             }
 
             echo '</div>';
