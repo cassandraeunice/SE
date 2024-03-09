@@ -84,7 +84,7 @@ $resultMonthlyQuestionAverage = mysqli_query($con, $sqlMonthlyQuestionAverage);
                 <?php
                 while ($row = mysqli_fetch_assoc($resultWeeklySectionAverage)) {
                     echo '<tr>
-                            <td>' . $row['section_name'] . '</td>
+                            <th scope="row">' . $row['section_name'] . '</th>
                             <td>' . round($row['weekly_average'], 2) . '</td>
                           </tr>';
                 }
@@ -104,7 +104,7 @@ $resultMonthlyQuestionAverage = mysqli_query($con, $sqlMonthlyQuestionAverage);
                 <?php
                 while ($row = mysqli_fetch_assoc($resultMonthlySectionAverage)) {
                     echo '<tr>
-                            <td>' . $row['section_name'] . '</td>
+                            <th scope="row">' . $row['section_name'] . '</th>
                             <td>' . round($row['monthly_average'], 2) . '</td>
                           </tr>';
                 }
@@ -125,7 +125,7 @@ $resultMonthlyQuestionAverage = mysqli_query($con, $sqlMonthlyQuestionAverage);
                 <?php
                 while ($row = mysqli_fetch_assoc($resultWeeklyQuestionAverage)) {
                     echo '<tr>
-                            <td>' . $row['section_name'] . '</td>
+                            <th scope="row">' . $row['section_name'] . '</th>
                             <td>' . $row['question_text'] . '</td>
                             <td>' . round($row['weekly_average'], 2) . '</td>
                           </tr>';
@@ -147,7 +147,7 @@ $resultMonthlyQuestionAverage = mysqli_query($con, $sqlMonthlyQuestionAverage);
                 <?php
                 while ($row = mysqli_fetch_assoc($resultMonthlyQuestionAverage)) {
                     echo '<tr>
-                            <td>' . $row['section_name'] . '</td>
+                            <th scope="row">' . $row['section_name'] . '</th>
                             <td>' . $row['question_text'] . '</td>
                             <td>' . round($row['monthly_average'], 2) . '</td>
                           </tr>';

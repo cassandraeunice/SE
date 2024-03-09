@@ -12,7 +12,7 @@ if(isset($_GET['product_id'])){
 
     if ($num_references > 0) {
         // If the product references a category, display an alert message
-        echo '<script>window.location.href="../admin_menu.php#category_error";</script>';
+        echo '<script>window.location.href="../admin_menu.php#product_error";</script>';
     } else {
         // If the product does not reference any category, proceed with deleting the product
         $sql_delete_product = "DELETE FROM Product WHERE product_ID=$id";

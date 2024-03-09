@@ -32,7 +32,7 @@ include 'connect.php';
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Content ID</th>
+                        <th scope="col">Content Name</th>
                         <th scope="col">Content Image</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -45,8 +45,16 @@ include 'connect.php';
                         while ($row = mysqli_fetch_assoc($content_result)) {
                             $content_id = $row['content_ID'];
                             $content_image = $row['content_image'];
+                            $content_name = "";
+                            if ($content_id == 1) {
+                                $content_name = "Carousel Image 1";
+                            } elseif ($content_id == 2) {
+                                $content_name = "Carousel Image 2";
+                            } elseif ($content_id == 3) {
+                                $content_name = "Carousel Image 3";
+                            }
                             echo '<tr>
-                            <th scope="row">' . $content_id . '</th>
+                            <th scope="row">' . $content_name . '</th>
                             <td><img src="../content_images/' . $content_image . '" style="max-width: 100px; max-height: 100px;"></td>
                             <td>
                                 <button class="btn btn-primary"><a href="home_operations/update_content_image.php?content_id=' . $content_id . '" class="text-light">Update</a></button>
@@ -63,7 +71,7 @@ include 'connect.php';
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Content ID</th>
+                        <th scope="col">Content Name</th>
                         <th scope="col">Content Image</th>
                         <th scope="col">Content Text</th>
                         <th scope="col">Action</th>
@@ -78,8 +86,9 @@ include 'connect.php';
                             $content_id = $row['content_ID'];
                             $content_image = $row['content_image'];
                             $content_text = $row['content_text'];
+                            $content_name = "About Us Image and Text";
                             echo '<tr>
-                        <th scope="row">' . $content_id . '</th>
+                        <th scope="row">' . $content_name . '</th>
                         <td><img src="../content_images/' . $content_image . '" style="max-width: 100px; max-height: 100px;"></td>
                         <td>' . $content_text . '</td>
                         <td>

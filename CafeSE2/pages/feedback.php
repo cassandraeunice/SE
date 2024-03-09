@@ -90,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" class="form-control" id="customer_last_name" name="customer_last_name" placeholder="Enter your last name"><br></br>
             </div>
             <div class="form-group">
-                <label id="label" for="customer_email">Email<span>*</span>:</label><br></br>
-                <input type="email" class="form-control" id="customer_email" name="customer_email" required placeholder="Enter your email"><br></br>
+                <label id="label" for="customer_email">Email:</label><br></br>
+                <input type="email" class="form-control" id="customer_email" name="customer_email" placeholder="Enter your email"><br></br>
             </div>
 
             <?php foreach ($questions as $section => $section_questions) : ?>

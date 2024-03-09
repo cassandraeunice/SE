@@ -1,5 +1,15 @@
 <?php
 include 'connect.php';
+
+// Number of records per page
+$records_per_page = 2;
+
+// Get the current page number
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+// Calculate the offset for the SQL query
+$offset = ($current_page - 1) * $records_per_page;
+
 ?>
 
 <!DOCTYPE html>
@@ -11,41 +21,73 @@ include 'connect.php';
     <title>Menu</title>
     <link rel="stylesheet" href="../css/dashboard-menu.css">
     <script>
-    function confirmDeleteProduct(productId) {
-        var result = confirm("Are you sure you want to delete this product?");
-        if (result) {
-            window.location.href = 'menu_operations/delete_product.php?product_id=' + productId;
+        function confirmDeleteProduct(productId) {
+            var result = confirm("Are you sure you want to delete this product?");
+            if (result) {
+                window.location.href = 'menu_operations/delete_product.php?product_id=' + productId;
+            }
         }
-    }
 
-    function confirmDeleteCategory(categoryId) {
-        var result = confirm("Are you sure you want to delete this category?");
-        if (result) {
-            window.location.href = 'menu_operations/delete_category.php?category_id=' + categoryId;
+        function confirmDeleteCategory(categoryId) {
+            var result = confirm("Are you sure you want to delete this category?");
+            if (result) {
+                window.location.href = 'menu_operations/delete_category.php?category_id=' + categoryId;
+            }
         }
-    }
 
-    function confirmDeleteSubcategory(subcategoryId) {
-        var result = confirm("Are you sure you want to delete this subcategory?");
-        if (result) {
-            window.location.href = 'menu_operations/delete_subcategory.php?subcategory_id=' + subcategoryId;
+        function confirmDeleteSubcategory(subcategoryId) {
+            var result = confirm("Are you sure you want to delete this subcategory?");
+            if (result) {
+                window.location.href = 'menu_operations/delete_subcategory.php?subcategory_id=' + subcategoryId;
+            }
         }
-    }
-    
-    window.onload = function() {
-        if (window.location.hash === '#product_error') {
-            alert("Must delete subcategories that are under this category first");
-            window.location.href="admin_menu.php";
-        }
-    }
 
-    window.onload = function() {
-        if (window.location.hash === '#category_error') {
-            alert("Must delete subcategories that are under this category first");
-            window.location.href="admin_menu.php";
+        window.onload = function() {
+            if (window.location.hash === '#product_error') {
+                alert("Must delete categories that are under this category first");
+                setTimeout(function() {
+                    window.location.href = "admin_menu.php";
+                }, 100);
+            }
+            if (window.location.hash === '#category_error') {
+                alert("Must delete subcategories that are under this category first");
+                setTimeout(function() {
+                    window.location.href = "admin_menu.php";
+                }, 100);
+            }
         }
-    }
-</script>
+    </script>
+    <style>
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination a.current {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+        .pagination a:hover {
+            background-color: #f2f2f2;
+        }
+
+        .pagination .ellipsis {
+            padding: 0 5px;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
@@ -82,7 +124,7 @@ include 'connect.php';
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT p.*, c.category_name, s.subcategory_name FROM Product p LEFT JOIN Category c ON p.category_ID = c.category_ID LEFT JOIN Subcategory s ON p.subcategory_ID = s.subcategory_ID";
+                    $sql = "SELECT p.*, c.category_name, s.subcategory_name FROM Product p LEFT JOIN Category c ON p.category_ID = c.category_ID LEFT JOIN Subcategory s ON p.subcategory_ID = s.subcategory_ID LIMIT $offset, $records_per_page";
                     $result = mysqli_query($con, $sql);
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -111,6 +153,53 @@ include 'connect.php';
                     ?>
                 </tbody>
             </table>
+        </div>
+
+        <div class="pagination">
+            <?php
+            // Get total number of records
+            $sql = "SELECT COUNT(*) AS total FROM Product";
+            $result = mysqli_query($con, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $total_records = $row['total'];
+
+            // Calculate total number of pages
+            $total_pages = ceil($total_records / $records_per_page);
+
+            // Display ellipsis pagination links
+            echo '<div class="pagination">';
+
+            // Previous button
+            if ($current_page > 1) {
+                echo '<a href="admin_menu.php?page=' . ($current_page - 1) . '">Previous</a>';
+            }
+
+            // Page numbers
+            for ($i = max(1, $current_page - 2); $i <= min($current_page + 2, $total_pages); $i++) {
+                if ($i == $current_page) {
+                    echo '<span class="current">' . $i . '</span>';
+                } else {
+                    echo '<a href="admin_menu.php?page=' . $i . '">' . $i . '</a>';
+                }
+            }
+
+            // Ellipsis before the last page
+            if ($current_page + 2 < $total_pages) {
+                echo '<span class="ellipsis">...</span>';
+            }
+
+            // Last page (if not already included)
+            if ($current_page + 2 < $total_pages) {
+                echo '<a href="admin_menu.php?page=' . $total_pages . '">' . $total_pages . '</a>';
+            }
+
+            // Next button
+            if ($current_page < $total_pages) {
+                echo '<a href="admin_menu.php?page=' . ($current_page + 1) . '">Next</a>';
+            }
+
+            echo '</div>';
+            ?>
         </div>
 
         <h2>Menu Category</h2>

@@ -1,6 +1,15 @@
 <?php
 include 'connect.php';
 
+// Number of records per page
+$records_per_page = 5;
+
+// Get the current page number
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+// Calculate the offset for the SQL query
+$offset = ($current_page - 1) * $records_per_page;
+
 // Check if contact_id is provided in the URL and toggle status
 if (isset($_GET['contact_id'])) {
     $contact_id = $_GET['contact_id'];
@@ -30,13 +39,16 @@ if (isset($_GET['sort'])) {
             c.contact_email AS email, c.contact_subject AS subject, c.contact_message AS message,
             c.contact_timestamp AS timestamp, c.contact_respond_value AS responded
             FROM ContactUs c
-            ORDER BY c.contact_respond_value ASC";
+            ORDER BY c.contact_respond_value ASC, c.contact_timestamp DESC
+            LIMIT $offset, $records_per_page";
 } else {
     // Default SQL query
     $sql = "SELECT c.*, CONCAT(c.contact_first_name, ' ', c.contact_last_name) AS customer_name,
             c.contact_email AS email, c.contact_subject AS subject, c.contact_message AS message,
             c.contact_timestamp AS timestamp, c.contact_respond_value AS responded
-            FROM ContactUs c";
+            FROM ContactUs c
+            ORDER BY c.contact_timestamp DESC
+            LIMIT $offset, $records_per_page";
 }
 
 $result = mysqli_query($con, $sql);
@@ -50,6 +62,37 @@ $result = mysqli_query($con, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard-contact-us.css">
+    <style>
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination a.current {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+        .pagination a:hover {
+            background-color: #f2f2f2;
+        }
+
+        .pagination .ellipsis {
+            padding: 0 5px;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
@@ -96,7 +139,7 @@ $result = mysqli_query($con, $sql);
                         $timestamp = $row['timestamp'];
                         $status = $row['responded'] ? "Responded" : "Not Responded";
                         echo '<tr>
-                            <td>' . $contact_id . '</td>
+                            <th scope="row">' . $contact_id . '</th>
                             <td>' . $customer_name . '</td>
                             <td>' . $email . '</td>
                             <td>' . $subject . '</td>
@@ -112,6 +155,54 @@ $result = mysqli_query($con, $sql);
                 ?>
             </tbody>
         </table>
+
+        <div class="pagination">
+            <?php
+            // Get total number of records
+            $sql = "SELECT COUNT(*) AS total FROM ContactUs";
+            $result = mysqli_query($con, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $total_records = $row['total'];
+
+            // Calculate total number of pages
+            $total_pages = ceil($total_records / $records_per_page);
+
+            // Display ellipsis pagination links
+            echo '<div class="pagination">';
+
+            // Previous button
+            if ($current_page > 1) {
+                echo '<a href="admin_contact_us.php?page=' . ($current_page - 1) . '">Previous</a>';
+            }
+
+            // Page numbers
+            for ($i = max(1, $current_page - 2); $i <= min($current_page + 2, $total_pages); $i++) {
+                if ($i == $current_page) {
+                    echo '<span class="current">' . $i . '</span>';
+                } else {
+                    echo '<a href="admin_contact_us.php?page=' . $i . '">' . $i . '</a>';
+                }
+            }
+
+            // Ellipsis before the last page
+            if ($current_page + 2 < $total_pages) {
+                echo '<span class="ellipsis">...</span>';
+            }
+
+            // Last page (if not already included)
+            if ($current_page + 2 < $total_pages) {
+                echo '<a href="admin_contact_us.php?page=' . $total_pages . '">' . $total_pages . '</a>';
+            }
+
+            // Next button
+            if ($current_page < $total_pages) {
+                echo '<a href="admin_contact_us.php?page=' . ($current_page + 1) . '">Next</a>';
+            }
+
+            echo '</div>';
+            ?>
+        </div>
+
     </div>
 </body>
 

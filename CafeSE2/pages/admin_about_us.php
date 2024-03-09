@@ -32,7 +32,7 @@ include 'connect.php';
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Content ID</th>
+                        <th scope="col">Content Name</th>
                         <th scope="col">Content Image</th>
                         <th scope="col">Content Text</th>
                         <th scope="col">Action</th>
@@ -47,8 +47,9 @@ include 'connect.php';
                             $content_id = $row['content_ID'];
                             $content_image = $row['content_image'];
                             $content_text = $row['content_text'];
-                            echo '<tr>
-                        <th scope="row">' . $content_id . '</th>
+                            $content_name = "About Us Image and Text";
+                        echo '<tr>
+                        <th scope="row">' . $content_name . '</th>
                         <td><img src="../content_images/' . $content_image . '" style="max-width: 100px; max-height: 100px;"></td>
                         <td>' . $content_text . '</td>
                         <td>
@@ -66,7 +67,7 @@ include 'connect.php';
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Content ID</th>
+                        <th scope="col">Content Name</th>
                         <th scope="col">Content Text</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -79,8 +80,18 @@ include 'connect.php';
                         while ($row = mysqli_fetch_assoc($content_result)) {
                             $content_id = $row['content_ID'];
                             $content_text = $row['content_text'];
+                            $content_name = "";
+                            if ($content_id == 6) {
+                                $content_name = "Location";
+                            } elseif ($content_id == 7) {
+                                $content_name = "Open hours";
+                            } elseif ($content_id == 8) {
+                                $content_name = "Contact number";
+                            } elseif ($content_id == 9) {
+                                $content_name = "Email";
+                            }
                             echo '<tr>
-                            <th scope="row">' . $content_id . '</th>
+                            <th scope="row">' . $content_name . '</th>
                             <td>' . $content_text . '</td>
                             <td>
                                 <button class="btn btn-primary"><a href="about_us_operations/update_content_text.php?content_id=' . $content_id . '" class="text-light">Update</a></button>
@@ -97,7 +108,6 @@ include 'connect.php';
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Content ID</th>
                         <th scope="col">Social Media</th>
                         <th scope="col">Social Media Link</th>
                         <th scope="col">Action</th>
@@ -118,8 +128,7 @@ include 'connect.php';
                                 $social_media_name = "Instagram";
                             }
                             echo '<tr>
-                            <th scope="row">' . $content_id . '</th>
-                            <td>' . $social_media_name . '</td>
+                            <th scope="row">' . $social_media_name . '</th>
                             <td>' . $content_text . '</td>
                             <td>
                                 <button class="btn btn-primary"><a href="about_us_operations/update_content_text.php?content_id=' . $content_id . '" class="text-light">Update</a></button>
