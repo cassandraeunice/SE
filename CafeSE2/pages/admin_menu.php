@@ -44,16 +44,22 @@ $offset = ($current_page - 1) * $records_per_page;
 
         window.onload = function() {
             if (window.location.hash === '#product_error') {
-                alert("Must delete categories that are under this category first");
+                alert("There are products associated with this category. Ensure they are removed or reassigned before deleting this category.");
                 setTimeout(function() {
                     window.location.href = "admin_menu.php";
-                }, 100);
+                }, 50);
             }
-            if (window.location.hash === '#category_error') {
-                alert("Must delete subcategories that are under this category first");
+            if (window.location.hash === '#product_error2') {
+                alert("There are products associated with this subcategory. Ensure they are removed or reassigned before deleting this subcategory.");
                 setTimeout(function() {
                     window.location.href = "admin_menu.php";
-                }, 100);
+                }, 50);
+            }
+            if (window.location.hash === '#subcategory_error') {
+                alert("There are subcategories associated with this category. Ensure they are removed or reassigned before deleting this category.");
+                setTimeout(function() {
+                    window.location.href = "admin_menu.php";
+                }, 50);
             }
         }
     </script>
