@@ -371,98 +371,60 @@ font-size: 24px;
   }
 }
 
-  /* Footer */
+/* Footer */
 footer {
-    background: url("../images/Footer-Background.png");
-    background-position: bottom;
-    background-size: cover;
-    color: var(--cream-color);
+  background: url("../images/Footer-Background.png");
+  background-position: bottom;
+  background-size: cover;
+  color: var(--cream-color);
+}
+
+.footer-container {
+  width: 100%;
+  display: flex;
+  height: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-content {
+  margin-top: 15px;
+  width: 33.3%;
+  align-items: center;
+}
+
+.footer-content p {
+  width: 300px;
+  margin: auto;
+  padding: 7px;
+}
+
+.footer-content ul {
+  text-align: center;
+  margin: auto;
+}
+
+.footer-logo {
+  font-size: 25px;
+}
+
+.social-icons li {
+  display: inline-block;
+  text-align: center;
+}
+
+.social-icons i {
+  color: var(--cream-color);
+  font-size: 25px;
+}
+
+.social-icons i:hover{
+  color: var(--caramel-color);
+}
+
+/* BREAKPOINTS */
+@media (max-width: 992px) {
+  .footer-content .copyright {
+    width: 150px;
   }
-  
-  .footer-container {
-    width: 100%;
-    display: flex;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer-content {
-    margin-top: 25px;
-    width: 33.3%;
-    align-items: center;
-  }
-  
-  .footer-content p {
-    width: 200px;
-    margin: auto;
-    padding: 7px;
-  }
-  
-  .footer-content ul {
-    text-align: center;
-    margin: auto;
-  }
-  
-  .footer-logo {
-    font-size: 25px;
-  }
-  
-  .list li {
-    width: auto;
-    text-align: center;
-    list-style: none;
-    padding: 7px;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .list a:hover {
-    color: var(--cream-color);
-  }
-  
-  .list li::before {
-    content: '';
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 100%;
-    width: 0;
-    height: 2px;
-    background: var(--cream-color);
-    transition-duration: .5%;
-  }
-  
-  .list a {
-    text-decoration: none;
-    color: var(--cream-color);
-  }
-  
-  .list li:hover::before {
-    width: 100%;
-  }
-  
-  .social-icons li {
-    display: inline-block;
-    text-align: center;
-  }
-  
-  .social-icons i {
-    color: var(--cream-color);
-    font-size: 25px;
-  }
-  
-  .social-icons i:hover{
-    color: var(--caramel-color);
-  }
-  
-  .bottom-bar {
-    text-align: center;
-    padding: 10px 0;
-  }
-  
-  .bottom-bar p {
-    width: 100%;
-    margin: 0;
-    font-size: 16px;
-  }
+}
