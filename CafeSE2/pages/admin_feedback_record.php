@@ -95,7 +95,7 @@ $result = mysqli_query($con, $sql);
             <label for="end_date">End Date:</label>
             <input type="date" id="end_date" name="end_date" value="<?php echo $endDate; ?>" min="<?php echo $startDate; ?>" max="<?php echo date('Y-m-d'); ?>">
             <input type="submit" name="submit" value="Apply">
-        </form>
+        </form><br>
         <table class="table">
             <thead>
                 <tr>

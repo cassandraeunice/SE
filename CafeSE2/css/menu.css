@@ -6,6 +6,7 @@
   --coffee-opacity: 35, 12, 2;
   --cream-opacity: 255, 245, 233;
   --caramel-color: #9C6F44;
+  --orange: #F89651;
 }
 
 * {
@@ -172,7 +173,7 @@
 }
 
 .home-menu span {
-    color: var(--caramel-color);
+    color: var(--orange);
 }
 
 /* BREAKPOINTS */

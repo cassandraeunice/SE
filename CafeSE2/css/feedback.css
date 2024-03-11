@@ -139,10 +139,6 @@
     opacity: 1;
     transition-delay: calc(.15s * var(--i));
   }
-
-  #user-icon {
-    margin-right: 70px;
-  }
 }
 
 /* Feedback-Top */

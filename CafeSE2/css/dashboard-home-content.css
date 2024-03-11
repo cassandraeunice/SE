@@ -101,7 +101,18 @@ body {
     text-decoration: none;
 }
 
+.btn-update {
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #6495ED;
+}
+
 /* Additional Spacing */
 .table tr td, .table tr th {
     padding: 10px;
+    text-align: center;
 }

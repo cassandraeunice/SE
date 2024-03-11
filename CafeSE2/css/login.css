@@ -49,7 +49,7 @@ form {
   justify-content: center;
   width: 580px;
   height: 380px;
-  margin-top: 30px;
+  margin-top: 10vh;
   color: var(--cream-color);
   background-color: var(--coffee-color);
   border-radius: 30px;
