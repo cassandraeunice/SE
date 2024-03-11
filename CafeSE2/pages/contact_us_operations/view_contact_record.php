@@ -36,7 +36,7 @@ if (isset($_GET['contact_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Contact Us</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/view-contact-record.css">
 </head>
 
 <body>
@@ -77,13 +77,14 @@ if (isset($_GET['contact_id'])) {
                     <td><?php echo $status; ?></td>
                 </tr>
             </tbody>
-        </table>
+        </table><br>
         <form method="post">
             <input type="hidden" name="contact_id" value="<?php echo $contact_id; ?>">
-            <button type="submit" class="btn btn-primary" name="change_status">Change Status</button>
-        </form>
-        <a href="../admin_contact_us.php" class="btn btn-primary">Back</a>
-
+            <button type="submit" class="btn-change" name="change_status">Change Status</button>
+        </form><br>
+        <div class="back">
+            <a href="../admin_contact_us.php" class="btn btn-primary">Back</a>
+        </div>
     </div>
 </body>
 

@@ -30,7 +30,7 @@ if(isset($_GET['feedback_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Feedback</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/view-feedback.css">
 </head>
 
 <body>
@@ -85,8 +85,9 @@ if(isset($_GET['feedback_id'])) {
             <h2>Comments/Suggestions</h2>
             <p><?php echo $feedback_row['feedback_experience']; ?></p>
         </div>
-
-        <a href="../admin_feedback_record.php" class="btn btn-primary">Back to Dashboard</a>
+        <div class="back">
+            <a href="../admin_feedback_record.php">Back</a>
+        </div>
     </div>
 </body>
 

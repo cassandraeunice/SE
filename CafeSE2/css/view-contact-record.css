@@ -16,47 +16,8 @@ body {
     padding: 0;
     min-height: 100vh;
 }
-
-/* Sidebar Styles */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 230px;
-    background-color: var(--coffee-color);
-    color: var(--cream-color);
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.sidebar h2 {
-    font-size: 40px;
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li a {
-    font-size: 18px;
-    display: block;
-    color: var(--cream-color);
-    text-decoration: none;
-    padding: 10px;
-}
-
-.sidebar ul li a:hover {
-    color: var(--caramel-color);
-    background-color: var(--cream-color);
-}
-
 /* Main Content Area Styles */
 .container {
-    margin-left: 270px;
     padding: 20px;
     background-color: var(--cream-color);
     min-height: 100vh;
@@ -84,41 +45,38 @@ body {
 }
 
 /* Button Styles */
-.btn {
+.back {
     height: 45px;
-    width: 160px;
+    width: 100px;
     border: none;
     border-radius: 10px;
-    margin-bottom: 10px;
     cursor: pointer;
     background-color: var(--dark-color);
+    text-align: center;
+    line-height: 45px;
 }
 
-.btn a {
-    font-size: 15px;
+.back a {
+    font-size: 18px;
     font-weight: 400;
     color: var(--cream-color);
     text-decoration: none;
+    display: block;
+    height: 100%;
 }
 
-.btn-update {
-    height: 40px;
-    width: 40px;
+.btn-change {
+    height: 45px;
+    width: 200px;
+    color: var(--cream-color);
+    font-size: 18px;
+    font-weight: 400;
     border: none;
     border-radius: 10px;
-    margin-bottom: 10px;
     cursor: pointer;
-    background-color: #6495ED;
-}
-
-.btn-delete {
-    height: 40px;
-    width: 40px;
-    border: none;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    background-color: #ff6347;
+    background-color: var(--dark-color);
+    text-align: center;
+    line-height: 45px;
 }
 
 /* Additional Spacing */
@@ -127,10 +85,3 @@ body {
    
 }
 
-.table tr td:nth-child(3), .table tr th:nth-child(3) {
-    text-align: center;
-}
-
-.table tr td:last-child, .table tr th:last-child {
-    text-align: center;
-}

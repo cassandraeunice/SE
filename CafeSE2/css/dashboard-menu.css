@@ -63,6 +63,7 @@ body {
     background-color: var(--cream-color);
     min-height: 100vh; 
     overflow-y: auto; 
+    overflow-x: auto;
 }
 
 .container h2 {
@@ -91,6 +92,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align: center;
 }
 
 .table img {
@@ -110,6 +112,26 @@ body {
     background-color: var(--dark-color);
 }
 
+.btn-update {
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #6495ED;
+}
+
+.btn-delete {
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #ff6347;
+}
+
 .btn a {
     font-size: 15px;
     font-weight: 400;
@@ -120,4 +142,36 @@ body {
 /* Responsive Design */
 .table-container {
     overflow-x: auto;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 3px;
+    border: 1px solid var(--dark-color);
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--cream-color);
+    background-color: var(--dark-color);
+}
+
+.pagination a.current {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination a:hover {
+    background-color: var(--cream-color);
+    color: var(--dark-color);
+}
+
+.pagination .ellipsis {
+    padding: 0 5px;
+    color: #333;
 }

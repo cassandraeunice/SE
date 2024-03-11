@@ -29,37 +29,6 @@ $result = mysqli_query($con, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard-feedback-record.css">
-    <style>
-        .pagination {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .pagination a {
-            display: inline-block;
-            padding: 5px 10px;
-            margin: 0 3px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .pagination a.current {
-            background-color: #007bff;
-            color: #fff;
-            border-color: #007bff;
-        }
-
-        .pagination a:hover {
-            background-color: #f2f2f2;
-        }
-
-        .pagination .ellipsis {
-            padding: 0 5px;
-            color: #333;
-        }
-    </style>
 </head>
 
 <body>

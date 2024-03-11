@@ -87,3 +87,36 @@ body {
 .table tr td, .table tr th {
     padding: 10px;
 }
+
+/* Pagination */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 3px;
+    border: 1px solid var(--dark-color);
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--cream-color);
+    background-color: var(--dark-color);
+}
+
+.pagination a.current {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination a:hover {
+    background-color: var(--cream-color);
+    color: var(--dark-color);
+}
+
+.pagination .ellipsis {
+    padding: 0 5px;
+    color: #333;
+}
