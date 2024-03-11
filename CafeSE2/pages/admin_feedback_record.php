@@ -2,19 +2,31 @@
 include 'connect.php';
 
 // Number of records per page
-$records_per_page = 5;
+$records_per_page = 20;
 
 // Get the current page number
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
+// Default date range to last week
+$startDate = date('Y-m-d', strtotime('-1 week'));
+$endDate = date('Y-m-d');
+
+// Check if the date range form is submitted
+if (isset($_POST['submit'])) {
+    // Retrieve start and end dates from form
+    $startDate = $_POST['start_date'];
+    $endDate = $_POST['end_date'];
+}
+
 // Calculate the offset for the SQL query
 $offset = ($current_page - 1) * $records_per_page;
 
-// SQL query to fetch records with pagination
+// SQL query to fetch records with pagination and date range filtering
 $sql = "SELECT f.*, CONCAT(c.customer_first_name, ' ', c.customer_last_name) AS customer_name,
         c.customer_email, f.feedback_timestamp
         FROM Feedback f 
         INNER JOIN Customer c ON f.customer_ID = c.customer_ID
+        WHERE f.feedback_timestamp BETWEEN '$startDate' AND '$endDate'
         ORDER BY f.feedback_timestamp DESC
         LIMIT $offset, $records_per_page";
 
@@ -29,9 +41,37 @@ $result = mysqli_query($con, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard-feedback-record.css">
+    <script>
+        function setupDateRange() {
+            var startDateInput = document.getElementById('start_date');
+            var endDateInput = document.getElementById('end_date');
+
+            function updateEndDateMin() {
+                endDateInput.min = startDateInput.value;
+            }
+
+            function updateStartDateMax() {
+                startDateInput.max = endDateInput.value;
+            }
+
+            startDateInput.addEventListener('change', function() {
+                updateEndDateMin();
+            });
+
+            endDateInput.addEventListener('change', function() {
+                updateStartDateMax();
+                if (endDateInput.value < startDateInput.value) {
+                    startDateInput.value = endDateInput.value;
+                }
+            });
+
+            updateEndDateMin();
+            updateStartDateMax();
+        }
+    </script>
 </head>
 
-<body>
+<body onload="setupDateRange()">
     <div class="sidebar">
         <h2>Admin Dashboard</h2>
         <ul>
@@ -48,6 +88,14 @@ $result = mysqli_query($con, $sql);
 
     <div class="container">
         <h2>Feedback and Ratings</h2>
+        <form id="date_range_form" method="post" action="">
+            <h3>Sort by Date</h3>
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" value="<?php echo $startDate; ?>" max="<?php echo $endDate; ?>">
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" value="<?php echo $endDate; ?>" min="<?php echo $startDate; ?>" max="<?php echo date('Y-m-d'); ?>">
+            <input type="submit" name="submit" value="Apply">
+        </form>
         <table class="table">
             <thead>
                 <tr>
@@ -81,10 +129,11 @@ $result = mysqli_query($con, $sql);
 
         <div class="pagination">
             <?php
-            // Get total number of records
-            $sql = "SELECT COUNT(*) AS total FROM Feedback";
-            $result = mysqli_query($con, $sql);
-            $row = mysqli_fetch_assoc($result);
+            // Count total number of records with date range filtering
+            $countSql = "SELECT COUNT(*) AS total FROM Feedback
+                         WHERE feedback_timestamp BETWEEN '$startDate' AND '$endDate'";
+            $countResult = mysqli_query($con, $countSql);
+            $row = mysqli_fetch_assoc($countResult);
             $total_records = $row['total'];
 
             // Calculate total number of pages
