@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connect.php';
 
 // Number of records per page
@@ -16,10 +17,35 @@ if (isset($_POST['submit'])) {
     // Retrieve start and end dates from form
     $startDate = $_POST['start_date'];
     $endDate = $_POST['end_date'];
+    // Store the dates in the session
+    $_SESSION['startDate'] = $startDate;
+    $_SESSION['endDate'] = $endDate;
+} elseif (isset($_SESSION['startDate']) && isset($_SESSION['endDate'])) {
+    // Retrieve start and end dates from the session
+    $startDate = $_SESSION['startDate'];
+    $endDate = $_SESSION['endDate'];
 }
 
 // Calculate the offset for the SQL query
 $offset = ($current_page - 1) * $records_per_page;
+
+// Count total number of records with date range filtering
+$countSql = "SELECT COUNT(*) AS total FROM Feedback
+             WHERE feedback_timestamp BETWEEN '$startDate' AND '$endDate'";
+$countResult = mysqli_query($con, $countSql);
+$row = mysqli_fetch_assoc($countResult);
+$total_records = $row['total'];
+
+// Calculate total number of pages
+$total_pages = ceil($total_records / $records_per_page);
+
+// Check if the total number of records is less than the records per page
+if ($total_records < $records_per_page) {
+    // Reset the current page to 1
+    $current_page = 1;
+    // Recalculate the offset for the SQL query
+    $offset = ($current_page - 1) * $records_per_page;
+}
 
 // SQL query to fetch records with pagination and date range filtering
 $sql = "SELECT f.*, CONCAT(c.customer_first_name, ' ', c.customer_last_name) AS customer_name,

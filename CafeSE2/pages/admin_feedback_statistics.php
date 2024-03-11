@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connect.php';
 
 // Default date range to last week
@@ -10,6 +11,13 @@ if (isset($_POST['submit'])) {
     // Retrieve start and end dates from form
     $startDate = $_POST['start_date'];
     $endDate = $_POST['end_date'];
+    // Store the dates in the session
+    $_SESSION['startDate'] = $startDate;
+    $_SESSION['endDate'] = $endDate;
+} elseif (isset($_SESSION['startDate']) && isset($_SESSION['endDate'])) {
+    // Retrieve start and end dates from the session
+    $startDate = $_SESSION['startDate'];
+    $endDate = $_SESSION['endDate'];
 }
 
 // Calculate Average by Section within the date range
