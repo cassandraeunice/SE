@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connect.php';
 
 // Number of records per page
@@ -7,8 +8,46 @@ $records_per_page = 5;
 // Get the current page number
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
+// Default date range to last week
+$startDate = date('Y-m-d', strtotime('-1 week'));
+$endDate = date('Y-m-d');
+
+// Check if the date range form is submitted
+if (isset($_POST['submit'])) {
+    // Retrieve start and end dates from form
+    $startDate = $_POST['start_date'];
+    $endDate = $_POST['end_date'];
+    // Append time to end date to include records up to 11:59 PM
+    $endDate .= ' 23:59:59';
+    // Store the dates in the session
+    $_SESSION['startDate'] = $startDate;
+    $_SESSION['endDate'] = $endDate;
+} elseif (isset($_SESSION['startDate']) && isset($_SESSION['endDate'])) {
+    // Retrieve start and end dates from the session
+    $startDate = $_SESSION['startDate'];
+    $endDate = $_SESSION['endDate'];
+}
+
 // Calculate the offset for the SQL query
 $offset = ($current_page - 1) * $records_per_page;
+
+// Count total number of records with date range filtering
+$countSql = "SELECT COUNT(*) AS total FROM ContactUs
+             WHERE contact_timestamp BETWEEN '$startDate' AND '$endDate'";
+$countResult = mysqli_query($con, $countSql);
+$row = mysqli_fetch_assoc($countResult);
+$total_records = $row['total'];
+
+// Calculate total number of pages
+$total_pages = ceil($total_records / $records_per_page);
+
+// Check if the total number of records is less than the records per page
+if ($total_records < $records_per_page) {
+    // Reset the current page to 1
+    $current_page = 1;
+    // Recalculate the offset for the SQL query
+    $offset = ($current_page - 1) * $records_per_page;
+}
 
 // Check if contact_id is provided in the URL and toggle status
 if (isset($_GET['contact_id'])) {
@@ -34,12 +73,24 @@ if (isset($_GET['contact_id'])) {
 
 // Check if the button to arrange by "Not Responded" is clicked
 if (isset($_GET['sort'])) {
-    // Add ORDER BY clause to SQL query to order by "Not Responded" status first
+    // Toggle sorting between responded and not responded
+    if ($_GET['sort'] == 'responded') {
+        $sort_condition = "c.contact_respond_value DESC,";
+        $button_text = "Sort by Not Responded";
+        $next_sort_option = "not_responded";
+    } else {
+        $sort_condition = "c.contact_respond_value ASC,";
+        $button_text = "Sort by Responded";
+        $next_sort_option = "responded";
+    }
+
+    // Add ORDER BY clause to SQL query to order by status and timestamp
     $sql = "SELECT c.*, CONCAT(c.contact_first_name, ' ', c.contact_last_name) AS customer_name,
             c.contact_email AS email, c.contact_subject AS subject, c.contact_message AS message,
             c.contact_timestamp AS timestamp, c.contact_respond_value AS responded
             FROM ContactUs c
-            ORDER BY c.contact_respond_value ASC, c.contact_timestamp DESC
+            WHERE c.contact_timestamp BETWEEN '$startDate' AND '$endDate'
+            ORDER BY $sort_condition c.contact_timestamp DESC
             LIMIT $offset, $records_per_page";
 } else {
     // Default SQL query
@@ -47,8 +98,11 @@ if (isset($_GET['sort'])) {
             c.contact_email AS email, c.contact_subject AS subject, c.contact_message AS message,
             c.contact_timestamp AS timestamp, c.contact_respond_value AS responded
             FROM ContactUs c
+            WHERE c.contact_timestamp BETWEEN '$startDate' AND '$endDate'
             ORDER BY c.contact_timestamp DESC
             LIMIT $offset, $records_per_page";
+    $button_text = "Sort by Not Responded";
+    $next_sort_option = "not_responded";
 }
 
 $result = mysqli_query($con, $sql);
@@ -62,9 +116,37 @@ $result = mysqli_query($con, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard-contact-us.css">
+    <script>
+        function setupDateRange() {
+            var startDateInput = document.getElementById('start_date');
+            var endDateInput = document.getElementById('end_date');
+
+            function updateEndDateMin() {
+                endDateInput.min = startDateInput.value;
+            }
+
+            function updateStartDateMax() {
+                startDateInput.max = endDateInput.value;
+            }
+
+            startDateInput.addEventListener('change', function() {
+                updateEndDateMin();
+            });
+
+            endDateInput.addEventListener('change', function() {
+                updateStartDateMax();
+                if (endDateInput.value < startDateInput.value) {
+                    startDateInput.value = endDateInput.value;
+                }
+            });
+
+            updateEndDateMin();
+            updateStartDateMax();
+        }
+    </script>
 </head>
 
-<body>
+<body onload="setupDateRange()">
     <div class="sidebar">
         <h2>Admin Dashboard</h2>
         <ul>
@@ -81,8 +163,16 @@ $result = mysqli_query($con, $sql);
 
     <div class="container">
         <h2>Contact Us Record</h2>
+        <form id="date_range_form" method="post" action="">
+            <h3>Sort by Date</h3>
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" value="<?php echo $startDate; ?>" max="<?php echo $endDate; ?>">
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" value="<?php echo date('Y-m-d', strtotime($endDate)); ?>" min="<?php echo $startDate; ?>" max="<?php echo date('Y-m-d'); ?>">
+            <input type="submit" name="submit" value="Apply">
+        </form></br>
         <div>
-            <a href="?sort=1" class="btn btn-primary" id="sort">Sort by Not Responded</a>
+            <a href="?sort=<?php echo $next_sort_option; ?>" class="btn btn-primary" id="sort"><?php echo $button_text; ?></a>
         </div>
         <table class="table">
             <thead>
@@ -127,10 +217,11 @@ $result = mysqli_query($con, $sql);
 
         <div class="pagination">
             <?php
-            // Get total number of records
-            $sql = "SELECT COUNT(*) AS total FROM ContactUs";
-            $result = mysqli_query($con, $sql);
-            $row = mysqli_fetch_assoc($result);
+            // Count total number of records with date range filtering
+            $countSql = "SELECT COUNT(*) AS total FROM ContactUs
+                         WHERE contact_timestamp BETWEEN '$startDate' AND '$endDate'";
+            $countResult = mysqli_query($con, $countSql);
+            $row = mysqli_fetch_assoc($countResult);
             $total_records = $row['total'];
 
             // Calculate total number of pages
@@ -143,7 +234,7 @@ $result = mysqli_query($con, $sql);
             if ($current_page > 1) {
                 echo '<a href="admin_contact_us.php?page=' . ($current_page - 1);
                 if (isset($_GET['sort'])) {
-                    echo '&sort=1';
+                    echo '&sort=' . $_GET['sort'];
                 }
                 echo '">Previous</a>';
             }
@@ -155,7 +246,7 @@ $result = mysqli_query($con, $sql);
                 } else {
                     echo '<a href="admin_contact_us.php?page=' . $i;
                     if (isset($_GET['sort'])) {
-                        echo '&sort=1';
+                        echo '&sort=' . $_GET['sort'];
                     }
                     echo '">' . $i . '</a>';
                 }
@@ -170,7 +261,7 @@ $result = mysqli_query($con, $sql);
             if ($current_page + 2 < $total_pages) {
                 echo '<a href="admin_contact_us.php?page=' . $total_pages;
                 if (isset($_GET['sort'])) {
-                    echo '&sort=1';
+                    echo '&sort=' . $_GET['sort'];
                 }
                 echo '">' . $total_pages . '</a>';
             }
@@ -179,7 +270,7 @@ $result = mysqli_query($con, $sql);
             if ($current_page < $total_pages) {
                 echo '<a href="admin_contact_us.php?page=' . ($current_page + 1);
                 if (isset($_GET['sort'])) {
-                    echo '&sort=1';
+                    echo '&sort=' . $_GET['sort'];
                 }
                 echo '">Next</a>';
             }
@@ -187,6 +278,7 @@ $result = mysqli_query($con, $sql);
             echo '</div>';
             ?>
         </div>
+
 
     </div>
 </body>

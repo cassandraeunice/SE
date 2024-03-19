@@ -17,6 +17,8 @@ if (isset($_POST['submit'])) {
     // Retrieve start and end dates from form
     $startDate = $_POST['start_date'];
     $endDate = $_POST['end_date'];
+    // Append time to end date to include records up to 11:59 PM
+    $endDate .= ' 23:59:59';
     // Store the dates in the session
     $_SESSION['startDate'] = $startDate;
     $_SESSION['endDate'] = $endDate;
@@ -119,7 +121,7 @@ $result = mysqli_query($con, $sql);
             <label for="start_date">Start Date:</label>
             <input type="date" id="start_date" name="start_date" value="<?php echo $startDate; ?>" max="<?php echo $endDate; ?>">
             <label for="end_date">End Date:</label>
-            <input type="date" id="end_date" name="end_date" value="<?php echo $endDate; ?>" min="<?php echo $startDate; ?>" max="<?php echo date('Y-m-d'); ?>">
+            <input type="date" id="end_date" name="end_date" value="<?php echo date('Y-m-d', strtotime($endDate)); ?>" min="<?php echo $startDate; ?>" max="<?php echo date('Y-m-d'); ?>">
             <input type="submit" name="submit" value="Apply">
         </form><br>
         <table class="table">
