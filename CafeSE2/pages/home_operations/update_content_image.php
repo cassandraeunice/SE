@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
     // Handle file upload for the new content image
     $content_image = $_FILES['content_image']['name'];
     $temp_image = $_FILES['content_image']['tmp_name'];
-    move_uploaded_file($temp_image, '../content_images/'.$content_image);
+    move_uploaded_file($temp_image, '../../content_images/'.$content_image);
 
     // Update the content image in the database
     $sql = "UPDATE Content SET content_image='$content_image' WHERE content_ID=$id";

@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
     if(isset($_FILES['content_image']['name']) && $_FILES['content_image']['name'] !== '') {
         $content_image = $_FILES['content_image']['name'];
         $temp_image = $_FILES['content_image']['tmp_name'];
-        move_uploaded_file($temp_image, '../content_images/'.$content_image);
+        move_uploaded_file($temp_image, '../../content_images/'.$content_image);
     } else {
         // If no new image is provided, retain the existing image value
         $content_image = $existing_image;
