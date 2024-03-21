@@ -65,7 +65,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="forgot-header">Change Password</p>
 
             <label for="oldPass">Current Password</label>
-            <input type="password" placeholder="Enter Current Password..." name="oldPass" required>
+            <input type="password" placeholder="Enter Current Password..." name="oldPass" class="oldPass" required>
+            <style>
+                 .oldPass {
+                            width: 380px;
+                            height: 50px;
+                            padding: 12px 20px;
+                            margin: 8px 0;
+                            display: inline-block;
+                            border: 1px solid #ccc;
+                            box-sizing: border-box;
+                            font-size: 20px;
+                            font-family: 'Montserrat', sans-serif;
+                            border-radius: 10px;
+                            background-color: var(--coffee-color);
+                            color: var(--cream-color);
+                            margin-top: 20px;
+                        }
+                </style>
       
             <button type="submit">Send verification code</button>
             <?php if (!empty($error_message)): ?>
