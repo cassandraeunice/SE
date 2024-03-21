@@ -92,7 +92,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
           <div class="about-body">
             <img src="../content_images/' . $content_images[5] . '" class="card-img-top" alt="...">
             <div class="about-text-section">
-            <p class="about-card-text">' . $content_texts[5] . '</p>
+            <p class="about-card-text">' . nl2br($content_texts[5]) . '</p>
             </div>
           </div>
         </div>';

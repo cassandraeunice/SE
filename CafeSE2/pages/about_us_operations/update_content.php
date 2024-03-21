@@ -57,7 +57,7 @@ if(isset($_POST['submit'])){
         <form method="post" enctype="multipart/form-data" onsubmit="confirmUpdate()">
             <div class="mb-3">
                 <label>Content Text</label>
-                <input type="text" class="form-control" name="content_text" value="<?php echo $content['content_text']; ?>" required>
+                <textarea type="text" class="form-control" name="content_text" value="<?php echo $content['content_text']; ?>" required></textarea>
             </div>
             <div class="mb-3">
                 <label>Content Image</label>
