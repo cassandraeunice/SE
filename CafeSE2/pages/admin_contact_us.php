@@ -76,11 +76,11 @@ if (isset($_GET['sort'])) {
     // Toggle sorting between responded and not responded
     if ($_GET['sort'] == 'responded') {
         $sort_condition = "c.contact_respond_value DESC,";
-        $button_text = "Sort by Not Responded";
+        $button_text = "Sort by Responded";
         $next_sort_option = "not_responded";
     } else {
         $sort_condition = "c.contact_respond_value ASC,";
-        $button_text = "Sort by Responded";
+        $button_text = "Sort by Not Responded";
         $next_sort_option = "responded";
     }
 

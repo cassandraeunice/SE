@@ -9,7 +9,7 @@ $content = mysqli_fetch_assoc($result);
 
 if(isset($_POST['submit'])){
     // Get content text from the form
-    $content_text = $_POST['content_text'];
+    $content_text = mysqli_real_escape_string($con, $_POST['content_text']);
 
     // Update the content text in the database
     $sql = "UPDATE Content SET content_text='$content_text' WHERE content_ID=$id";

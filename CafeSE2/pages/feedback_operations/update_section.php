@@ -8,7 +8,7 @@ $result = mysqli_query($con, $sql);
 $section = mysqli_fetch_assoc($result);
 
 if(isset($_POST['submit'])){
-    $section_name = $_POST['section_name'];
+    $section_name = mysqli_real_escape_string($con, $_POST['section_name']);
 
     // Check if the updated section name already exists in the database
     $check_query = "SELECT * FROM Section WHERE section_name = '$section_name' AND section_ID != $id";

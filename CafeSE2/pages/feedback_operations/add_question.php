@@ -8,7 +8,7 @@ $sections = mysqli_fetch_all($section_result, MYSQLI_ASSOC);
 
 if (isset($_POST['submit'])) {
     $section_ID = $_POST['section_ID'];
-    $question_text = $_POST['question_text'];
+    $question_text = mysqli_real_escape_string($con, $_POST['question_text']);
 
     // Check if the question text already exists for the selected section and is not archived
     $check_query = "SELECT * FROM Question WHERE question_text = '$question_text' AND section_ID = '$section_ID' AND archive_value = 0";

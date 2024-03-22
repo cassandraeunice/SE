@@ -9,7 +9,7 @@ $result = mysqli_query($con, $sql);
 $category = mysqli_fetch_assoc($result);
 
 if(isset($_POST['submit'])){
-    $category_name = $_POST['category_name'];
+    $category_name = mysqli_real_escape_string($con, $_POST['category_name']);
 
     // Check if the updated category name already exists in the database
     $check_query = "SELECT * FROM Category WHERE category_name = '$category_name' AND category_ID != $id";

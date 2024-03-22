@@ -13,7 +13,7 @@ $category_result = mysqli_query($con, $category_query);
 $categories = mysqli_fetch_all($category_result, MYSQLI_ASSOC);
 
 if(isset($_POST['submit'])){
-    $subcategory_name = $_POST['subcategory_name'];
+    $subcategory_name = mysqli_real_escape_string($con, $_POST['subcategory_name']);
     $category_ID = $_POST['category_ID'];
 
     // Check if the updated subcategory name already exists in the database

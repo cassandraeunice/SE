@@ -17,10 +17,10 @@ $result = mysqli_query($con, $sql);
 $product = mysqli_fetch_assoc($result);
 
 if(isset($_POST['submit'])){
-    $product_name = $_POST['product_name'];
-    $product_description = $_POST['product_description'];
+    $product_name = mysqli_real_escape_string($con, $_POST['product_name']);
+    $product_description = mysqli_real_escape_string($con, $_POST['product_description']);
     $product_price = $_POST['product_price'];
-    $product_category_ID = $_POST['product_category'];
+    $product_category_ID = mysqli_real_escape_string($con, $_POST['product_category']);
     $product_subcategory_ID = isset($_POST['product_subcategory']) ? $_POST['product_subcategory'] : null;
 
     // Check if an image is uploaded

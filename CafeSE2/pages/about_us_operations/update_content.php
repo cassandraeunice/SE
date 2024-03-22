@@ -12,7 +12,7 @@ $existing_image = $content['content_image'];
 
 if(isset($_POST['submit'])){
     // Get content text from the form
-    $content_text = $_POST['content_text'];
+    $content_text = mysqli_real_escape_string($con, $_POST['content_text']);
 
     // Handle file upload for the new content image
     if(isset($_FILES['content_image']['name']) && $_FILES['content_image']['name'] !== '') {
@@ -57,7 +57,7 @@ if(isset($_POST['submit'])){
         <form method="post" enctype="multipart/form-data" onsubmit="confirmUpdate()">
             <div class="mb-3">
                 <label>Content Text</label>
-                <textarea type="text" class="form-control" name="content_text" value="<?php echo $content['content_text']; ?>" required></textarea>
+                <textarea type="text" class="form-control" name="content_text" required><?php echo $content['content_text']; ?></textarea>
             </div>
             <div class="mb-3">
                 <label>Content Image</label>

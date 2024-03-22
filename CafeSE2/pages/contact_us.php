@@ -17,11 +17,11 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 $firstName = $lastName = $email = $subject = $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
+    $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
+    $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $subject = mysqli_real_escape_string($con, $_POST['subject']);
+    $message = mysqli_real_escape_string($con, $_POST['message']);
 
     // Get admin ID
     $admin_ID = 1;

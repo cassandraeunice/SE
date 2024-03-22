@@ -2,7 +2,7 @@
 include '../connect.php';
 
 if(isset($_POST['submit'])){
-    $section_name = $_POST['section_name'];
+    $section_name = mysqli_real_escape_string($con, $_POST['section_name']);
 
     // Check if the section name already exists
     $check_query = "SELECT * FROM Section WHERE section_name = '$section_name'";

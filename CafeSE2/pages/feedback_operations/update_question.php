@@ -19,7 +19,7 @@ $section_result = mysqli_query($con, $section_query);
 $sections = mysqli_fetch_all($section_result, MYSQLI_ASSOC);
 
 if (isset($_POST['submit'])) {
-    $new_question_text = $_POST['question_text'];
+    $new_question_text = mysqli_real_escape_string($con, $_POST['question_text']);
     $new_section_ID = $_POST['section_ID'];
 
     // Check if the updated question text already exists in the database for the selected section and is not archived
