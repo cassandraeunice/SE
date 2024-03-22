@@ -159,7 +159,7 @@
     justify-content: center;
     text-align: center;
     color: var(--cream-color);
-}
+} 
 
 .category-text {
     font-size: 85px;
@@ -167,9 +167,13 @@
 }
 
 /* BREAKPOINTS */
-@media (category-width: 992px) {
-    .feedback-top-container {
+@media (max-width: 992px) {
+    .category-top-container {
       background-size: contain;
+    }
+
+    .category-text {
+      font-size: 65px;
     }
 }
 
