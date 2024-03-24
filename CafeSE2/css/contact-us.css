@@ -197,8 +197,8 @@ h2 {
 }
 
 .welcome-message {
-    margin-top: -50px;
-    margin-bottom: 50px;
+    margin-top: -100px;
+    margin-bottom: 60px;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     padding: 0px 5px 0px 5px;
@@ -211,6 +211,7 @@ label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 20px;
+    margin-bottom: -20px;
     color: var(--dark-color);
     
 }
@@ -220,7 +221,7 @@ label {
     background-color: var(--coffee-color);
   }
 
-input[type=text], input[type=email] {
+input[type=text] {
     width: 410px;
     height: 40px;
     padding: 12px 20px;
@@ -237,8 +238,61 @@ input[type=text], input[type=email] {
     color: var(--cream-color);
 }
 
+input[type=email] {
+  width: 850px;
+  height: 40px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  margin-top: -15px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  border-radius: 10px;
+  background-color: var(--coffee-color);
+  color: var(--cream-color);
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.firstName-input {
+  display: flex;
+  align-content: start;
+  flex-direction: column;
+}
+
+.lastName-input {
+  display: flex;
+  align-content: end;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+#subject {
+  width: 850px;
+  height: 40px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  margin-top: -15px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  border-radius: 10px;
+  background-color: var(--coffee-color);
+  color: var(--cream-color);
+}
+
 textarea {
-    width: 410px;
+    width: 850px;
     height: 300px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -273,6 +327,21 @@ button {
     height: 50px;
     
 }
+
+@media (max-width: 800px) {
+  .form-group {
+     flex-direction: column;
+  }
+
+  .lastName-input {
+    margin-left: 0;
+  }
+
+  input[type=email], #subject, textarea {
+    width: 410px;
+  }
+
+ }
 
 /* Footer */
 footer {

@@ -92,11 +92,11 @@ if(isset($_POST['submit'])){
         <h2>Update Category</h2>
         <form method="post" enctype="multipart/form-data" onsubmit="return confirmUpdate()">
             <div class="mb-3">
-                <label>Category Name</label>
+                <label>Category Name:</label>
                 <input type="text" class="form-control" placeholder="Enter category name" name="category_name" value="<?php echo $category['category_name']; ?>" required>
             </div>
             <div class="mb-3">
-                <label>Category Image</label>
+                <label>Category Image:</label>
                 <input type="file" class="custom-file-input" name="category_image">
             </div>
             <div class="button-container">

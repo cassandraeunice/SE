@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
         <h2>Update Question</h2>
         <form method="post" onsubmit="return confirmUpdate()">
             <div class="mb-3">
-                <label>Section</label>
+                <label>Section:</label><br></br>
                 <select class="form-select" name="section_ID" required>
                     <option value="">Select Section</option>
                     <?php foreach ($sections as $section) : ?>
@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                 </select>
             </div>
             <div class="mb-3">
-                <label>Question Text</label>
+                <label>Question Text:</label>
                 <input type="text" class="form-control" placeholder="Enter question text" name="question_text" value="<?php echo $question['question_text']; ?>" required>
             </div>
             <div class="button-container">

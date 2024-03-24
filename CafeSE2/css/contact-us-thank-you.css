@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+
+:root {
+    --cream-color: #FFF3E2;
+    --coffee-color: #8F5E36;
+    --coffee-opacity: 35, 12, 2;
+    --cream-opacity: 255, 245, 233;
+    --caramel-color: #9C6F44;
+    --dark-color: #271300;
+}
+
+* {
+    color: var(--coffee-color);
+}
+
+body {
+    background: url("../images/Home-Cream-Background.png");
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--cream-color);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px; 
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 0; 
+    margin-bottom: 30px; 
+    text-align: center;
+}

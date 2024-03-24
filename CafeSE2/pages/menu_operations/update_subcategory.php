@@ -59,7 +59,7 @@ if(isset($_POST['submit'])){
         <h2>Update Subcategory</h2>
         <form method="post" onsubmit="return confirmUpdate()">
         <div class="mb-3">
-                <label>Category</label>
+                <label>Category:</label><br></br>
                 <select class="form-select" name="category_ID" required>
                     <option value="">Select Category</option>
                     <?php foreach($categories as $category): ?>
@@ -68,7 +68,7 @@ if(isset($_POST['submit'])){
                 </select>
             </div>
             <div class="mb-3">
-                <label>Subcategory Name</label>
+                <label>Subcategory Name:</label>
                 <input type="text" class="form-control" placeholder="Enter subcategory name" name="subcategory_name" value="<?php echo $subcategory['subcategory_name']; ?>" required>
             </div>
             <div class="button-container">

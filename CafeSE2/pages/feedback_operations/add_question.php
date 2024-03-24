@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
         <h2>Add Question</h2>
         <form method="post">
             <div class="mb-3">
-                <label>Section:</label>
+                <label>Section:</label><br></br>
                 <select class="form-select" name="section_ID" required>
                     <option value="">Select Section</option>
                     <?php foreach ($sections as $section) : ?>

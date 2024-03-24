@@ -1,5 +1,10 @@
 <?php
 include 'connect.php';
+
+if(isset($_POST['homeBtn'])){
+    header("Location: home.php"); // Redirect to admin_home.php
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,22 +14,28 @@ include 'connect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard-home-content.css"> <!-- fix this -->
+    <link rel="stylesheet" href="../css/dashboard-home-content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- fix this -->
 </head>
 
 <body>
     <div class="sidebar">
         <h2>Admin Dashboard</h2>
-        <ul>
-            <li><a href="admin_home.php">Home Content</a></li>
-            <li><a href="admin_menu.php">Menu Content</a></li>
-            <li><a href="admin_contact_us.php">Contact Us Record</a></li>
-            <li><a href="admin_feedback_content.php">Feedback Content</a></li>
-            <li><a href="admin_feedback_record.php">Feedback Record</a></li>
-            <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
-            <li><a href="admin_about_us.php">About Us Content</a></li>
-            <li><a href="admin_account.php">Account</a></li>
-        </ul>
+        <form method="post"> 
+            <ul>
+                <li><a href="admin_home.php">Home Content</a></li>
+                <li><a href="admin_menu.php">Menu Content</a></li>
+                <li><a href="admin_contact_us.php">Contact Us Record</a></li>
+                <li><a href="admin_feedback_content.php">Feedback Content</a></li>
+                <li><a href="admin_feedback_record.php">Feedback Record</a></li>
+                <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
+                <li><a href="admin_about_us.php">About Us Content</a></li>
+                <li><a href="admin_account.php">Account</a></li>
+            </ul>
+            <div class="homeBtn">
+                <button type="submit" name="homeBtn"><i class="fa fa-home"></i> Home</button>
+            </div>
+        </form>
     </div>
     <div class="container">
         <h2>Carousel Images</h2>

@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
         <h2>Update Content</h2>
         <form method="post" onsubmit="confirmUpdate()">
             <div class="mb-3">
-                <label>Content Text</label>
+                <label>Content Text:</label>
                 <input type="text" class="form-control" name="content_text" value="<?php echo $content['content_text']; ?>" required>
             </div>
             <div class="button-container">

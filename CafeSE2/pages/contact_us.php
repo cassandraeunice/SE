@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($con, $sql);
 
     if ($result) {
-        header('location:contact_us.php');
+        header('location:contact_us_thank_you.html');
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
     }
@@ -95,22 +95,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p class="welcome-message">Welcome to our Contact Us page! We're here to assist you—feel free to drop us a message anytime.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
-                <label for="firstName">First Name:</label><br></br>
-                <input type="text" class="form-control" id="firstName" name="firstName" required value="<?php echo $firstName; ?>" placeholder="Enter your first name"><br></br>
+                <div class="firstName-input">
+                    <label for="firstName">First Name:</label><br></br>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                </div>
+                <div class="lastName-input">
+                    <label for="lastName">Last Name:</label><br></br>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label><br></br>
-                <input type="text" class="form-control" id="lastName" name="lastName" required value="<?php echo $lastName; ?>" placeholder="Enter your last name"><br></br>
-            </div>
-            <div class="form-group">
+            <div>
                 <label for="email">Email:</label><br></br>
                 <input type="email" class="form-control" id="email" name="email" required value="<?php echo $email; ?>" placeholder="Enter your email"><br></br>
             </div>
-            <div class="form-group">
+            <div >
                 <label for="subject">Subject:</label><br></br>
                 <input type="text" class="form-control" id="subject" name="subject" required value="<?php echo $subject; ?>" placeholder="Enter subject"><br></br>
             </div>
-            <div class="form-group">
+            <div >
                 <label for="message">Message:</label><br></br>
                 <textarea class="form-control" id="message" name="message" rows="5" required><?php echo $message; ?></textarea><br></br>
             </div>

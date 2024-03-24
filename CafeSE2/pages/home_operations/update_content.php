@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Content</title>
-    <link rel="stylesheet" href="../../css/update-content.css">
+    <link rel="stylesheet" href="../../css/home-update-content.css">
     <script>
         function confirmUpdate() {
             var result = confirm("Are you sure you want to update?");
@@ -57,11 +57,11 @@ if(isset($_POST['submit'])){
         <h2>Update Content</h2>
         <form method="post" enctype="multipart/form-data" onsubmit="confirmUpdate()">
             <div class="mb-3">
-                <label>Content Text</label>
+                <label>Content Text:</label>
                 <textarea class="form-control" name="content_text" required><?php echo $content['content_text']; ?></textarea>
             </div>
             <div class="mb-3">
-                <label>Content Image</label>
+                <label>Content Image:</label>
                 <input type="file" class="custom-file-input" name="content_image">
             </div>
             <div class="button-container">

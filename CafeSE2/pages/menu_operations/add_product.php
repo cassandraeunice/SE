@@ -84,11 +84,11 @@ if(isset($_POST['submit'])){
         <h2>Add Product</h2>
         <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label>Product Name:</label>    
+                <label>Product Name:</label><br></br>    
                 <input type="text" class="form-control" placeholder="Enter product name" name="product_name" required>
             </div>
             <div class="mb-3">
-                <label>Product Category:</label>
+                <label>Product Category:</label><br></br>
                 <select class="form-select" id="category" name="product_category" required>
                     <option value="">Select Category</option>
                     <?php foreach($categories as $category): ?>
@@ -97,7 +97,7 @@ if(isset($_POST['submit'])){
                 </select>
             </div>
             <div class="mb-3">
-                <label>Product Subcategory (Optional):</label>
+                <label>Product Subcategory (Optional):</label><br></br>
                 <select class="form-select" id="subcategory" name="product_subcategory">
                     <option value="">Select Subcategory</option>
                 </select>
@@ -107,11 +107,11 @@ if(isset($_POST['submit'])){
                 <textarea class="form-control" placeholder="Enter product description" name="product_description" required></textarea>
             </div>
             <div class="mb-3">
-                <label>Product Image:</label>
+                <label>Product Image:</label><br></br>
                 <input type="file" class="custom-file-input" name="product_image" required>
             </div>
             <div class="mb-3">
-                <label>Product Price:</label>
+                <label>Product Price:</label><br></br>
                 <input type="number" class="form-control" placeholder="Enter product price" name="product_price" required>
             </div>
             <div class="button-container">

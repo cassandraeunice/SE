@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         <h2>Add Subcategory</h2>
         <form method="post">
             <div class="mb-3">
-                <label>Category:</label>
+                <label>Category:</label><br></br>
                 <select class="form-select" name="category_ID" required>
                     <option value="">Select Category</option>
                     <?php foreach ($categories as $category) : ?>
