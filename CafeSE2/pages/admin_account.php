@@ -5,6 +5,22 @@ if(isset($_POST['homeBtn'])){
     header("Location: home.php"); // Redirect to admin_home.php
     exit();
 }
+
+$query = "SELECT admin_email, admin_password, code_expiration FROM cafe_siena3.admin";
+$result = mysqli_query($con, $query);
+
+if(mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $admin_email = $row['admin_email'];
+    $last_updated_timestamp = $row['code_expiration'];
+    $parts = explode('@', $admin_email);
+    $masked_email = substr($parts[0], 0, 3) . str_repeat('*', strlen($parts[0]) - 3) . '@' . $parts[1];
+} else {
+    // Handle the case where no admin record is found
+    $admin_email = "N/A";
+    $last_updated_timestamp = "N/A";
+    $masked_email = "N/A";
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,13 +59,15 @@ if(isset($_POST['homeBtn'])){
         <div id="admin_account" class="admin_account_content">
             <h2>Account Settings</h2>
             <div class="account-details">   
-                <p><strong>Email:</strong> admin@example.com</p>
+                <p><strong>Email:</strong> <?php echo $masked_email; ?></p>
             </div>
             <button class="btn btn-primary m-5"><a href="./change_email_operations/change_email.php" class="text-light">Change Email</a></button>
-            <p><strong>Last Updated Email:</strong> [Last Updated Timestamp]</p>
-            <button class="btn btn-primary m-5"><a href="./change_password_operations/change_password.php" class="text-l ight">Change
-                    Password</a></button>
-            <p><strong>Last Updated Password:</strong> [Last Updated Timestamp]</p>
+            
+            <div>
+            <button class="btn btn-primary m-5"><a href="./change_password_operations/change_password.php" class="text-l ight">Change Password</a></button>
+            </div>
+            
+            <p><strong>Last Code Requested:</strong> <?php echo $last_updated_timestamp; ?></p>
 
         </div>
         <button class="btn btn-danger m-5" style="background-color: red;"><a href="login.php" class="text-light">Logout</a></button>
