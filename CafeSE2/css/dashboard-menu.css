@@ -57,7 +57,7 @@ body {
 
 .homeBtn {
     position: relative;
-    margin-top: 340px; /* Pushes the home button to the bottom */
+    margin-top: 300px; /* Pushes the home button to the bottom */
 }
 
 .homeBtn button {
