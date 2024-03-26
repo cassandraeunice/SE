@@ -77,10 +77,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="change-header">New Email</p>
 
             <label for="email">New Email</label>
-            <input type="email" placeholder="Enter email" name="email" required>
+            <input type="email" placeholder="Enter email" name="email" class="emailTx" required>
 
             <label for="confirm-email">Confirm Email</label>
-            <input type="email" placeholder="Enter confirm email" name="confirm-email" required>
+            <input type="email" placeholder="Enter confirm email" name="confirm-email" class="emailTx" required>
+
+            <style>
+            .emailTx {
+                            width: 380px;
+                            height: 50px;
+                            padding: 12px 20px;
+                            margin: 8px 0;
+                            display: inline-block;
+                            border: 1px solid #ccc;
+                            box-sizing: border-box;
+                            font-size: 20px;
+                            font-family: 'Montserrat', sans-serif;
+                            border-radius: 10px;
+                            background-color: var(--coffee-color);
+                            color: var(--cream-color);
+                            margin-top: 20px;
+                        }
+            </style>
 
             <button type="submit">Change</button>
 
