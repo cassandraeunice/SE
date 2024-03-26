@@ -35,37 +35,34 @@ if(isset($_GET['feedback_id'])) {
 
 <body>
     <div class="container">
-        <h2>Feedback Details</h2>
+        <a href="../admin_feedback_record.php"><svg width="36px" height="36px" viewBox="0 0 1024 1024" fill="#FFF3E2" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#FFF3E2"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path></g></svg></a>
+        
+        <h2>View Feedback</h2>
+        <h3>Feedback Details</h3>
+        <hr></hr><br></br>
+        <div class="group1">
+            <div class="feedbackID">
+                <label>Feedback ID:</label><br></br>
+                <input type="text" value="<?php echo $feedback_row['feedback_ID']; ?>" disabled>
+            </div>
+            <div class="timestamp">
+                <label>Timestamp:</label><br></br>
+                <input type="text" value="<?php echo $feedback_row['feedback_timestamp']; ?>" disabled>
+            </div>
+        </div>
+        <div class="group2">
+            <div class="customerName">
+                <label>Customer Name:</label><br></br>
+                <input type="text" value="<?php echo $feedback_row['customer_name']; ?>" disabled>
+            </div>
+            <div class="email">
+                <label>Email:</label><br></br>
+                <input type="text" value="<?php echo $feedback_row['customer_email']; ?>" disabled>
+            </div>
+        </div>
+        <h3>Questions and Ratings</h3>
+        <hr></hr><br></br>
         <table class="table">
-            <tbody>
-                <tr>
-                    <th scope="row">Feedback ID</th>
-                    <td><?php echo $feedback_row['feedback_ID']; ?></td>
-                </tr>
-                <tr>
-                    <th scope="row">Customer Name</th>
-                    <td><?php echo $feedback_row['customer_name']; ?></td>
-                </tr>
-                <tr>
-                    <th scope="row">Email</th>
-                    <td><?php echo $feedback_row['customer_email']; ?></td>
-                </tr>
-                <tr>
-                    <th scope="row">Timestamp</th>
-                    <td><?php echo $feedback_row['feedback_timestamp']; ?></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2>Questions and Ratings</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Question Section</th>
-                    <th scope="col">Question</th>
-                    <th scope="col">Rating</th>
-                </tr>
-            </thead>
             <tbody>
                 <?php
                 if ($questions_result) {
@@ -81,13 +78,9 @@ if(isset($_GET['feedback_id'])) {
             </tbody>
         </table>
 
-        <div>
-            <h2>Comments/Suggestions</h2>
-            <p><?php echo $feedback_row['feedback_experience']; ?></p>
-        </div>
-        <div class="back">
-            <a href="../admin_feedback_record.php">Back</a>
-        </div>
+        <h3>Comments/Suggestions</h3>
+        <hr></hr><br></br>
+        <textarea disabled><?php echo $feedback_row['feedback_experience']; ?></textarea>
     </div>
 </body>
 
