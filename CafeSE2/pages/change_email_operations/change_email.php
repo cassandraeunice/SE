@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
         if (password_verify($oldPass, $storedPassword)) {
-            header("Location: ./send_change_password.php?email=" . urlencode($email));
+            header("Location: ./send_change_email.php?email=" . urlencode($email));
             exit();
         } else {
             $error_message = "Incorrect Password.";
