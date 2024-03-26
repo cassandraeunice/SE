@@ -79,13 +79,6 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
       <div class="about-container">
 
-        <!-- <div class="about-toolbar">
-          <i class='bx bx-plus'></i>
-          <i class='bx bxs-pencil'></i>
-          <i class='bx bxs-trash-alt'></i>
-          
-        </div> -->
-
         <?php
         if (isset($content_texts[5]) && isset($content_images[5])) {
           echo '<div class="about-card">

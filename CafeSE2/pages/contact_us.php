@@ -108,11 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="email">Email:</label><br></br>
                 <input type="email" class="form-control" id="email" name="email" required value="<?php echo $email; ?>" placeholder="Enter your email"><br></br>
             </div>
-            <div >
+            <div>
                 <label for="subject">Subject:</label><br></br>
                 <input type="text" class="form-control" id="subject" name="subject" required value="<?php echo $subject; ?>" placeholder="Enter subject"><br></br>
             </div>
-            <div >
+            <div>
                 <label for="message">Message:</label><br></br>
                 <textarea class="form-control" id="message" name="message" rows="5" required><?php echo $message; ?></textarea><br></br>
             </div>
@@ -124,20 +124,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <!-- Footer -->
     <footer>
-
         <div class="footer-container">
-
             <div class="footer-content">
                 <p class="footer-logo">CAFÉ SIENA</p>
             </div>
-
             <div class="footer-content">
                 <ul class="social-icons">
+                    <!-- Dynamic hrefs for social media icons -->
                     <li><a href="<?php echo $content_texts[10]; ?>"><i class='bx bxl-facebook-circle'></i></a></li>
                     <li><a href="<?php echo $content_texts[11]; ?>"><i class='bx bxl-instagram-alt'></i></a></li>
                 </ul>
             </div>
-
             <div class="footer-content">
                 <p class="copyright">&copy; 2023 CAFÉ SIENA. All rights reserved.</p>
             </div>
