@@ -187,7 +187,7 @@
 .display-container {
   width: 100%;
   height: auto;
-  background: url("../images/Menu-Background.png");
+  background: var(--cream-color);
   background-position: center;
   background-size: cover;
   display: flex;
@@ -239,7 +239,7 @@
 
 /* Footer */
 footer {
-  background: url("../images/Footer-Background.png");
+  background: var(--coffee-color);
   background-position: bottom;
   background-size: cover;
   color: var(--cream-color);
