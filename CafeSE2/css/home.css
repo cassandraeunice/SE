@@ -204,8 +204,8 @@
 /* Image Carousel */
 .d-block {
   width: 100%;
-  height: 600px;
-}  
+  height: 500px;
+}
 
 /* BREAKPOINTS */
 @media (max-width: 992px) {
