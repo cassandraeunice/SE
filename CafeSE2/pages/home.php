@@ -65,7 +65,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
           <p>WELCOME TO<br>CAFÉ SIENA!</p>
         </div>
 
-        <button class="view-menu">View Menu</button>
+        <button class="view-menu" onclick="window.location.href='menu.php';">View Menu</button>
 
       </div>
 
@@ -314,8 +314,8 @@ while ($row = mysqli_fetch_assoc($content_result)) {
                             <img src="../content_images/' . $content_images[4] . '" class="card-img-top" alt="...">
                             <div class="about-text-section">
                                 <p class="about-card-text">' . nl2br($content_texts[4]) . '</p>
-                                <button class="know-more">Know More</button>
-                            </div>
+                                <button class="know-more" onclick="window.location.href=\'about.php\';">Know More</button>
+                                </div>
                         </div>
                     </div>';
         } else {
