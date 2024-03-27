@@ -84,8 +84,8 @@ while ($row = mysqli_fetch_assoc($content_result)) {
             // Determine if the item is active or not
             $active_class = ($index === 0) ? 'active' : '';
             // Output the carousel item with the fetched image
-            echo '<div class="carousel-item ' . $active_class . '" style="height: 500px;">
-                            <img src="../content_images/' . $content_image . '" class="d-block" alt="..." style="object-fit:cover; height:100%;">
+            echo '<div class="carousel-item ' . $active_class . '">
+                            <img src="../content_images/' . $content_image . '" class="d-block" alt="...">
                         </div>';
           }
           ?>
