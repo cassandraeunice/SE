@@ -14,7 +14,7 @@ include '../connect.php';
 if (isset($_GET["email"])) {
     $email = $_GET["email"];
     $verificationCode = sprintf('%06d', mt_rand(0, 999999));
-    $expiry = date("Y-m-d H:i:s", time() + 5 * 60);
+    $expiry = date("Y-m-d H:i:s", strtotime("+3 minutes"));
 
     $sql = "UPDATE admin
             SET verification_code = ?,

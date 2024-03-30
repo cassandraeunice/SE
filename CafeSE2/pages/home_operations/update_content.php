@@ -15,14 +15,25 @@ if(isset($_POST['submit'])){
     $content_text = mysqli_real_escape_string($con, $_POST['content_text']);
 
     // Handle file upload for the new content image
-    if(isset($_FILES['content_image']['name']) && $_FILES['content_image']['name'] !== '') {
-        $content_image = $_FILES['content_image']['name'];
-        $temp_image = $_FILES['content_image']['tmp_name'];
-        move_uploaded_file($temp_image, '../../content_images/'.$content_image);
+if(isset($_FILES['content_image']['name']) && $_FILES['content_image']['name'] !== '') {
+    $content_image = $_FILES['content_image']['name'];
+    $temp_image = $_FILES['content_image']['tmp_name'];
+
+    // Get the file extension
+    $file_extension = strtolower(pathinfo($content_image, PATHINFO_EXTENSION));
+
+    // Array of allowed extensions
+    $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
+
+    // Check if the uploaded file has an allowed extension
+    if (!in_array($file_extension, $allowed_extensions)) {
+        echo "Error: Only JPG, PNG, and GIF files are allowed.";
+        // You may want to handle this error gracefully, depending on your requirements
     } else {
-        // If no new image is provided, retain the existing image value
-        $content_image = $existing_image;
+        // Move the uploaded file
+        move_uploaded_file($temp_image, '../../content_images/'.$content_image);
     }
+}
 
     // Update the content text and image in the database
     $sql = "UPDATE Content SET content_text='$content_text', content_image='$content_image' WHERE content_ID=$id";

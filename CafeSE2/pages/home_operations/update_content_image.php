@@ -9,8 +9,20 @@ $content = mysqli_fetch_assoc($result);
 
 if(isset($_POST['submit'])){
     // Handle file upload for the new content image
-    $content_image = $_FILES['content_image']['name'];
-    $temp_image = $_FILES['content_image']['tmp_name'];
+$content_image = $_FILES['content_image']['name'];
+$temp_image = $_FILES['content_image']['tmp_name'];
+
+// Get the file extension
+$file_extension = strtolower(pathinfo($content_image, PATHINFO_EXTENSION));
+
+// Array of allowed extensions
+$allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
+
+// Check if the uploaded file has an allowed extension
+if (!in_array($file_extension, $allowed_extensions)) {
+    echo "Error: Only JPG, PNG, and GIF files are allowed.";
+} else {
+    // Move the uploaded file
     move_uploaded_file($temp_image, '../../content_images/'.$content_image);
 
     // Update the content image in the database
@@ -22,6 +34,9 @@ if(isset($_POST['submit'])){
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
     }
 }
+
+    }
+
 ?>
 
 <!doctype html>

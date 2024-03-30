@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $result->fetch_assoc();
 
     if ($user === null) {
-        $error_message = "Verification has expired";
+        $error_message = "Incorrect Verification Code";
     } else {
         // Check if the code has expired
         $codeExpiration = strtotime($user["code_expiration"]);

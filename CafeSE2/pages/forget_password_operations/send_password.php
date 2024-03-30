@@ -14,7 +14,7 @@ include '../connect.php';
 if (isset($_GET["email"])) {
     $email = $_GET["email"];
     $verificationCode = sprintf('%06d', mt_rand(0, 999999));
-    $expiry = date("Y-m-d H:i:s", time() + 5 * 60);
+    $expiry = date("Y-m-d H:i:s", strtotime("+3 minutes"));
 
     $sql = "UPDATE admin
             SET verification_code = ?,
@@ -45,13 +45,64 @@ if (isset($_GET["email"])) {
 
             $senderEmail = "cafesiena@gmail.com";
             $senderName = "Cafe Siena";
-            $mail->Subject = "Forgot Password Verification Code";
-            $mail->Body = "Your verification code is: $verificationCode";
+
 
             $mail->setFrom($senderEmail, $senderName);
             $mail->addAddress($email);
-            $mail->Subject = "Password Reset Verification Code";
-            $mail->Body = "Your verification code is: $verificationCode";
+            $mail->Subject = "Forgot Password Verification Code";
+            $mail->Body = "
+                    <html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                background-color: #f4f4f4;
+                                padding: 20px;
+                            }
+                            .container {
+                                max-width: 600px;
+                                margin: 0 auto;
+                                background-color: #fff;
+                                padding: 20px;
+                                border-radius: 5px;
+                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                background-color: #FFF3E2;
+                                color: black;
+                            }
+                            h2 {
+                                color: white;
+                                font-size: 20pt;
+                            }
+                            p {
+                                color: #666;
+                            }
+                            h3{
+                                font-size: 15pt;
+                            }
+                            .headerChange{
+                                color:white;
+                                border-radius: 5px;
+                                background-color: #8F5E38;
+                                padding: 15px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class='container'>
+                        <div class='headerChange'>
+                            <h2>Forgot Password Verification</h2>
+                        </div>    
+                            <p>Greetings, Admin!</p>
+                            <p>Your verification code is:</p>
+                            <h3>$verificationCode</h3>
+                            <hr></hr>
+                            <p>Please use this code to verify your email address.</p>
+                            <p>If you didn't request this change, you can ignore this email.</p>
+                            <p>Regards,<br/><strong>Cafe Siena Team</strong></p>
+                        </div>
+                    </body>
+                    </html>
+                ";
 
             try {
                 $mail->send();
