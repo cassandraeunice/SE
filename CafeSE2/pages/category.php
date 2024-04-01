@@ -115,6 +115,17 @@ while ($row = mysqli_fetch_assoc($content_result)) {
             </div>
           </div>
 
+          <div class="food-items">
+            <img src="..\images\About-Coffee-Background.png" class="card-img-top" alt="...">
+            <div class="details">
+              <div class="details-sub">
+                <h5>Smoky Hamburger</h5>
+                <h5 class="price"> $8 </h5>
+              </div>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis nam non quia! Earum eveniet minus. Facilis explicabo natus nihil voluptatem eveniet pariatur.</p>
+            </div>
+          </div>
+
         </div> <!-- Menu -->
 
         <div class="menu">
