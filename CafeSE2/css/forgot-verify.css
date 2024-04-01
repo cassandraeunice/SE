@@ -22,21 +22,24 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: url("../images/Coffee-Background.png");
+    background: url("../images/AccountBG.png");
     background-position: center;
     background-size: cover;
 }
+
 
 form {  
   display: flex;
   justify-content: center;
   width: 550px;
-  height: 330px;
-    color: var(--coffee-color);
-    background-color: var(--cream-color);
+  height:520px;
+    color: #272300;
     border-radius: 30px;
-    margin-top: 23vh;
+    margin-top: 27vh;
+    position: relative;
+    left: 25%;
   }
+
 
   form .verify-header{
     font-size: 40px;
@@ -54,7 +57,6 @@ form {
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     border-radius: 10px;
-    background-color: var(--coffee-color);
     color: var(--cream-color);
     margin-top: 20px; 
     
@@ -65,18 +67,18 @@ form {
   }
 
   ::placeholder {
-    color: rgba(var(--cream-opacity), 0.7);
+    color: rgba(var(--coffee-opacity), 0.7);
   }
   
   button {
-    background-color: var(--caramel-color);
-    color: var(--cream-color);
+    background-color: var(--cream-color);
+    color: #272300;
     font-size: 25px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     width: 124px;
-    height: 50px;
+    height: 50px; 
     margin-top: 40px;
   }
   
@@ -103,6 +105,7 @@ form {
   @media screen and (max-width: 600px) {
     form {
       width: 100%;
+      margin-top: 10;
     }
 
   }

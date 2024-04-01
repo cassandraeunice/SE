@@ -78,8 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             font-size: 20px;
                             font-family: 'Montserrat', sans-serif;
                             border-radius: 10px;
-                            background-color: var(--coffee-color);
-                            color: var(--cream-color);
+                            color: var(--coffee-color);
                             margin-top: 20px;
                         }
             </style>

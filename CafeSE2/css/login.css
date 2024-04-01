@@ -87,7 +87,7 @@ form {
 
   ::placeholder {
     color: rgba(var(--coffee-opacity), 0.7);
-    background-color: var(--cream-color);
+    
   }
   
   button {
@@ -126,14 +126,13 @@ form {
   }
   
   span.psw {
-    margin-left: 285px;
-    margin-top: -8px;
+    margin-left: 275px;
+    margin-top: 10px;
     margin-bottom: 15px;
   }
 
   a{
-    text-decoration: none;
-    color: var(--cream-color);
+    color: #271300;
   }
 
   .container {
@@ -142,13 +141,6 @@ form {
     align-items: center;
     height: 100vh;
 }
-
-.blank-div {
-    flex: 1;
-    /* Adjust styling as needed */
-}
-
-
   
   @media screen and (max-width: 600px) {
     span.psw {
