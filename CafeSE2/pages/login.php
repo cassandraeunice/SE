@@ -58,6 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <p class="sub-text">A taste of comfort</p>
 </div>  
 
+<div class="container">
+    <!-- Blank div on the left -->
+    <div class="blank-div"></div>
+
 <!-- Login Form -->
 <form id="loginForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
@@ -73,9 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <button type="submit">Login</button>
 
-  </div>
+        </div>
 
-</form>
+    </form>
+</div>
 
 <!-- JavaScript to display alert without interrupting page -->
 <script>

@@ -21,7 +21,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: url("../images/Cream-Background.png");
+    background: url("../images/AccountBG.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -134,6 +134,28 @@ form {
     text-decoration: none;
     color: var(--cream-color);
   }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+.blank-div {
+    flex: 1;
+    /* Adjust styling as needed */
+}
+
+.login-container {
+    flex: 1;
+    max-width: 400px; /* Adjust width as needed */
+    margin: auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
   
   @media screen and (max-width: 600px) {
     span.psw {
