@@ -53,20 +53,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-<div class="header-container">
-    <p class="main-text">CAFÉ SIENA</p>
-    <p class="sub-text">A taste of comfort</p>
-</div>  
 
 <div class="container">
-    <!-- Blank div on the left -->
-    <div class="blank-div"></div>
 
 <!-- Login Form -->
 <form id="loginForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
   <div class="login-container">
-      <p class="login-header">Login to your account</p>
+      <p class="login-header">LOG IN</p>
 
       <label for="email">Email</label>
       <input type="email" placeholder="Enter Email" name="email" required>
@@ -75,12 +69,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input type="password" placeholder="Enter Password" name="psw" required>
       <span class="psw"><a href="./forget_password_operations/forgot_password.php">Forgot password?</a></span>
 
-      <button type="submit">Login</button>
+      <button type="submit">LOGIN</button>
 
         </div>
 
     </form>
-</div>
 
 <!-- JavaScript to display alert without interrupting page -->
 <script>

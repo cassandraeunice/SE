@@ -21,7 +21,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: url("../images/AccountBG.jpg");
+    background: url("../images/AccountBG.png");
     background-position: center;
     background-size: cover;
 }
@@ -50,9 +50,10 @@ form {
   width: 580px;
   height: 380px;
   margin-top: 10vh;
-  color: var(--cream-color);
-  background-color: var(--coffee-color);
+  color: #271300;
   border-radius: 30px;
+ position: relative;
+ left: 65%;
 }
 
   form .login-header{
@@ -72,7 +73,7 @@ form {
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     border-radius: 10px;
-    background-color: var(--cream-color);
+    background-color: white;
     color: var(--coffee-color);
   }
 
@@ -91,7 +92,7 @@ form {
   
   button {
     background-color: var(--cream-color);
-    color: var(--coffee-color);
+    color: #271300;
     font-size: 25px;
     font-family: 'Fanwood Text', serif;
     border: none;
@@ -147,15 +148,7 @@ form {
     /* Adjust styling as needed */
 }
 
-.login-container {
-    flex: 1;
-    max-width: 400px; /* Adjust width as needed */
-    margin: auto;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+
   
   @media screen and (max-width: 600px) {
     span.psw {
