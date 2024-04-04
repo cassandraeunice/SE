@@ -37,7 +37,7 @@ if(mysqli_num_rows($result) > 0) {
 
 <body>
     <div class="sidebar">
-        <h2>Admin Dashboard</h2>
+        <h2>CAFÉ SIENA</h2>
         <form method="post"> 
             <ul>
                 <li><a href="admin_home.php">Home Content</a></li>
@@ -50,7 +50,7 @@ if(mysqli_num_rows($result) > 0) {
                 <li><a href="admin_account.php">Account</a></li>
             </ul>
             <div class="homeBtn">
-                <button type="submit" name="homeBtn"><i class="fa fa-home"></i> Home</button>
+                <button type="submit" name="homeBtn"> Customer Dashboard</button>
             </div>
         </form>
     </div>
