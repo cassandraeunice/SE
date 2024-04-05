@@ -33,28 +33,30 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 </head>
 
 <body>
-  <!-- NavBar -->
-  <header class="header-nav">
 
-    <a class="logo-nav">CAFÉ SIENA</a>
-
-    <input type="checkbox" id="check">
-    <label for="check" class="icons">
-      <i class="bx bx-menu" id="menu-icon"></i>
-      <i class="bx bx-x" id="close-icon"></i>
-    </label>
-
-    <nav class="navbar-links">
-      <a href="./admin_menu.php"><i class="bx bxs-dashboard"></i></a>
-      <a href="home.php" style="--i:0;" class="active">Home</a>
-      <a href="menu.php" style="--i:1;">Menu</a>
-      <a href="contact_us.php" style="--i:2;">Contact Us</a>
-      <a href="about.php" style="--i:3;">About</a>
-    </nav>
-
-  </header>
 
   <main>
+
+    <!-- NavBar -->
+    <header class="header-nav">
+
+      <a class="logo-nav">CAFÉ SIENA</a>
+
+      <input type="checkbox" id="check">
+      <label for="check" class="icons">
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <i class="bx bx-x" id="close-icon"></i>
+      </label>
+
+      <nav class="navbar-links">
+        <a href="./admin_menu.php"><i class="bx bxs-dashboard"></i></a>
+        <a href="home.php" style="--i:0;" class="active">Home</a>
+        <a href="menu.php" style="--i:1;">Menu</a>
+        <a href="contact_us.php" style="--i:2;">Contact Us</a>
+        <a href="about.php" style="--i:3;">About</a>
+      </nav>
+
+    </header>
 
     <!-- Welcome to Cafe Siena -->
 
@@ -63,10 +65,10 @@ while ($row = mysqli_fetch_assoc($content_result)) {
       <div class="welcome-container">
 
         <div class="welcome-message">
-          <p>WELCOME TO<br>CAFÉ SIENA!</p>
+          <h3>WELCOME TO</h3>
+          <h1>CAFÉ SIENA!</h1>
+          <h5>A taste of comfort</h5>
         </div>
-
-        <button class="view-menu" onclick="window.location.href='menu.php';">View Menu</button>
 
       </div>
 
@@ -77,6 +79,31 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
 
     </section>
+
+    <!-- About Us -->
+
+    <section>
+      <div class="about-container">
+        <?php
+        // Display the About Us section with content from content_ID 4
+        if (isset($content_texts[4]) && isset($content_images[4])) {
+          echo '<div class="about-card">
+                        <div class="about-body">
+                        <div class="about-text-section">
+                        <p class="about-title">About Us</p>
+                                <p class="about-card-text">' . nl2br($content_texts[4]) . '</p>
+                                <button class="know-more" onclick="window.location.href=\'about.php\';">Know More</button>
+                                </div>
+                            <img src="../content_images/' . $content_images[4] . '" class="card-img-top" alt="...">
+                        </div>
+                    </div>';
+        } else {
+          echo '<p>No data found for About Us section.</p>';
+        }
+        ?>
+      </div>
+    </section>
+
 
     <!-- Image Carousel -->
 
@@ -110,228 +137,6 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
     </section>
 
-    <!-- Popular Menu -->
-
-    <section>
-
-      <div class="popular-menu-container">
-
-        <p class="popular-title">Popular Menu</p>
-
-        <div class="popular-menu-itemlist">
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="popular-items">
-
-            <div class="card-menu">
-
-              <div class="card-body">
-                <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
-                <div class="text-section">
-                  <h5 class="card-title">Coffee Name</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod</p>
-                  <p class="card-text" id="price">₱ 70.00</p>
-                </div>
-
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- About Us -->
-
-    <section>
-      <div class="about-container">
-        <p class="about-title">About Us</p>
-        <?php
-        // Display the About Us section with content from content_ID 4
-        if (isset($content_texts[4]) && isset($content_images[4])) {
-          echo '<div class="about-card">
-                        <div class="about-body">
-                            <img src="../content_images/' . $content_images[4] . '" class="card-img-top" alt="...">
-                            <div class="about-text-section">
-                                <p class="about-card-text">' . nl2br($content_texts[4]) . '</p>
-                                <button class="know-more" onclick="window.location.href=\'about.php\';">Know More</button>
-                                </div>
-                        </div>
-                    </div>';
-        } else {
-          echo '<p>No data found for About Us section.</p>';
-        }
-        ?>
-      </div>
-    </section>
-
   </main>
 
   <!-- Footer -->
@@ -358,3 +163,204 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 </body>
 
 </html>
+
+
+<!--
+
+<section>
+
+  <div class="popular-menu-container">
+
+    <p class="popular-title">Popular Menu</p>
+
+    <div class="popular-menu-itemlist">
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="popular-items">
+
+        <div class="card-menu">
+
+          <div class="card-body">
+            <img src="../images/Coffee-Icon.png" class="card-img-top" alt="...">
+            <div class="text-section">
+              <h5 class="card-title">Coffee Name</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod</p>
+              <p class="card-text" id="price">₱ 70.00</p>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</section>
+
+-->

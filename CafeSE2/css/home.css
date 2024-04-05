@@ -9,6 +9,7 @@
   --cream-opacity: 255, 245, 233;
   --caramel-color: #9C6F44;
   --orange: #F89651;
+  --dark-brown: #271300;
 }
 
 * {
@@ -28,33 +29,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--cream-color);
+  background-color: var(--dark-brown);
   z-index: 100;
 }
 
 .logo-nav {
   font-size: 30px;
-  color: var(--coffee-color);
+  color: var(--cream-color);
   text-decoration: none;
 }
 
 .navbar-links a{
   font-size: 20px;
-  color: var(--coffee-color);
+  color: var(--cream-color);
   text-decoration: none;
   margin: 0.5rem;
   padding: 5px 15px 5px 15px;
 }
 
 .navbar-links a:hover {
-  background-color: var(--coffee-color);
-  color: var(--cream-color);
+  color: var(--orange);
   border-radius: 33px;
 }
 
 .navbar-links .active {
-  background-color: var(--coffee-color);
-  color: var(--cream-color);
+  color: var(--orange);
   border-radius: 33px;
 }
 
@@ -65,17 +64,10 @@
 .icons {
   position: absolute;
   font-size: 40px;
-  color: var(--coffee-color);
+  color: var(--cream-color);
   cursor: pointer;
   display: none;
   right: 5%;
-}
-
-#user-icon {
-  display: flex;
-  font-size: 40px;
-  color: var(--coffee-color);
-  cursor: pointer;
 }
 
 /* BREAKPOINTS */
@@ -114,7 +106,7 @@
     height: 0;
     transition: 0.3s ease;
     overflow: hidden;
-    background-color: var(--cream-color);
+    background-color: var(--dark-brown);
   }
 
   #check:checked~.navbar-links {
@@ -133,8 +125,7 @@
   }
 
   .navbar-links a:hover {
-    background-color: var(--coffee-color);
-    color: var(--cream-color);
+    color: var(--orange);
   }
 
   #check:checked~.navbar-links a {
@@ -142,30 +133,46 @@
     opacity: 1;
     transition-delay: calc(.15s * var(--i));
   }
-
-  #user-icon {
-    margin-right: 70px;
-  }
 }
 
 /* Welcome to cafe siena */
 .welcome-container {
   width: 100%;
-  height: 715px;
-  background: url("../images/Home-Cream-Background.png");
-  background-position: top;
+  height: 650px;
+  background: url("../images/homepage.png");
+  background-position: bottom;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   color: var(--coffee-color);
 }
 
 .welcome-message {
-  font-size: 85px;
-  text-align: center;
-  margin-top: 200px;
+  margin: 100px;
+}
+
+.welcome-message h1{
+  font-size: 100px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+}
+
+.welcome-message h3 {
+  padding: 0;
+  margin: 0;
+  color: black;
+  font-size: 50px;
+}
+
+.welcome-message h5 {
+  padding: 0;
+  margin: 0;
+  color: black;
+  font-size: 30px;
+  font-style: italic;
 }
 
 .view-menu {
@@ -187,12 +194,28 @@
 
 /* BREAKPOINTS */
 @media (max-width: 992px) {
-  .welcome-container {
-    background-size: contain;
+  .welcome-container {   
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+    background-size: cover;
   }
 
   .welcome-message {
     font-size: 50px;
+    text-align: center;
+  }
+
+  .welcome-message h1 {
+    font-size: 60px;
+  }
+
+  .welcome-message h3 {
+    font-size: 40px;
+  }
+
+  .welcome-message h5 {
+    font-size: 30px
   }
 
   .view-menu {
@@ -203,9 +226,9 @@
 
 /* Image Carousel */
 .d-block {
-  background-color: var(--cream-color);
+  background-color: black;
   width: 100%;
-  height: 500px;
+  height: 650px;
 }
 
 /* BREAKPOINTS */
@@ -214,6 +237,7 @@
     height: 300px;
     width: 100%;
   }
+
 }
 
 /* Popular Menu */
@@ -317,8 +341,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 715px;
-  background: var(--cream-color);
+  height: 615px;
+  background: white;
   background-position: center;
   background-size: cover;
   color: var(--coffee-color);
@@ -326,20 +350,12 @@
 
 .about-title {
   text-align: center;
-  font-size: 70px;
+  font-size: 100px;
   text-transform: uppercase;
-  margin-top: 30px;
+  padding: 0;
+  margin: 0;
+  color: black;
 }
-
-.about-toolbar {
-  margin-top: -110px;
-  padding-right: 30px;
-  width: 100%;
-  display: flex;
-  font-size: 40px;
-  cursor: pointer;
-  justify-content: flex-end;
-  }
 
   .about-card {
     width: 100%;
@@ -355,6 +371,8 @@
   display: flex;
   gap: 5rem;
   align-items: center;
+  justify-content: center;
+  color: black;
 }
 
 .card-img-top {
@@ -368,34 +386,39 @@
 }
 
 .about-text-section {
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
-  gap: 80px;
 }
 
 .about-card-text {
   font-size: 26px;
   align-items: center;
+  margin-bottom: 80px;
 }
 
 .know-more {
-  width: 174px;
-  height: 50px;
-  background-color: var(--coffee-color);
-  color: var(--cream-color);
+  width: 187px;
+  height: 47px;
+  background-color: var(--orange);
   border: none;
-  border-radius: 60px;
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 25px;
   align-self: flex-end;
-  margin-right: 50px;
+  padding: 0;
+  font-weight: bold;
+  font-style: italic;
 }
 
 /* BREAKPOINTS */
 @media (max-width: 992px) {
+
   .about-body {
-    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+
+  .about-title {
+    font-size: 50px;
   }
 
   .about-container {
@@ -405,8 +428,8 @@
 
   .about-card img {
     margin-top: 20px;
-    width: 373px;
-    height: 349px;
+    width: 265px;
+    height: 282px;
   }
 
   .about-text-section {
@@ -420,23 +443,14 @@
     margin-right: 0px;
 }
 
-.about-toolbar {
-  margin-top: 0;
-  padding-right: 0;
-  width: 100%;
-  display: flex;
-  font-size: 40px;
-  cursor: pointer;
-  justify-content: center;
-  }
 }
 
 /* Footer */
 footer {
-  background: var(--coffee-color);
+  background: white;
   background-position: bottom;
   background-size: cover;
-  color: var(--cream-color);
+  color: var(--coffee-color);
 }
 
 .footer-container {
@@ -466,6 +480,7 @@ footer {
 
 .footer-logo {
   font-size: 25px;
+  color: var(--dark-brown);
 }
 
 .social-icons li {
@@ -474,12 +489,12 @@ footer {
 }
 
 .social-icons i {
-  color: var(--cream-color);
+  color: var(--coffee-color);
   font-size: 25px;
 }
 
 .social-icons i:hover{
-  color: var(--caramel-color);
+  color: var(--orange);
 }
 
 /* BREAKPOINTS */
