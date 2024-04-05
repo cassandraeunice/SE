@@ -49,7 +49,6 @@ while ($row = mysqli_fetch_assoc($content_result)) {
       </label>
 
       <nav class="navbar-links">
-        <a href="./admin_menu.php"><i class="bx bxs-dashboard"></i></a>
         <a href="home.php" style="--i:0;" class="active">Home</a>
         <a href="menu.php" style="--i:1;">Menu</a>
         <a href="contact_us.php" style="--i:2;">Contact Us</a>
