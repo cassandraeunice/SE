@@ -16,6 +16,21 @@
             <p>For the latest updates and specials, follow us on social media.</p>
     
             <p>Thank you for choosing Café Siena!</p>
+
+            <!-- Countdown Timer -->
+            <h6 class="countdown-text">You will be redirected to the previous page in <span id="countdown">15</span> seconds.</h6>
+
+            <script type="text/javascript">
+                var timeleft = 15;
+                var countdownTimer = setInterval(function(){
+                    timeleft--;
+                    document.getElementById("countdown").textContent = timeleft;
+                    if(timeleft <= 0) {
+                        clearInterval(countdownTimer);
+                        window.history.back();
+                    }
+                }, 1000);
+            </script>
         </div>
     </body>
 </html>

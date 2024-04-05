@@ -9,17 +9,26 @@
 
     </head>
     <body>
-        <h1>Thank You!</h1>
+        <h1>CAFÉ SIENA</h1>
+        <h2>Thank You!</h2>
         <h3>Your Feedback is Appreciated.</h3>
         <p>We appreciate you taking the time to share your thoughts with us. Your feedback helps us serve you better.</p>
 
-        <h3>Stay Caffeinated!</h3>
-        <p>Keep an eye out for updates and new offerings! Follow us on <a href="https://www.facebook.com/cafesiena2013">Facebook</a> for the latest updates.</p>
-
-        <h3>Need Assistance?</h3>
-        <p>For any inquiries or assistance, feel free to reach out to us at <a href="mailto:cafesienaph@gmail.com">cafesienaph@gmail.com</a>.</p>
-
         <h3>Cheers to Great Coffee!</h3>
         <p>Thank you again for your support. We look forward to serving you again soon!</p>
+
+        <h6 class="countdown-text">You will be redirected to the previous page in <span id="countdown">15</span> seconds.</h6>
+
+            <script type="text/javascript">
+                var timeleft = 15;
+                var countdownTimer = setInterval(function(){
+                    timeleft--;
+                    document.getElementById("countdown").textContent = timeleft;
+                    if(timeleft <= 0) {
+                        clearInterval(countdownTimer);
+                        window.history.back();
+                    }
+                }, 1000);
+            </script>
     </body>
 </html>

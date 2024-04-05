@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
     --cream-color: #FFF3E2;
@@ -8,26 +10,24 @@
     --cream-opacity: 255, 245, 233;
     --caramel-color: #9C6F44;
     --dark-color: #271300;
-}
-
-* {
-    color: var(--coffee-color);
+    --orange: #F89651;
 }
 
 body {
-    background: url("../images/Home-Cream-Background.png");
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-color: var(--cream-color);
+    background-color: #FFFCFF;
     display: flex; 
     justify-content: center; 
     align-items: center;
 }
 
 h1 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 60px;
-    font-weight: bolder;
+    font-weight: 400;
+    color: var(--dark-color);
     text-align: center;
     margin-top: 30px;
     margin-bottom: 30px; 
@@ -40,4 +40,19 @@ p {
     margin-top: 0; 
     margin-bottom: 30px; 
     text-align: center;
+    color: var(--dark-color);
+}
+
+.countdown-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 100px; 
+    margin-bottom: 30px; 
+    text-align: center;
+    color: var(--dark-color);
+}
+
+span {
+    font-weight: bold;
 }

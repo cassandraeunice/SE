@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
     --cream-color: #FFF3E2;
@@ -18,6 +20,10 @@
     padding: 0;
 }
 
+body {
+  background: url("../images/White-Background.png");
+}
+
 /* NavBar */
 .header-nav {
     position: sticky;
@@ -28,34 +34,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--coffee-color);
+    background-color: #FFFCFF;
     z-index: 100;
   }
   
   .logo-nav {
     font-size: 30px;
-    color: var(--cream-color);
+    color: var(--coffee-color);
     text-decoration: none;
   }
   
   .navbar-links a{
     font-size: 20px;
-    color: var(--cream-color);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark-brown);
     text-decoration: none;
     margin: 0.5rem;
     padding: 5px 15px 5px 15px;
   }
   
   .navbar-links a:hover {
-    background-color: var(--cream-color);
-    color: var(--coffee-color);
-    border-radius: 33px;
+    color: var(--orange);
   }
   
   .navbar-links .active {
-    background-color: var(--cream-color);
-    color: var(--coffee-color);
-    border-radius: 33px;
+    color: var(--orange);
   }
   
   #check {
@@ -65,7 +68,7 @@
   .icons {
     position: absolute;
     font-size: 40px;
-    color: var(--cream-color);
+    color: var(--dark-brown);
     cursor: pointer;
     display: none;
     right: 5%;
@@ -107,7 +110,7 @@
       height: 0;
       transition: 0.3s ease;
       overflow: hidden;
-      background-color: var(--coffee-color);
+      background-color: #FFFCFF;
     }
   
     #check:checked~.navbar-links {
@@ -141,7 +144,6 @@
 .contact-top-container {
     width: 100%;
     height: 350px;
-    background: url("../images/Menu-Top-Background.png");
     background-position: center;
     background-size: cover;
     display: flex;
@@ -156,11 +158,15 @@
     font-size: 85px;
     margin-top: -50px;
     text-transform: uppercase;
+    color: var(--dark-color);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .home-contact {
     font-size: 29px;
     margin-top: -20px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .home-contact span {
@@ -176,8 +182,8 @@
 
 .contact-container {
     width: 100%;
-    height: 1035px;
-    background: var(--cream-color);
+    height: auto;
+    margin-bottom: 20px;
     background-position: top;
     background-size: cover;
     display: flex;
@@ -185,6 +191,7 @@
     justify-content: center;
     align-items: center;
     color: var(--coffee-color);
+    background-color: #FFFCFF;
 }
 
 h2 {
@@ -196,20 +203,43 @@ h2 {
     color: var(--dark-color);
 }
 
-.welcome-message {
-    margin-top: -100px;
-    margin-bottom: 60px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    padding: 0px 5px 0px 5px;
-    font-weight: 700;
-    text-align: justify;
-    color: var(--coffee-color);
+.contact-info {
+    margin-left: -400px;
+    margin-bottom: -10px;
+}
+
+.req-info {
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  padding: 0px 5px 0px 5px;
+  font-weight: 700;
+  color: var(--dark-color);
+}
+
+.inquiry { 
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  padding: 0px 5px 0px 5px;
+  font-weight: 700;
+  color: var(--dark-color); 
+  margin-top: 20px;
+}
+
+.inquiry-text { 
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  padding: 0px 5px 0px 5px;
+  font-weight: 700;
+  color: var(--dark-color); 
+  margin-bottom: 40px;
 }
 
 label {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
+    font-style: italic;
     font-size: 20px;
     margin-bottom: -20px;
     color: var(--dark-color);
@@ -217,8 +247,8 @@ label {
 }
 
 ::placeholder {
-    color: rgba(var(--cream-opacity), 0.7);
-    background-color: var(--coffee-color);
+    color: rgba(var(--dark-color-opacity), 0.7);
+    background-color: #FFFCFF;
   }
 
 input[type=text] {
@@ -228,14 +258,14 @@ input[type=text] {
     margin: 8px 0;
     margin-top: -15px;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid var(--dark-color);
     box-sizing: border-box;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     border-radius: 10px;
-    background-color: var(--coffee-color);
-    color: var(--cream-color);
+    background-color: #FFFCFF;
+    color: var(--dark-color);
 }
 
 input[type=email] {
@@ -245,14 +275,14 @@ input[type=email] {
   margin: 8px 0;
   margin-top: -15px;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid var(--dark-color);
   box-sizing: border-box;
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   border-radius: 10px;
-  background-color: var(--coffee-color);
-  color: var(--cream-color);
+  background-color: #FFFCFF;
+  color: var(--dark-color);
 }
 
 .form-group {
@@ -281,14 +311,14 @@ input[type=email] {
   margin: 8px 0;
   margin-top: -15px;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid var(--dark-color);
   box-sizing: border-box;
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   border-radius: 10px;
-  background-color: var(--coffee-color);
-  color: var(--cream-color);
+  background-color: #FFFCFF;
+  color: var(--dark-color);
 }
 
 textarea {
@@ -298,13 +328,13 @@ textarea {
     margin: 8px 0;
     margin-top: -15px;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid var(--dark-color);
     box-sizing: border-box;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     border-radius: 10px;
-    background-color: var(--coffee-color);
-    color: var(--cream-color);
+    background-color: #FFFCFF;
+    color: var(--dark-color);
 }
 
 .button-container {
@@ -315,8 +345,8 @@ textarea {
 }
 
 button {
-    background-color: var(--coffee-color);
-    color: var(--cream-color);
+    background-color: var(--dark-color);
+    color: #FFFBF9;
     font-size: 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -328,27 +358,69 @@ button {
     
 }
 
+.contact-information {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 40px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.contact-information p {
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark-color);
+}
+
+.contact-information a {
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
 @media (max-width: 800px) {
   .form-group {
-     flex-direction: column;
+    flex-direction: column;
+    align-items: center;
   }
 
   .lastName-input {
     margin-left: 0;
   }
 
+  .email-input, .subj-input, .message-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align input fields to the center */
+  }
+
+  .email-input label {
+    margin-left: -350px;
+  }
+
+  .subj-input label {
+    margin-left: -325px;
+  }
+
+  .message-input label {
+    margin-left: -320px;
+  }
+
   input[type=email], #subject, textarea {
     width: 410px;
   }
-
- }
+  
+}
 
 /* Footer */
 footer {
-  background: var(--coffee-color);
+  background: var(--dark-color);
   background-position: bottom;
   background-size: cover;
-  color: var(--cream-color);
+  color: #FDFDFD;
 }
 
 .footer-container {
@@ -378,6 +450,7 @@ footer {
 
 .footer-logo {
   font-size: 25px;
+  color: #FDFDFD;
 }
 
 .social-icons li {
@@ -386,12 +459,12 @@ footer {
 }
 
 .social-icons i {
-  color: var(--cream-color);
+  color: var(--caramel-color);
   font-size: 25px;
 }
 
 .social-icons i:hover{
-  color: var(--caramel-color);
+  color: var(--cream-color);
 }
 
 /* BREAKPOINTS */

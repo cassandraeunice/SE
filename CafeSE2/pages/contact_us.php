@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="contact-message">
                 <p class="contact-text">Contact Us</p>
-                <p class="home-contact">Home/<span>Contact Us</span></p>
+                <p class="home-contact">Do you have any questions? We would be glad to help you!</span></p>
             </div>
 
         </div>
@@ -92,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <div class="contact-container">
-        <p class="welcome-message">Welcome to our Contact Us page! We're here to assist you—feel free to drop us a message anytime.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <p class="req-info">REQUEST INFORMATION</p>
             <div class="form-group">
                 <div class="firstName-input">
                     <label for="firstName">First Name:</label><br></br>
@@ -104,24 +104,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
                 </div>
             </div>
-            <div>
+            <div class="email-input">
                 <label for="email">Email:</label><br></br>
                 <input type="email" class="form-control" id="email" name="email" required value="<?php echo $email; ?>" placeholder="Enter your email"><br></br>
             </div>
-            <div>
+            <div class="inquiry-info">
+            <p class="inquiry">INQUIRY</p>
+            <p class="inquiry-text">We’d love to hear from you. Drop us a line if you have any questions.</p>
+            </div>
+            <div class="subj-input">
                 <label for="subject">Subject:</label><br></br>
                 <input type="text" class="form-control" id="subject" name="subject" required value="<?php echo $subject; ?>" placeholder="Enter subject"><br></br>
             </div>
-            <div>
+            <div class="message-input">
                 <label for="message">Message:</label><br></br>
                 <textarea class="form-control" id="message" name="message" rows="5" required><?php echo $message; ?></textarea><br></br>
             </div>
             <div class="button-container">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
         </form>
     </div>
+
+    <div class="contact-information">
+        <p>0917 588 6554</p>
+        <a href="mailto:cafesienaph@gmail.com">cafesienaph@gmail.com</a>
+    </div>
+
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -138,9 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="footer-content">
                 <p class="copyright">&copy; 2023 CAFÉ SIENA. All rights reserved.</p>
             </div>
-
         </div>
-
     </footer>
 </body>
 

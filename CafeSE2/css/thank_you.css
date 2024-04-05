@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
     --cream-color: #FFF3E2;
@@ -7,15 +10,37 @@
     --cream-opacity: 255, 245, 233;
     --caramel-color: #9C6F44;
     --dark-color: #271300;
+    --orange: #F89651;
 }
 
 * {
     font-family: 'Montserrat', sans-serif;
-    color: var(--coffee-color);
-    background-color: var(--cream-color);
+    color: var(--dark-color);
+    background-color: #FFFCFF;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 h1 {
+    font-size: 40px;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: -100px;
+    margin-bottom: 100px; 
+    font-family: 'Fanwood Text', serif;
+    color: var(--coffee-color);
+}
+
+h2 {
     font-size: 40px;
     font-weight: bolder;
     text-align: center;
@@ -36,7 +61,34 @@ p {
     margin-bottom: 30px; 
 }
 
-a {
-    font-weight: bold;
-    text-decoration: none;
+.countdown-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 100px; 
+    margin-bottom: 30px; 
+    text-align: center;
+    color: var(--dark-color);
 }
+
+span {
+    font-weight: bold;
+}
+
+@media (max-width: 992px) {
+    body {
+        justify-content: center;
+    }
+    
+    h2 {
+        font-size: 30px; /* Adjust font size for smaller screens */
+        margin-top: 20px; /* Adjust margins for better spacing */
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 20px; /* Adjust font size for smaller screens */
+        text-align: center;
+    }
+}
+    
