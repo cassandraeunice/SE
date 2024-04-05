@@ -30,13 +30,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #FFFCFF;
   z-index: 100;
 }
 
 .logo-nav {
   font-size: 30px;
-  color: var(--dark-brown);
+  color: var(--coffee-color);
   text-decoration: none;
   font-family: 'Fanwood Text', serif;
 }
