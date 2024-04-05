@@ -61,7 +61,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
         <div class="menu-message">
           <p class="menu-text">Menu</p>
-          <p class="home-menu">Do you have any questions? We would be glad to help you!</p>
+          <p class="home-menu">Ready to explore? View our Menu!</p>
         </div>
 
       </div>

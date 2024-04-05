@@ -57,7 +57,18 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
   <main>
 
-    <!-- About Us -->
+  <section>
+
+    <div class="about-top-container">
+
+        <div class="contact-message">
+            <p class="about-text">About</p>
+            <p class="home-about">Want to know more? Discover our story!</span></p>
+        </div>
+
+    </div>
+
+</section>
 
     <section>
       <div class="about-container">
@@ -67,7 +78,6 @@ while ($row = mysqli_fetch_assoc($content_result)) {
           echo '<div class="about-card">
                         <div class="about-body">
                         <div class="about-text-section">
-                        <p class="about-title">About Us</p>
                                 <p class="about-card-text">' . nl2br($content_texts[5]) . '</p>
                                 </div>
                             <img src="../content_images/' . $content_images[5] . '" class="card-img-top" alt="...">
@@ -94,6 +104,8 @@ while ($row = mysqli_fetch_assoc($content_result)) {
               <p class="visit-title">Come visit us</p>
               <p class="visit-card-text"><i class='bx bx-map'></i><?php echo $content_texts[6]; ?></p>
               <p class="visit-card-text"><i class='bx bx-time'></i><?php echo $content_texts[7]; ?></p>
+              <p class="visit-card-text"><i class='bx bx-phone'></i><?php echo $content_texts[8]; ?></p>
+              <p class="visit-card-text"><i class='bx bx-envelope'></i><?php echo $content_texts[9]; ?></p>
             </div>
 
           </div>

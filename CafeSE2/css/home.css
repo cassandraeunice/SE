@@ -31,13 +31,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #EAE9F1;
+  background-color: #fffcff;
   z-index: 100;
 }
 
 .logo-nav {
   font-size: 30px;
-  color: var(--dark-brown);
+  color: var(--coffee-color);
   text-decoration: none;
 }
 
@@ -109,7 +109,7 @@
     height: 0;
     transition: 0.3s ease;
     overflow: hidden;
-    background-color: #EAE9F1;
+    background-color: #fffcff;
   }
 
   #check:checked~.navbar-links {
@@ -407,7 +407,8 @@
 .know-more {
   width: 170px;
   height: 40px;
-  background-color: var(--orange);
+  background-color: var(--dark-brown);
+  color: #FFFBF9;
   border: none;
   border-radius: 25px;
   cursor: pointer;
