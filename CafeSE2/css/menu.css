@@ -38,6 +38,7 @@
   font-size: 30px;
   color: var(--dark-brown);
   text-decoration: none;
+  font-family: 'Fanwood Text', serif;
 }
 
 .navbar-links a{
@@ -224,10 +225,10 @@
 
 /* Footer */
 footer {
-  background: var(--dark-brown);
+  background-color: var(--dark-brown);
   background-position: bottom;
   background-size: cover;
-  color: white;
+  color: #FDFDFD;
 }
 
 .footer-container {
@@ -236,6 +237,7 @@ footer {
   height: auto;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .footer-content {
@@ -257,7 +259,8 @@ footer {
 
 .footer-logo {
   font-size: 25px;
-  color: white;
+  color: #FDFDFD;
+  font-family: 'Fanwood Text', serif;
 }
 
 .social-icons li {
@@ -266,12 +269,12 @@ footer {
 }
 
 .social-icons i {
-  color: white;
+  color: var(--caramel-color);
   font-size: 25px;
 }
 
 .social-icons i:hover{
-  color: var(--orange);
+  color: var(--cream-color);
 }
 
 /* BREAKPOINTS */

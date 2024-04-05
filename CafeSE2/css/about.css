@@ -29,19 +29,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--dark-brown);
+  background-color: #FFFCFF;
   z-index: 100;
 }
 
 .logo-nav {
   font-size: 30px;
-  color: white;
+  color: var(--dark-brown);
   text-decoration: none;
+  font-family: 'Fanwood Text', serif;
 }
 
 .navbar-links a{
   font-size: 20px;
-  color: white;
+  color: var(--dark-brown);
   text-decoration: none;
   margin: 0.5rem;
   padding: 5px 15px 5px 15px;
@@ -64,7 +65,7 @@
 .icons {
   position: absolute;
   font-size: 40px;
-  color: white;
+  color: var(--dark-brown);
   cursor: pointer;
   display: none;
   right: 5%;
@@ -106,7 +107,7 @@
     height: 0;
     transition: 0.3s ease;
     overflow: hidden;
-    background-color: var(--dark-brown);
+    background-color: #FFFCFF;
   }
 
   #check:checked~.navbar-links {
@@ -364,6 +365,7 @@ footer {
 .footer-logo {
   font-size: 25px;
   color: var(--dark-brown);
+  font-family: 'Fanwood Text', serif;
 }
 
 .social-icons li {
