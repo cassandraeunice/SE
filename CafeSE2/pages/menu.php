@@ -23,7 +23,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
   <title>Cafe Siena</title>
 
   <link rel="stylesheet" href="../css/menu.css">
-  <link href='https://fonts.googleapis.com/css?family=Fanwood Text' rel='stylesheet'> <!-- fanwood font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> <!-- Montserrat font -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> <!-- icons -->
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> <!-- BootStrap -->
@@ -50,8 +50,6 @@ while ($row = mysqli_fetch_assoc($content_result)) {
       <a href="about.php" style="--i:3;">About</a>
     </nav>
 
-    <!-- <i class="bx bxs-user" id="user-icon"></i> -->
-
   </header>
 
   <main>
@@ -64,7 +62,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
         <div class="menu-message">
           <p class="menu-text">Menu</p>
-          <p class="home-menu">Home/<span>Menu</span></p>
+          <p class="home-menu">Do you have any questions? We would be glad to help you!</p>
         </div>
 
       </div>

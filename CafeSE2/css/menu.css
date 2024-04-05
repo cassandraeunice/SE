@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 :root {
   --cream-color: #FFF3E2;
@@ -7,11 +9,13 @@
   --cream-opacity: 255, 245, 233;
   --caramel-color: #9C6F44;
   --orange: #F89651;
+  --dark-brown: #271300;
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'Fanwood Text', serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
   margin: 0;
   padding: 0;
 }
@@ -26,33 +30,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--coffee-color);
+  background-color: white;
   z-index: 100;
 }
 
 .logo-nav {
   font-size: 30px;
-  color: var(--cream-color);
+  color: var(--dark-brown);
   text-decoration: none;
 }
 
 .navbar-links a{
   font-size: 20px;
-  color: var(--cream-color);
+  color: var(--dark-brown);
   text-decoration: none;
   margin: 0.5rem;
   padding: 5px 15px 5px 15px;
 }
 
 .navbar-links a:hover {
-  background-color: var(--cream-color);
-  color: var(--coffee-color);
+  color: var(--orange);
   border-radius: 33px;
 }
 
 .navbar-links .active {
-  background-color: var(--cream-color);
-  color: var(--coffee-color);
+  color: var(--orange);
   border-radius: 33px;
 }
 
@@ -63,17 +65,10 @@
 .icons {
   position: absolute;
   font-size: 40px;
-  color: var(--cream-color);
+  color: var(--dark-brown);
   cursor: pointer;
   display: none;
   right: 5%;
-}
-
-#user-icon {
-  display: flex;
-  font-size: 40px;
-  color: var(--cream-color);
-  cursor: pointer;
 }
 
 /* BREAKPOINTS */
@@ -112,7 +107,7 @@
     height: 0;
     transition: 0.3s ease;
     overflow: hidden;
-    background-color: var(--coffee-color);
+    background-color: white;
   }
 
   #check:checked~.navbar-links {
@@ -121,7 +116,7 @@
 
   .navbar-links a {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin: 1.5rem 0;
     text-align: center;
     transform: translateY(-50px);
@@ -131,8 +126,7 @@
   }
 
   .navbar-links a:hover {
-    background-color: var(--cream-color);
-    color: var(--coffee-color);
+    color: var(--orange);
   }
 
   #check:checked~.navbar-links a {
@@ -140,40 +134,33 @@
     opacity: 1;
     transition-delay: calc(.15s * var(--i));
   }
-
-  #user-icon {
-    margin-right: 70px;
-  }
 }
 
 /* Menu-Top */
 .menu-top-container {
     width: 100%;
     height: 350px;
-    background: url("../images/Menu-Top-Background.png");
-    background-position: center;
-    background-size: cover;
+    background: url("../images/leaves.png");
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--cream-color);
+    color:black;
 }
 
 .menu-text {
-    font-size: 85px;
+    font-size: 100px;
     margin-top: -50px;
     text-transform: uppercase;
 }
 
 .home-menu {
-    font-size: 29px;
+    font-size: 26px;
     margin-top: -50px;
-}
-
-.home-menu span {
-    color: var(--orange);
 }
 
 /* BREAKPOINTS */
@@ -187,12 +174,12 @@
 .display-container {
   width: 100%;
   height: auto;
-  background: var(--cream-color);
+  background: white;
   background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  color: var(--cream-color);
+  color: black;
 }
 
 .menu-display {
@@ -206,12 +193,10 @@
 }
 
 .card-menu {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   flex-direction: row;
-  border-radius: 65px;
   border: none;
-  background-color: var(--caramel-color);
   color: var(--cream-color);
   justify-content: center;
   margin: 30px;
@@ -221,12 +206,12 @@
 .card-menu img {
   width: 100%;
   height: 100%;
-  border-radius: 65px;
 }
 
 .card-body {
   display: flex;
   justify-content: space-between;
+  box-shadow: 0 10px 2px -2px gray;
 }
 
 /* BREAKPOINTS */
@@ -239,10 +224,10 @@
 
 /* Footer */
 footer {
-  background: var(--coffee-color);
+  background: var(--dark-brown);
   background-position: bottom;
   background-size: cover;
-  color: var(--cream-color);
+  color: white;
 }
 
 .footer-container {
@@ -260,7 +245,7 @@ footer {
 }
 
 .footer-content p {
-  width: 300px;
+  width: 350px;
   margin: auto;
   padding: 7px;
 }
@@ -272,6 +257,7 @@ footer {
 
 .footer-logo {
   font-size: 25px;
+  color: white;
 }
 
 .social-icons li {
@@ -280,12 +266,12 @@ footer {
 }
 
 .social-icons i {
-  color: var(--cream-color);
+  color: white;
   font-size: 25px;
 }
 
 .social-icons i:hover{
-  color: var(--caramel-color);
+  color: var(--orange);
 }
 
 /* BREAKPOINTS */

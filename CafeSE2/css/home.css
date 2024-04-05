@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Argent');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 :root {
@@ -16,7 +17,8 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Fanwood Text', serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
   margin: 0;
   padding: 0;
 }
@@ -38,6 +40,7 @@
 .logo-nav {
   font-size: 30px;
   color: var(--dark-brown);
+  color: white;
   text-decoration: none;
 }
 
@@ -45,6 +48,7 @@
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
   color: var(--dark-brown);
+  color: white;
   text-decoration: none;
   margin: 0.5rem;
   padding: 5px 15px 5px 15px;
@@ -68,6 +72,7 @@
   position: absolute;
   font-size: 40px;
   color: var(--dark-brown);
+  color: white;
   cursor: pointer;
   display: none;
   right: 5%;
@@ -192,7 +197,7 @@
   margin-right: 25px;
   margin-bottom: 35px;
   background-color: var(--coffee-color);
-  color: var(--cream-color);
+  color: white;
   border: none;
   font-size: 20px;
 }
@@ -212,7 +217,7 @@
   }
 
   .welcome-message h1 {
-    font-size: 60px;
+    font-size: 50px;
   }
 
   .welcome-message h3 {
@@ -243,102 +248,6 @@
     width: 100%;
   }
 
-}
-
-/* Popular Menu */
-.popular-menu-container {
-  width: 100%;
-  height: auto;
-  background: var(--coffee-color);
-  background-position: center;
-  background-size: cover;
-  color: var(--cream-color);
-  padding: 50px;
-}
-
-.popular-title {
-  font-size: 70px;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.popular-menu-itemlist {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 50px;
-}
-
-.popular-items {
-  display: flex;
-  justify-content: center;
-  width: 32%;
-}
-
-.card-menu {
-  width: 360px;
-  height: 150px;
-  flex-direction: row;
-  border-radius: 166px;
-  border: none;
-  background-color: var(--cream-color);
-  color: var(--coffee-color);
-  padding: 15px;
-  justify-content: center;
-}
-
-.card-menu img {
-  width: 109px;
-  height: 100px;
-  margin: auto;
-}
-
-.card-body {
-  display: flex;
-  justify-content: space-between;
-}
-
-.text-section {
-  margin-left: 10px;
-  margin-right: 0px;
-  width: 207px;
-}
-
-.card-title {
-  font-size: 20px;
-}
-
-.card-text {
-  font-size: 14px;
-}
-
-#price {
-  margin-top: -15px;
-}
-
-/* BREAKPOINTS */
-@media (max-width: 992px) {
-
-  .popular-menu-container {
-    background-size: contain;
-  }
-
-  .popular-title {
-    font-size: 50px;
-  }
-
-  .popular-menu-itemlist {
-    flex-direction: column;
-  }
-
-  .see-more {
-    display: flex;
-    justify-self: center;
-    margin-top: 40px;
-    margin-right: 290px;
-    text-align: center;
-  }
 }
 
 /* About */
@@ -401,6 +310,7 @@
   align-items: center;
   margin-bottom: 80px;
   font-family: 'Poppins', sans-serif;
+  text-align: justify;
 }
 
 .know-more {
@@ -476,7 +386,7 @@ footer {
 }
 
 .footer-content p {
-  width: 300px;
+  width: 350px;
   margin: auto;
   padding: 7px;
 }
