@@ -1,21 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 :root {
-    --cream-color: #FFF3E2;
-    --coffee-color: #8F5E36;
-    --coffee-opacity: 35, 12, 2;
-    --cream-opacity: 255, 245, 233;
-    --caramel-color: #9C6F44;
-    --dark-color: #271300;
-    --orange: #F89651;
+  --cream-color: #FFF3E2;
+  --coffee-color: #8F5E36;
+  --coffee-opacity: 35, 12, 2;
+  --cream-opacity: 255, 245, 233;
+  --caramel-color: #9C6F44;
+  --orange: #F89651;
+  --dark-brown: #271300;
 }
 
 * {
-    box-sizing: border-box;
-    font-family: 'Fanwood Text', serif;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
 }
 
 /* NavBar */
