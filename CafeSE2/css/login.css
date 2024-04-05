@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Fanwood+Text&family=Yanone+Kaffeesatz&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Argent');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Argent&display=swap');
 
 :root {
   --cream-color: #FFF3E2;
@@ -34,7 +34,7 @@ body{
 .header-container .main-text{
   margin: -10px;
   font-size: 50px;
-  font-family: 'Fanwood Text', serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .header-container .sub-text {
@@ -94,7 +94,7 @@ form {
     background-color: var(--cream-color);
     color: #271300;
     font-size: 25px;
-    font-family: 'Fanwood Text', serif;
+    font-family: 'Montserrat', sans-serif;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -112,10 +112,11 @@ form {
     align-items: center;
     flex-direction: column;
     padding: 16px;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .login-container .login-header {
-    font-family: 'Fanwood Text', serif;
+    font-family: 'Montserrat', sans-serif;
     margin-left: -10px;
     margin-bottom: 20px;
   }

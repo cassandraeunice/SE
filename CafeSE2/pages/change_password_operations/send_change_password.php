@@ -54,7 +54,7 @@ if (isset($_GET["email"])) {
                     <head>
                         <style>
                             body {
-                                font-family: Arial, sans-serif;
+                                font-family: Montserrat, sans-serif;
                                 background-color: #f4f4f4;
                                 padding: 20px;
                             }
