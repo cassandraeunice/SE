@@ -20,7 +20,7 @@ $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
 
 // Check if the uploaded file has an allowed extension
 if (!in_array($file_extension, $allowed_extensions)) {
-    echo "Error: Only JPG, PNG, and GIF files are allowed.";
+    echo "<script>window.onload = function() { alert('File is not an image.'); }</script>";
 } else {
     // Move the uploaded file
     move_uploaded_file($temp_image, '../../content_images/'.$content_image);

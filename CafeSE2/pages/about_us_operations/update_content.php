@@ -10,17 +10,31 @@ $content = mysqli_fetch_assoc($result);
 // Store the existing image value
 $existing_image = $content['content_image'];
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     // Get content text from the form
     $content_text = mysqli_real_escape_string($con, $_POST['content_text']);
 
     // Handle file upload for the new content image
-    if(isset($_FILES['content_image']['name']) && $_FILES['content_image']['name'] !== '') {
+    if (isset($_FILES['content_image']['name']) && $_FILES['content_image']['name'] !== '') {
         $content_image = $_FILES['content_image']['name'];
         $temp_image = $_FILES['content_image']['tmp_name'];
-        move_uploaded_file($temp_image, '../../content_images/'.$content_image);
-    } else {
-        // If no new image is provided, retain the existing image value
+
+        // Get the file extension
+        $file_extension = strtolower(pathinfo($content_image, PATHINFO_EXTENSION));
+
+        // Array of allowed extensions
+        $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
+
+        // Check if the uploaded file has an allowed extension
+        if (!in_array($file_extension, $allowed_extensions)) {
+            echo "<script>window.onload = function() { alert('File is not an image.'); }</script>";
+        } else {
+            // Move the uploaded file
+            move_uploaded_file($temp_image, '../../content_images/' . $content_image);
+        }
+    }
+
+    if (!isset($content_image)) {
         $content_image = $existing_image;
     }
 
@@ -37,6 +51,7 @@ if(isset($_POST['submit'])){
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +67,13 @@ if(isset($_POST['submit'])){
 
 <body>
     <div class="container my-5">
-    <a href="../admin_about_us.php" class="btn btn-secondary"><svg width="36px" height="36px" viewBox="0 0 1024 1024" fill="#271300" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#271300"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path></g></svg></a>
+        <a href="../admin_about_us.php" class="btn btn-secondary"><svg width="36px" height="36px" viewBox="0 0 1024 1024" fill="#271300" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#271300">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path>
+                </g>
+            </svg></a>
         <h2>Update Content</h2>
         <form method="post" enctype="multipart/form-data" onsubmit="confirmUpdate()">
             <div class="mb-3">
