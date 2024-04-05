@@ -346,7 +346,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 615px;
+  min-height: 615px;
   background: white;
   background-position: center;
   background-size: cover;
