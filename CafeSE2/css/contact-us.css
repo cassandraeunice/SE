@@ -127,7 +127,6 @@
     }
   
     .navbar-links a:hover {
-      background-color: var(--cream-color);
       color: var(--coffee-color);
     }
   
