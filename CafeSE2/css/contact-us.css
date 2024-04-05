@@ -127,7 +127,7 @@
     }
   
     .navbar-links a:hover {
-      color: var(--coffee-color);
+      color: var(--orange);
     }
   
     #check:checked~.navbar-links a {
