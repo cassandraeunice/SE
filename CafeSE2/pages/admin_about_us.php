@@ -20,22 +20,22 @@ if(isset($_POST['homeBtn'])){
 
 <body>
     <div class="sidebar">
-        <h2>Admin Dashboard</h2>
-        <form method="post"> 
-            <ul>
-                <li><a href="admin_home.php">Home Content</a></li>
-                <li><a href="admin_menu.php">Menu Content</a></li>
-                <li><a href="admin_contact_us.php">Contact Us Record</a></li>
-                <li><a href="admin_feedback_content.php">Feedback Content</a></li>
-                <li><a href="admin_feedback_record.php">Feedback Record</a></li>
-                <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
-                <li><a href="admin_about_us.php">About Us Content</a></li>
-                <li><a href="admin_account.php">Account</a></li>
-            </ul>
-            <div class="homeBtn">
-                <button type="submit" name="homeBtn"><i class="fa fa-home"></i> Home</button>
-            </div>
-        </form>
+        <h2>CAFÉ SIENA</h2>
+            <form method="post"> 
+                <ul>
+                    <li><a href="admin_home.php">Home Content</a></li>
+                    <li><a href="admin_menu.php">Menu Content</a></li>
+                    <li><a href="admin_contact_us.php">Contact Us Record</a></li>
+                    <li><a href="admin_feedback_content.php">Feedback Content</a></li>
+                    <li><a href="admin_feedback_record.php">Feedback Record</a></li>
+                    <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
+                    <li><a href="admin_about_us.php">About Us Content</a></li>
+                    <li><a href="admin_account.php">Account</a></li>
+                </ul>
+                <div class="homeBtn">
+                    <button type="submit" name="homeBtn"> Customer Dashboard</button>
+                </div>
+            </form>
     </div>
     <div class="container">
         <h2>About Us Section</h2>
