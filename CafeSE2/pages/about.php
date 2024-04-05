@@ -58,43 +58,27 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
   <main>
 
-    <!-- Feedback-Header -->
-
-    <section>
-
-      <div class="about-top-container">
-
-        <div class="about-message">
-          <p class="about-text">About Us</p>
-          <p class="home-about">Home/<span>About Us</span></p>
-        </div>
-
-      </div>
-
-    </section>
-
     <!-- About Us -->
 
     <section>
-
       <div class="about-container">
-
         <?php
+        // Display the About Us section with content from content_ID 4
         if (isset($content_texts[5]) && isset($content_images[5])) {
           echo '<div class="about-card">
-          <div class="about-body">
-            <img src="../content_images/' . $content_images[5] . '" class="card-img-top" alt="...">
-            <div class="about-text-section">
-            <p class="about-card-text">' . nl2br($content_texts[5]) . '</p>
-            </div>
-          </div>
-        </div>';
+                        <div class="about-body">
+                        <div class="about-text-section">
+                        <p class="about-title">About Us</p>
+                                <p class="about-card-text">' . nl2br($content_texts[5]) . '</p>
+                                </div>
+                            <img src="../content_images/' . $content_images[5] . '" class="card-img-top" alt="...">
+                        </div>
+                    </div>';
         } else {
           echo '<p>No data found for About Us section.</p>';
         }
         ?>
       </div>
-
     </section>
 
     <!-- Visit Us -->
@@ -102,20 +86,15 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
       <div class="visit-container">
 
-        <p class="visit-title">Visit Us</p>
-
         <div class="visit-card">
 
           <div class="visit-body">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.0286635131274!2d121.1780890751061!3d14.597442585888544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397bf48cfbd20ad%3A0x33171354761e1f6c!2sCaf%C3%A9%20Siena!5e0!3m2!1sen!2sph!4v1707202176017!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
             <div class="visit-text-section">
-              <h5 class="visit-card-title"><i class='bx bx-map'></i>Location</h5>
-              <p class="visit-card-text"><?php echo $content_texts[6]; ?></p>
-              <h5 class="visit-card-title"><i class='bx bx-time'></i>Open hours</h5>
-              <p class="visit-card-text"><?php echo $content_texts[7]; ?></p>
-              <p class="visit-card-text"><i class='bx bx-phone'></i><?php echo $content_texts[8]; ?></p>
-              <p class="visit-card-text"><i class='bx bx-envelope'></i><?php echo $content_texts[9]; ?></p>
+              <p class="visit-title">Come visit us</p>
+              <p class="visit-card-text"><i class='bx bx-map'></i><?php echo $content_texts[6]; ?></p>
+              <p class="visit-card-text"><i class='bx bx-time'></i><?php echo $content_texts[7]; ?></p>
             </div>
 
           </div>
