@@ -50,8 +50,6 @@ while ($row = mysqli_fetch_assoc($content_result)) {
       <a href="about.php" style="--i:3;">About</a>
     </nav>
 
-    <!-- <i class="bx bxs-user" id="user-icon"></i> -->
-
   </header>
 
   <main>
@@ -64,7 +62,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
         <div class="menu-message">
           <p class="menu-text">Menu</p>
-          <p class="home-menu">Home/<span>Menu</span></p>
+          <p class="home-menu">Do you have any questions? We would be glad to help you!</p>
         </div>
 
       </div>
