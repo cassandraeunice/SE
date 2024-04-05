@@ -126,11 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </form>
     </div>
-
     <div class="contact-information">
-        <p>0917 588 6554</p>
-        <a href="mailto:cafesienaph@gmail.com">cafesienaph@gmail.com</a>
-    </div>
+            <p>0917 588 6554</p>
+            <a href="mailto:cafesienaph@gmail.com">cafesienaph@gmail.com</a>
+        </div>
 
 
     <!-- Footer -->
