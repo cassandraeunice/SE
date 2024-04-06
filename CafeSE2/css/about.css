@@ -180,6 +180,7 @@
   background-position: center;
   background-size: cover;
   color: var(--coffee-color);
+  margin-top:-45px;  
 }
 
 .about-title {
@@ -207,11 +208,13 @@
   align-items: center;
   justify-content: center;
   color: black;
+  margin-left:10px;
 }
 
 .about-body .card-img-top {
   width: 100%;
   max-width: 500px;
+  margin-right:10px;
 }
 
 .about-body .card-img-top img {
@@ -223,6 +226,7 @@
 .about-text-section {
   display: flex;
   flex-direction: column;
+  margin-right: -50px;
 }
 
 .about-card-text {
@@ -230,6 +234,7 @@
   align-items: center;
   margin-bottom: 80px;
   text-align: justify;
+
 }
 
 /* BREAKPOINTS */

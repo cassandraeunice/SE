@@ -163,7 +163,7 @@
 
 .home-contact {
     font-size: 29px;
-    margin-top: -20px;
+    margin-top: 10px;
     color: black;
     font-family: 'Montserrat', sans-serif;
 }
@@ -182,7 +182,7 @@
 .contact-container {
     width: 100%;
     height: auto;
-    margin-bottom: 20px;
+    margin-top:-50px;
     background-position: top;
     background-size: cover;
     display: flex;

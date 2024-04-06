@@ -64,7 +64,6 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
         <div class="menu-message">
           <p class="menu-text">Categories</p>
-          <p class="home-menu">Menu/<span>Sub-Category</span></p>
         </div>
 
       </div>
