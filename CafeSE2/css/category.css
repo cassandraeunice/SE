@@ -29,33 +29,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--coffee-color);
+  background-color: #FFFCFF;
   z-index: 100;
 }
 
 .logo-nav {
   font-size: 30px;
-  color: var(--cream-color);
+  color: var(--coffee-color);
   text-decoration: none;
+  font-family: 'Fanwood Text', serif;
 }
 
 .navbar-links a{
   font-size: 20px;
-  color: var(--cream-color);
+  color: var(--dark-brown);
   text-decoration: none;
   margin: 0.5rem;
   padding: 5px 15px 5px 15px;
 }
 
 .navbar-links a:hover {
-  background-color: var(--cream-color);
-  color: var(--coffee-color);
+  color: var(--orange);
   border-radius: 33px;
 }
 
 .navbar-links .active {
-  background-color: var(--cream-color);
-  color: var(--coffee-color);
+  color: var(--orange);
   border-radius: 33px;
 }
 
@@ -66,17 +65,10 @@
 .icons {
   position: absolute;
   font-size: 40px;
-  color: var(--cream-color);
+  color: var(--dark-brown);
   cursor: pointer;
   display: none;
   right: 5%;
-}
-
-#user-icon {
-  display: flex;
-  font-size: 40px;
-  color: var(--cream-color);
-  cursor: pointer;
 }
 
 /* BREAKPOINTS */
@@ -115,7 +107,7 @@
     height: 0;
     transition: 0.3s ease;
     overflow: hidden;
-    background-color: var(--coffee-color);
+    background-color: white;
   }
 
   #check:checked~.navbar-links {
@@ -124,7 +116,7 @@
 
   .navbar-links a {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin: 1.5rem 0;
     text-align: center;
     transform: translateY(-50px);
@@ -134,8 +126,7 @@
   }
 
   .navbar-links a:hover {
-    background-color: var(--cream-color);
-    color: var(--coffee-color);
+    color: var(--orange);
   }
 
   #check:checked~.navbar-links a {
@@ -143,40 +134,29 @@
     opacity: 1;
     transition-delay: calc(.15s * var(--i));
   }
-
-  #user-icon {
-    margin-right: 70px;
-  }
 }
 
 /* Menu-Top */
 .menu-top-container {
     width: 100%;
     height: 350px;
-    background: url("../images/Menu-Top-Background.png");
-    background-position: center;
-    background-size: cover;
+    background: url("../images/leaves.png");
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--cream-color);
+    color: var(--dark-brown);
 }
 
 .menu-text {
     font-size: 85px;
     margin-top: -50px;
     text-transform: uppercase;
-}
-
-.home-menu {
-    font-size: 29px;
-    margin-top: -50px;
-}
-
-.home-menu span {
-    color: var(--orange);
 }
 
 /* BREAKPOINTS */
@@ -193,7 +173,7 @@
 .display-container {
   display: flex;
   flex-direction: column;
-  background-color: var(--cream-color);
+  background-color: white;
 }
 
 .menu{
@@ -205,8 +185,8 @@
 }
 
 .heading{
-  background-color: var(--coffee-color);
-  color: var(--cream-color);
+  background-color: var(--dark-brown);
+  color: white;
   padding: 15px;
   grid-column: 1/-1;
   text-align: center;
@@ -222,7 +202,6 @@
   display: grid;
   position: relative;
   grid-template-rows: auto 1fr;
-  border-radius: 15px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
   margin: 0 20px;
 }
@@ -231,7 +210,6 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 15px 15px 0 0;
 }
 
 .details{
@@ -261,10 +239,10 @@
 
 /* Footer */
 footer {
-  background: var(--coffee-color);
+  background-color: var(--dark-brown);
   background-position: bottom;
   background-size: cover;
-  color: var(--cream-color);
+  color: #FDFDFD;
 }
 
 .footer-container {
@@ -273,6 +251,7 @@ footer {
   height: auto;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .footer-content {
@@ -282,7 +261,7 @@ footer {
 }
 
 .footer-content p {
-  width: 300px;
+  width: 350px;
   margin: auto;
   padding: 7px;
 }
@@ -294,6 +273,8 @@ footer {
 
 .footer-logo {
   font-size: 25px;
+  color: #FDFDFD;
+  font-family: 'Fanwood Text', serif;
 }
 
 .social-icons li {
@@ -302,12 +283,12 @@ footer {
 }
 
 .social-icons i {
-  color: var(--cream-color);
+  color: var(--caramel-color);
   font-size: 25px;
 }
 
 .social-icons i:hover{
-  color: var(--caramel-color);
+  color: var(--cream-color);
 }
 
 /* BREAKPOINTS */
