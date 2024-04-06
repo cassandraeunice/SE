@@ -515,10 +515,13 @@ footer {
 
 
 /* BREAKPOINTS */
+/*
 @media (max-width: 992px) {
-  .carousel-image {
+  .d-block {
     height: 100%;
     width: 100%;
   }
 
 }
+
+*/
