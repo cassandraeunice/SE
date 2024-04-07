@@ -434,10 +434,15 @@
     height: 282px;
   }
 
+  .card-img-top img {
+    margin-right:0;
+  }
+
   .about-text-section {
     gap: 0;
     margin-top: 0;
     text-align: center;
+    margin-right: 0;
   }
 
   .know-more {

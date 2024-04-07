@@ -263,6 +263,11 @@
     gap: 0;
     margin-top: 0;
     text-align: center;
+    margin-right: 0;
+  }
+
+  .about-body .card-img-top {
+    margin-right:0;
   }
 }
 
