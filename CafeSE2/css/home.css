@@ -458,6 +458,10 @@
   height: auto;
 }
 
+#carouselFade{
+  width: 100%;
+}
+
 
 /* BREAKPOINTS */
 /*
