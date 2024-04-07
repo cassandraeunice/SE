@@ -535,3 +535,17 @@ footer {
 }
 
 
+
+.titleProduct,
+.descProduct,
+.welcome-message h3,
+.welcome-message h5,
+.navbar-links a,
+.about-title,
+.about-card-text,
+.know-more,
+.footer-logo,
+.footer-content p,
+.footer-content .copyright {
+  font-family: 'Montserrat', sans-serif;
+}
