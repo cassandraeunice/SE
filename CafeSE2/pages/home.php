@@ -136,7 +136,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
           </div>
         </div>
 
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="col-md-6 col-12 d-flex align-items-center justify-content-center">
           <div class="content-on-right text-center ProductInformation">
             <h2 class="titleProduct">Product Title 1</h2>
             <p class="descProduct">Description of the product 1</p>
@@ -146,7 +146,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
       </div>
     </section>
 
-  </main>
+  
 
   <!-- Footer -->
   <footer>
@@ -166,8 +166,8 @@ while ($row = mysqli_fetch_assoc($content_result)) {
       </div>
 
     </div>
-
   </footer>
+  </main>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
