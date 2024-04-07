@@ -107,43 +107,43 @@ while ($row = mysqli_fetch_assoc($content_result)) {
     <!-- Image Carousel -->
 
     <section>
-    <div class="row">
-    <div class="col-md-6">
-      <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <?php
-          $content_ids = [1, 2, 3];
-          foreach ($content_ids as $index => $content_id) {
-            // Fetch the content image for the current content ID
-            $content_image = isset($content_images[$content_id]) ? $content_images[$content_id] : '';
-            // Determine if the item is active or not
-            $active_class = ($index === 0) ? 'active' : '';
-            // Output the carousel item with the fetched image
-            echo '<div class="carousel-item ' . $active_class . '">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <?php
+              $content_ids = [1, 2, 3];
+              foreach ($content_ids as $index => $content_id) {
+                // Fetch the content image for the current content ID
+                $content_image = isset($content_images[$content_id]) ? $content_images[$content_id] : '';
+                // Determine if the item is active or not
+                $active_class = ($index === 0) ? 'active' : '';
+                // Output the carousel item with the fetched image
+                echo '<div class="carousel-item ' . $active_class . '">
                             <img src="../content_images/' . $content_image . '" class="d-block img-fluid" alt="...">
                         </div>';
-          }
-          ?>
+              }
+              ?>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-        </div>
-      </div>
 
-      <div class="col-md-6 d-flex align-items-center justify-content-center">
-      <div class="content-on-right text-center ProductInformation">
-      <h2 class="titleProduct">Product Title 1</h2>
-                <p class="descProduct">Description of the product 1</p>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <div class="content-on-right text-center ProductInformation">
+            <h2 class="titleProduct">Product Title 1</h2>
+            <p class="descProduct">Description of the product 1</p>
+          </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
       </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        </div>
     </section>
 
   </main>
@@ -172,23 +172,23 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var carousel = document.getElementById('carouselFade');
+  document.addEventListener('DOMContentLoaded', function() {
+    var carousel = document.getElementById('carouselFade');
 
 
-        carousel.addEventListener('slide.bs.carousel', function (event) {
-            var activeIndex = event.to;
+    carousel.addEventListener('slide.bs.carousel', function(event) {
+      var activeIndex = event.to;
 
-            var productTitles = ['Product Title 1', 'Product Title 2', 'Product Title 3'];
-            var productDescriptions = ['Description of Product 1', 'Description of Product 2', 'Description of Product 3'];
+      var productTitles = ['Product Title 1', 'Product Title 2', 'Product Title 3'];
+      var productDescriptions = ['Description of Product 1', 'Description of Product 2', 'Description of Product 3'];
 
-            var title = document.querySelector('.titleProduct');
-            var description = document.querySelector('.descProduct');
+      var title = document.querySelector('.titleProduct');
+      var description = document.querySelector('.descProduct');
 
-            title.textContent = productTitles[activeIndex];
-            description.textContent = productDescriptions[activeIndex];
-        });
+      title.textContent = productTitles[activeIndex];
+      description.textContent = productDescriptions[activeIndex];
     });
+  });
 </script>
 
 

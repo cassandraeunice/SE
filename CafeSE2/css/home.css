@@ -449,7 +449,30 @@
     align-self: center;
     margin-right: 0px;
 }
+}
 
+/* Image Carousel */
+.row {
+  width: 100%;
+}
+
+.col-md-6 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
+  height: 100%;
+  align-self: center;
 }
 
 /* Footer */
