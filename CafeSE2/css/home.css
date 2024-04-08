@@ -499,7 +499,7 @@ footer {
 }
 
 .footer-content p {
-  width: 300px;
+  width: 350px;
   margin: auto;
   padding: 7px;
 }
@@ -512,6 +512,7 @@ footer {
 .footer-logo {
   font-size: 25px;
   color: var(--dark-brown);
+  font-family: 'Fanwood Text', serif;
 }
 
 .social-icons li {
@@ -548,8 +549,6 @@ footer {
 .about-title,
 .about-card-text,
 .know-more,
-.footer-logo,
-.footer-content p,
 .footer-content .copyright {
   font-family: 'Montserrat', sans-serif;
 }
