@@ -120,6 +120,7 @@ body {
 .pagination {
     margin-top: 20px;
     text-align: center;
+    color: var(--dark-color-2);
 }
 
 .pagination a {
@@ -129,8 +130,8 @@ body {
     border: 1px solid var(--dark-color);
     border-radius: 5px;
     text-decoration: none;
-    color: var(--cream-color);
-    background-color: var(--dark-color);
+    color: var(--white-color);
+    background-color: var(--coffee-color);
 }
 
 .pagination a.current {
