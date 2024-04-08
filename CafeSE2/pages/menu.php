@@ -12,6 +12,18 @@ $content_texts = [];
 while ($row = mysqli_fetch_assoc($content_result)) {
   $content_texts[$row['content_ID']] = $row['content_text'];
 }
+
+// Fetch category details including category ID and image
+$category_query = "SELECT category_id, category_image FROM Category";
+$category_result = mysqli_query($con, $category_query);
+
+// Initialize an array to store category details
+$categories = [];
+
+// Fetch category details
+while ($row = mysqli_fetch_assoc($category_result)) {
+  $categories[] = $row;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +35,13 @@ while ($row = mysqli_fetch_assoc($content_result)) {
   <title>Cafe Siena</title>
 
   <link rel="stylesheet" href="../css/menu.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> <!-- Montserrat font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"> <!-- Montserrat font -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> <!-- icons -->
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> <!-- BootStrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- BootStrap -->
 </head>
 
 <body>
@@ -76,52 +91,23 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
         <div class="menu-display">
 
-          <div class="card-menu">
+          <?php
+          // Loop through categories
+          foreach ($categories as $category) {
+            // Extract category details
+            $category_id = $category['category_id'];
+            $category_image = $category['category_image'];
 
-            <div class="card-body">
-              <a href="https://www.mcdonalds.com.ph/our-food/breakfast">
-                <img src="../images/Menu_Categories/157.png" class="card-img-top" alt="...">
-              </a>
-
-            </div>
-
-          </div>
-
-          <div class="card-menu">
-
-            <div class="card-body">
-              <img src="../images/Menu_Categories/163.png" class="card-img-top" alt="...">
-
-            </div>
-
-          </div>
-
-          <div class="card-menu">
-
-            <div class="card-body">
-              <img src="../images/Menu_Categories/165.png" class="card-img-top" alt="...">
-
-            </div>
-
-          </div>
-
-          <div class="card-menu">
-
-            <div class="card-body">
-              <img src="../images/Menu_Categories/167.png" class="card-img-top" alt="...">
-
-            </div>
-
-          </div>
-
-          <div class="card-menu">
-
-            <div class="card-body">
-              <img src="../images/Menu_Categories/169.png" class="card-img-top" alt="...">
-
-            </div>
-
-          </div>
+            // Display category image with link to category page
+            echo '<div class="card-menu">
+              <div class="card-body">
+                <a href="category.php?category_id=' . $category_id . '">
+                  <img src="../category_images/' . $category_image . '" class="card-img-top" alt="...">
+                </a>
+              </div>
+            </div>';
+          }
+          ?>
 
         </div> <!--menu display-->
 

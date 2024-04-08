@@ -12,6 +12,48 @@ $content_texts = [];
 while ($row = mysqli_fetch_assoc($content_result)) {
   $content_texts[$row['content_ID']] = $row['content_text'];
 }
+
+// Check if category ID is provided in the URL
+if (isset($_GET['category_id'])) {
+  $category_id = $_GET['category_id'];
+
+  // Retrieve category name
+  $category_query = "SELECT category_name FROM Category WHERE category_ID = $category_id";
+  $category_result = mysqli_query($con, $category_query);
+  if ($category_result && mysqli_num_rows($category_result) > 0) {
+    $category_row = mysqli_fetch_assoc($category_result);
+    $category_name = $category_row['category_name'];
+
+    // Retrieve subcategories for the category
+    $subcategory_query = "SELECT * FROM Subcategory WHERE category_ID = $category_id";
+    $subcategory_result = mysqli_query($con, $subcategory_query);
+
+    // If there are subcategories, fetch products for each subcategory
+    if (mysqli_num_rows($subcategory_result) > 0) {
+      $subcategory_products = [];
+      while ($subcategory_row = mysqli_fetch_assoc($subcategory_result)) {
+        $subcategory_id = $subcategory_row['subcategory_ID'];
+        $subcategory_name = $subcategory_row['subcategory_name'];
+
+        // Retrieve products associated with the subcategory
+        $product_query = "SELECT * FROM Product WHERE subcategory_ID = $subcategory_id";
+        $product_result = mysqli_query($con, $product_query);
+        $subcategory_products[$subcategory_name] = mysqli_fetch_all($product_result, MYSQLI_ASSOC);
+      }
+    } else {
+      // If there are no subcategories, fetch all products for the category
+      $product_query = "SELECT * FROM Product WHERE category_ID = $category_id";
+      $product_result = mysqli_query($con, $product_query);
+      $subcategory_products = ['' => mysqli_fetch_all($product_result, MYSQLI_ASSOC)];
+    }
+  } else {
+    // Category not found
+    echo "Category not found.";
+  }
+} else {
+  // Category ID not provided in URL
+  echo "Category ID not provided.";
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +85,6 @@ while ($row = mysqli_fetch_assoc($content_result)) {
     </label>
 
     <nav class="navbar-links">
-      <a href="./admin_menu.php"><i class="bx bxs-dashboard"></i></a>
       <a href="home.php" style="--i:0;">Home</a>
       <a href="menu.php" style="--i:1;" class="active">Menu</a>
       <a href="contact_us.php" style="--i:2;">Contact Us</a>
@@ -59,117 +100,53 @@ while ($row = mysqli_fetch_assoc($content_result)) {
     <!-- Menu-Header -->
 
     <section>
-
       <div class="menu-top-container">
-
         <div class="menu-message">
-          <p class="menu-text">Categories</p>
+          <?php if (isset($category_name)) : ?>
+            <p class="menu-text"><?php echo $category_name; ?></p>
+          <?php else : ?>
+            <p class="menu-text">Categories</p>
+          <?php endif; ?>
         </div>
-
       </div>
-
     </section>
 
     <!-- Menu Display -->
 
     <section>
-
       <div class="display-container">
-
-        <div class="menu">
-          <div class="heading">
-            <h1>Sub-Category</h1>
-
-          </div>
-          <div class="food-items">
-            <img src="..\images\About-Coffee-Background.png" class="card-img-top" alt="...">
-            <div class="details">
-              <div class="details-sub">
-                <h5>Smoky Hamburger</h5>
-                <h5 class="price"> $8 </h5>
+        <?php foreach ($subcategory_products as $subcategory_name => $products) : ?>
+          <div class="menu">
+            <?php if (!empty($subcategory_name)) : ?>
+              <div class="heading">
+                <h2><?php echo $subcategory_name; ?></h2>
               </div>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis nam non quia! Earum eveniet minus. Facilis explicabo natus nihil voluptatem eveniet pariatur.</p>
-            </div>
-          </div>
-
-          <div class="food-items">
-            <img src="../images/Menu_Categories/167.png" class="card-img-top" alt="...">
-            <div class="details">
-              <div class="details-sub">
-                <h5>Honey Garlic Chicken</h5>
-                <h5 class="price"> $15 </h5>
-              </div>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-
-          <div class="food-items">
-            <img src="../images/Menu_Categories/167.png" class="card-img-top" alt="...">
-            <div class="details">
-              <div class="details-sub">
-                <h5>Manchow Soup</h5>
-                <h5 class="price"> $8 </h5>
-              </div>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus quibusdam facilis, magni consectetur necessitatibus.</p>
-            </div>
-          </div>
-
-          <div class="food-items">
-            <img src="..\images\About-Coffee-Background.png" class="card-img-top" alt="...">
-            <div class="details">
-              <div class="details-sub">
-                <h5>Smoky Hamburger</h5>
-                <h5 class="price"> $8 </h5>
-              </div>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis nam non quia! Earum eveniet minus. Facilis explicabo natus nihil voluptatem eveniet pariatur.</p>
-            </div>
-          </div>
-
-        </div> <!-- Menu -->
-
-        <div class="menu">
-          <div class="heading">
-            <h1>Sub-Category</h1>
-
-          </div>
-          <div class="food-items">
-            <img src="../images/Menu_Categories/167.png" class="card-img-top" alt="...">
-            <div class="details">
-              <div class="details-sub">
-                <h5>Smoky Hamburger</h5>
-                <h5 class="price"> $8 </h5>
-              </div>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis nam non quia! Earum eveniet minus. Facilis explicabo natus nihil voluptatem eveniet pariatur.</p>
-            </div>
-          </div>
-
-          <div class="food-items">
-            <img src="../images/Menu_Categories/167.png" class="card-img-top" alt="...">
-            <div class="details">
-              <div class="details-sub">
-                <h5>Honey Garlic Chicken</h5>
-                <h5 class="price"> $15 </h5>
-              </div>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-
-          <div class="food-items">
-            <img src="../images/Menu_Categories/167.png" class="card-img-top" alt="...">
-            <div class="details">
-              <div class="details-sub">
-                <h5>Manchow Soup</h5>
-                <h5 class="price"> $8 </h5>
-              </div>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus quibusdam facilis, magni consectetur necessitatibus.</p>
-            </div>
-          </div>
-
-        </div>
-
-
+            <?php else : ?>
+              <div class="heading" style="padding: 0%;"></div>
+            <?php endif; ?>
+            <?php if (!empty($products)) : ?>
+              <?php foreach ($products as $product) : ?>
+                <div class="food-items">
+                  <!-- Display product image -->
+                  <img src="<?php echo '../menu_images/' . $product['product_image']; ?>" class="card-img-top" alt="Product Image">
+                  <div class="details">
+                    <!-- Display product name -->
+                    <div class="details-sub">
+                      <h5><?php echo $product['product_name']; ?></h5>
+                      <!-- Display product price -->
+                      <h5 class="price">₱<?php echo $product['product_price']; ?></h5>
+                    </div>
+                    <!-- Display product description -->
+                    <p><?php echo $product['product_description']; ?></p>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            <?php else : ?>
+              <p><?php echo !empty($subcategory_name) ? 'No products available for this subcategory.' : 'No products available for this category.'; ?></p>
+            <?php endif; ?>
+          </div> <!-- Menu -->
+        <?php endforeach; ?>
       </div> <!-- Display Container -->
-
     </section>
 
   </main>
