@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="confirm-psw">Confirm Password</label>
             <input type="password" placeholder="Enter confirm password" name="confirm-psw" required>
 
-            <button type="submit">CHANGE</button>
+            <button type="submit">Change</button>
 
             <?php if (!empty($error_message)): ?>
                 <p class="error-message"><?php echo $error_message; ?></p>
