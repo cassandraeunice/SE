@@ -54,6 +54,9 @@ if (isset($_GET["email"])) {
                     <html>
                     <head>
                         <style>
+                        *{
+                            font-family: 'Montserrat', sans-serif;
+                        }
                             body {
                                 font-family: Arial, sans-serif;
                                 background-color: #f4f4f4;
@@ -66,8 +69,8 @@ if (isset($_GET["email"])) {
                                 padding: 20px;
                                 border-radius: 5px;
                                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                                background-color: #FFF3E2;
-                                color: black;
+                                background-color: white;
+                                color: #8F5E36;
                             }
                             h2 {
                                 color: white;
@@ -82,7 +85,7 @@ if (isset($_GET["email"])) {
                             .headerChange{
                                 color:white;
                                 border-radius: 5px;
-                                background-color: #8F5E38;
+                                background-color: #271300;
                                 padding: 15px;
                             }
                         </style>
