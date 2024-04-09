@@ -47,12 +47,12 @@ if (isset($_GET['category_id'])) {
       $subcategory_products = ['' => mysqli_fetch_all($product_result, MYSQLI_ASSOC)];
     }
   } else {
-    // Category not found
-    echo "Category not found.";
+    header("Location: menu.php");
+    exit();
   }
 } else {
-  // Category ID not provided in URL
-  echo "Category ID not provided.";
+  header("Location: menu.php");
+  exit();
 }
 ?>
 
