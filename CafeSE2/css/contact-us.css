@@ -388,6 +388,7 @@ button {
 
   .lastName-input {
     margin-left: 0;
+    margin-bottom: -15px;
   }
 
   .email-input, .subj-input, .message-input {
@@ -410,6 +411,25 @@ button {
 
   input[type=email], #subject, textarea {
     width: 410px;
+  }
+
+  #subject {
+    margin-bottom: -25px;
+  }
+
+  .req-info {
+    font-size: 30px;
+    margin-top: 25px;
+  }
+
+  .inquiry {
+    font-size: 30px;
+    margin-top: -15px;
+  }
+
+  .inquiry-text {
+    font-size: 15px;
+    margin-bottom: 15px;
   }
   
 }
