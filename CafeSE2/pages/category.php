@@ -132,7 +132,7 @@ if (isset($_GET['category_id'])) {
                   <div class="details">
                     <!-- Display product name -->
                     <div class="details-sub">
-                      <h5><?php echo $product['product_name']; ?></h5>
+                      <h5 class="name"><?php echo $product['product_name']; ?></h5>
                       <!-- Display product price -->
                       <h5 class="price">₱<?php echo $product['product_price']; ?></h5>
                     </div>
@@ -142,8 +142,9 @@ if (isset($_GET['category_id'])) {
                 </div>
               <?php endforeach; ?>
             <?php else : ?>
-              <p><?php echo !empty($subcategory_name) ? 'No products available for this subcategory.' : 'No products available for this category.';
-                  "<i class='bx bx-error-circle'></i>" ?></p>
+              <div class="error-container">
+                <p class="error-msg" style="text-align: center; font-size:18px;"><?php echo !empty($subcategory_name) ? 'No products available for this subcategory.' : 'No products available for this category.'; ?> <i class='bx bx-error-circle'></i></p>
+              </div>
             <?php endif; ?>
           </div> <!-- Menu -->
         <?php endforeach; ?>

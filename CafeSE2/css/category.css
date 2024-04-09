@@ -139,7 +139,7 @@
 /* Menu-Top */
 .menu-top-container {
     width: 100%;
-    height: 350px;
+    height: 200px;
     background: url("../images/leaves.png");
     background-color: white;
     background-repeat: no-repeat;
@@ -178,6 +178,7 @@
 
 .menu{
   margin: 30px;
+  margin-bottom: -20px;
   padding: 0;
   display: grid;
   grid-template-columns: repeat( auto-fit, minmax(300px,1fr));
@@ -235,6 +236,23 @@
   line-height: 28px;
   font-weight: 400;
   align-self: stretch;
+}
+
+.details-sub .name h5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+   overflow: hidden;
+}
+
+.error-container {
+  height: 50px;
+  margin-top: -10px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
 }
 
 /* Footer */
