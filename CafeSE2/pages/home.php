@@ -73,13 +73,15 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
     <!-- Welcome to Cafe Siena -->
     <section>
-      <div class="welcome-container" style="background: url(../images/homepage.png);
-      background-position: bottom; background-size:cover;">
-        <div class="welcome-message">
-          <h3>WELCOME TO</h3>
-          <h1>CAFÉ SIENA!</h1>
-          <h5>A taste of comfort</h5>
-        </div>
+      <?php
+      // Use the content_image_url in the inline style for the background
+      echo '<div class="welcome-container" style="background: url(../content_images/' . $content_images[1] . '); background-position: bottom; background-size: cover;">';
+      ?>
+      <div class="welcome-message">
+        <h3>WELCOME TO</h3>
+        <h1>CAFÉ SIENA!</h1>
+        <h5>A taste of comfort</h5>
+      </div>
       </div>
     </section>
 

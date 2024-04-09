@@ -16,12 +16,17 @@ $sql = "SELECT * FROM Product WHERE product_ID=$id";
 $result = mysqli_query($con, $sql);
 $product = mysqli_fetch_assoc($result);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $product_name = mysqli_real_escape_string($con, $_POST['product_name']);
     $product_description = mysqli_real_escape_string($con, $_POST['product_description']);
     $product_price = $_POST['product_price'];
     $product_category_ID = mysqli_real_escape_string($con, $_POST['product_category']);
     $product_subcategory_ID = isset($_POST['product_subcategory']) ? $_POST['product_subcategory'] : null;
+
+    // Check if the selected value is "Select Subcategory"
+    if ($product_subcategory_ID === '') {
+        $product_subcategory_ID = null; // Set to null
+    }
 
     // Check if an image is uploaded
     if ($_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
@@ -31,7 +36,7 @@ if(isset($_POST['submit'])){
 
         // Check image file validity
         $check = getimagesize($_FILES["product_image"]["tmp_name"]);
-        if($check !== false) {
+        if ($check !== false) {
             $uploadOk = 1;
         } else {
             echo "<script>window.onload = function() { alert('File is not an image.'); }</script>";
@@ -46,7 +51,7 @@ if(isset($_POST['submit'])){
 
         // Allow certain file formats
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
             echo "<script>window.onload = function() { alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.'); }</script>";
             $uploadOk = 0;
         }
@@ -56,7 +61,7 @@ if(isset($_POST['submit'])){
             if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
                 // Construct the SQL query
                 $sql = "UPDATE Product SET product_name='$product_name', category_ID=$product_category_ID, ";
-                
+
                 // Check if subcategory_ID is empty
                 if ($product_subcategory_ID === null || $product_subcategory_ID === '') {
                     // Exclude subcategory_ID from the query
@@ -81,18 +86,17 @@ if(isset($_POST['submit'])){
         }
     } else {
         // If no image is uploaded, proceed with database update without considering image upload
-        // Construct the SQL query without considering image upload
+        // Construct the SQL query
         $sql = "UPDATE Product SET product_name='$product_name', category_ID=$product_category_ID, ";
-        
+
         // Check if subcategory_ID is empty
-        if ($product_subcategory_ID === null || $product_subcategory_ID === '') {
+        if ($product_subcategory_ID === null) {
             // Exclude subcategory_ID from the query
-            $sql .= "product_description='$product_description', product_price=$product_price WHERE product_ID=$id";
+            $sql .= "subcategory_ID=NULL, product_description='$product_description', product_price=$product_price WHERE product_ID=$id";
         } else {
             // Include subcategory_ID in the query
             $sql .= "subcategory_ID=$product_subcategory_ID, product_description='$product_description', product_price=$product_price WHERE product_ID=$id";
         }
-
         // Execute the SQL query
         $result = mysqli_query($con, $sql);
         if ($result) {
@@ -104,7 +108,7 @@ if(isset($_POST['submit'])){
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -122,7 +126,15 @@ if(isset($_POST['submit'])){
 
 <body>
     <div class="container my-5">
-    <a href="../admin_menu.php" class="btn btn-secondary"><svg width="36px" height="36px" viewBox="0 0 1024 1024" fill="#271300" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#271300"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path></g></svg></a>
+        <a href="../admin_menu.php" class="btn btn-secondary">
+            <svg width="36px" height="36px" viewBox="0 0 1024 1024" fill="#271300" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#271300">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path>
+                </g>
+            </svg>
+        </a>
         <h2>Update Product</h2>
         <form method="post" enctype="multipart/form-data" onsubmit="return confirmUpdate()">
             <div class="mb-3">
@@ -131,24 +143,29 @@ if(isset($_POST['submit'])){
             </div>
             <div class="mb-3">
                 <label>Product Category:</label><br></br>
-                <select class="form-select" name="product_category" required>
+                <select class="form-select" id="category" name="product_category" required>
                     <option value="">Select Category</option>
-                    <?php foreach($categories as $category): ?>
-                        <option value="<?php echo $category['category_ID']; ?>" <?php if($category['category_ID'] == $product['category_ID']) echo "selected"; ?>><?php echo $category['category_name']; ?></option>
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?php echo $category['category_ID']; ?>" <?php if ($category['category_ID'] == $product['category_ID']) echo "selected"; ?>><?php echo $category['category_name']; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="mb-3">
                 <label>Product Subcategory (Optional):</label><br></br>
-                <select class="form-select" name="product_subcategory">
+                <select class="form-select" id="subcategory" name="product_subcategory">
                     <option value="">Select Subcategory</option>
-                    <?php foreach($subcategories as $subcategory): ?>
-                        <option value="<?php echo $subcategory['subcategory_ID']; ?>" <?php if($subcategory['subcategory_ID'] == $product['subcategory_ID']) echo "selected"; ?>><?php echo $subcategory['subcategory_name']; ?></option>
+                    <?php foreach ($subcategories as $subcategory) : ?>
+                        <?php if ($subcategory['category_ID'] == $product['category_ID']) : ?>
+                            <?php
+                            $selected = ($subcategory['subcategory_ID'] == $product['subcategory_ID']) ? 'selected' : '';
+                            ?>
+                            <option value="<?php echo $subcategory['subcategory_ID']; ?>" <?php echo $selected; ?>><?php echo $subcategory['subcategory_name']; ?></option>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="mb-3">
-                <label>Product Description:</label>
+                <label>Product Description:</label><br>
                 <textarea class="form-control" placeholder="Enter product description" name="product_description" required><?php echo $product['product_description']; ?></textarea>
             </div>
             <div class="mb-3">
@@ -161,10 +178,29 @@ if(isset($_POST['submit'])){
                 <input type="number" class="form-control" placeholder="Enter product price" name="product_price" value="<?php echo $product['product_price']; ?>" required>
             </div>
             <div class="button-container">
-            <button type="submit" class="btn btn-primary" name="submit">Update</button>
+                <button type="submit" class="btn btn-primary" name="submit">Update</button>
             </div>
         </form>
     </div>
+
+    <script>
+        // JavaScript to dynamically filter subcategories based on the selected category
+        document.getElementById('category').addEventListener('change', function() {
+            var categoryId = this.value;
+            var subcategorySelect = document.getElementById('subcategory');
+            var subcategories = <?php echo json_encode($subcategories); ?>;
+
+            subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+            subcategories.forEach(function(subcategory) {
+                if (subcategory.category_ID == categoryId) {
+                    var option = document.createElement("option");
+                    option.text = subcategory.subcategory_name;
+                    option.value = subcategory.subcategory_ID;
+                    subcategorySelect.add(option);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

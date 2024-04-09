@@ -11,7 +11,7 @@ $subcategories_query = "SELECT * FROM Subcategory";
 $subcategories_result = mysqli_query($con, $subcategories_query);
 $subcategories = mysqli_fetch_all($subcategories_result, MYSQLI_ASSOC);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     // Retrieve form data
     $product_name = mysqli_real_escape_string($con, $_POST['product_name']);
     $product_description = mysqli_real_escape_string($con, $_POST['product_description']);
@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
 
     // Check image file validity
     $check = getimagesize($_FILES["product_image"]["tmp_name"]);
-    if($check !== false) {
+    if ($check !== false) {
         $uploadOk = 1;
     } else {
         echo "<script>window.onload = function() { alert('File is not an image.'); }</script>";
@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
 
     // Allow certain file formats
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
         echo "<script>window.onload = function() { alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.'); }</script>";
         $uploadOk = 0;
     }
@@ -80,18 +80,24 @@ if(isset($_POST['submit'])){
 
 <body>
     <div class="container my-5">
-    <a href="../admin_menu.php"><svg width="36px" height="36px" viewBox="0 0 1024 1024" fill="#271300" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#271300"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path></g></svg></a>
+        <a href="../admin_menu.php"><svg width="36px" height="36px" viewBox="0 0 1024 1024" fill="#271300" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#271300">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path>
+                </g>
+            </svg></a>
         <h2>Add Product</h2>
         <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label>Product Name:</label><br></br>    
+                <label>Product Name:</label><br></br>
                 <input type="text" class="form-control" placeholder="Enter product name" name="product_name" required>
             </div>
             <div class="mb-3">
                 <label>Product Category:</label><br></br>
                 <select class="form-select" id="category" name="product_category" required>
                     <option value="">Select Category</option>
-                    <?php foreach($categories as $category): ?>
+                    <?php foreach ($categories as $category) : ?>
                         <option value="<?php echo $category['category_ID']; ?>"><?php echo $category['category_name']; ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -127,7 +133,7 @@ if(isset($_POST['submit'])){
             var subcategorySelect = document.getElementById('subcategory');
             subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
 
-            <?php foreach($subcategories as $subcategory): ?>
+            <?php foreach ($subcategories as $subcategory) : ?>
                 if (<?php echo $subcategory['category_ID']; ?> == categoryId) {
                     var option = document.createElement("option");
                     option.text = "<?php echo $subcategory['subcategory_name']; ?>";
