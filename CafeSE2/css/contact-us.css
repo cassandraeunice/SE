@@ -177,6 +177,10 @@
     .contact-top-container {
       background-size: contain;
     }
+
+    .home-contact {
+      font-size: 25px;
+    }
 }
 
 .contact-container {
