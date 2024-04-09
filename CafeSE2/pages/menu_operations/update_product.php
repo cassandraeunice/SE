@@ -166,7 +166,8 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="mb-3">
                 <label>Product Description:</label><br>
-                <textarea class="form-control" placeholder="Enter product description" name="product_description" required><?php echo $product['product_description']; ?></textarea>
+                <textarea class="form-control" placeholder="Enter product description" name="product_description" maxlength="200" required><?php echo $product['product_description']; ?></textarea>
+                </br></br><small class="form-text text-muted">Maximum 200 characters.</small>
             </div>
             <div class="mb-3">
                 <label>Product Image:</label><br></br>
