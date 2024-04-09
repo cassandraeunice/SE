@@ -142,9 +142,6 @@
 .welcome-container {
   width: 100%;
   height: 650px;
-  background: url("../images/homepage.png");
-  background-position: bottom;
-  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -453,6 +450,11 @@
 
 /* Image Carousel */
 
+.row {
+  background-color: var(--dark-brown);
+  color: white;
+}
+
 .carousel-item img {
   max-width: 100%; 
   height: auto;
@@ -552,3 +554,14 @@ footer {
 .footer-content .copyright {
   font-family: 'Montserrat', sans-serif;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+ }
+ 
+ main {
+  flex: 1 0 auto;
+ }

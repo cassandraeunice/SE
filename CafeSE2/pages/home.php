@@ -18,6 +18,7 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,35 +73,13 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 
     <!-- Welcome to Cafe Siena -->
     <section>
-      <div class="welcome-container">
+      <div class="welcome-container" style="background: url(../images/homepage.png);
+      background-position: bottom; background-size:cover;">
         <div class="welcome-message">
           <h3>WELCOME TO</h3>
           <h1>CAFÉ SIENA!</h1>
           <h5>A taste of comfort</h5>
         </div>
-      </div>
-    </section>
-
-    <!-- About Us -->
-    <section>
-      <div class="about-container">
-        <?php
-        // Display the About Us section with content from content_ID 4
-        if (isset($content_texts[4]) && isset($content_images[4])) {
-          echo '<div class="about-card">
-                        <div class="about-body">
-                        <div class="about-text-section">
-                        <p class="about-title">About Us</p>
-                                <p class="about-card-text">' . nl2br($content_texts[4]) . '</p>
-                                <button class="know-more" onclick="window.location.href=\'about.php\';">Know More</button>
-                                </div>
-                            <img src="../content_images/' . $content_images[4] . '" class="card-img-top" alt="...">
-                        </div>
-                    </div>';
-        } else {
-          echo '<p>No data found for About Us section.</p>';
-        }
-        ?>
       </div>
     </section>
 
@@ -140,6 +119,29 @@ while ($row = mysqli_fetch_assoc($content_result)) {
             <p class="descProduct"></p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section>
+      <div class="about-container">
+        <?php
+        // Display the About Us section with content from content_ID 4
+        if (isset($content_texts[4]) && isset($content_images[4])) {
+          echo '<div class="about-card">
+                        <div class="about-body">
+                        <div class="about-text-section">
+                        <p class="about-title">About Us</p>
+                                <p class="about-card-text">' . nl2br($content_texts[4]) . '</p>
+                                <button class="know-more" onclick="window.location.href=\'about.php\';">Know More</button>
+                                </div>
+                            <img src="../content_images/' . $content_images[4] . '" class="card-img-top" alt="...">
+                        </div>
+                    </div>';
+        } else {
+          echo '<p>No data found for About Us section.</p>';
+        }
+        ?>
       </div>
     </section>
 

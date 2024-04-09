@@ -142,7 +142,8 @@ if (isset($_GET['category_id'])) {
                 </div>
               <?php endforeach; ?>
             <?php else : ?>
-              <p><?php echo !empty($subcategory_name) ? 'No products available for this subcategory.' : 'No products available for this category.'; ?></p>
+              <p><?php echo !empty($subcategory_name) ? 'No products available for this subcategory.' : 'No products available for this category.';
+                  "<i class='bx bx-error-circle'></i>" ?></p>
             <?php endif; ?>
           </div> <!-- Menu -->
         <?php endforeach; ?>
