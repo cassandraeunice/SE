@@ -10,11 +10,47 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 // Calculate the offset for the SQL query
 $offset = ($current_page - 1) * $records_per_page;
 
-if(isset($_POST['homeBtn'])){
+if (isset($_POST['homeBtn'])) {
     header("Location: home.php"); // Redirect to admin_home.php
     exit();
 }
 
+if (isset($_POST['product_id'])) {
+    $product_id = $_POST['product_id'];
+    // Check if the checkbox was checked or unchecked
+    if (isset($_POST['product_popular'])) {
+        $product_popular = 1; // Checkbox was checked
+    } else {
+        $product_popular = 0; // Checkbox was unchecked
+    }
+
+    // Count the number of products with product_popular_value equal to 1
+    $count_query = "SELECT COUNT(*) AS total FROM Product WHERE product_popular_value = 1";
+    $count_result = mysqli_query($con, $count_query);
+    $count_row = mysqli_fetch_assoc($count_result);
+    $current_popular_count = $count_row['total'];
+
+    // Check if the current count is less than the minimum required number
+    if ($product_popular == 0 && $current_popular_count - 1 < 3) {
+        echo "alert('Atleast 3 popular products must be displayed.');";
+    } else {
+        // Prepare the SQL query
+        $sql = "UPDATE Product SET product_popular_value = ? WHERE product_ID = ?";
+        $stmt = $con->prepare($sql);
+
+        // Bind parameters and execute the query
+        $stmt->bind_param("ii", $product_popular, $product_id);
+        $stmt->execute();
+
+        if ($count_result) {
+            $current_page = isset($_POST['current_page']) ? $_POST['current_page'] : 1;
+            header("Location: admin_menu.php?page=" . $current_page);
+            exit();
+        } else {
+            die(mysqli_error($con));
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,32 +104,53 @@ if(isset($_POST['homeBtn'])){
                 }, 50);
             }
         }
+
+        var totalPopularCount = <?php echo $current_popular_count; ?>;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all checkboxes
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            // Attach event listener to each checkbox
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function(e) {
+                    // If the checkbox is being unchecked and there are less than 3 checked checkboxes, prevent the action
+                    var checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                    if (!this.checked && checkedCheckboxes < 3) {
+                        alert('At least 3 popular products must be displayed.');
+                        e.preventDefault(); // Prevent the checkbox from being unchecked
+                        this.checked = true; // Revert the checkbox to checked state
+                    }
+                });
+            });
+        });
     </script>
 </head>
 
 <body>
     <div class="sidebar">
         <h2>CAFÉ SIENA</h2>
-            <form method="post"> 
-                <ul>
-                    <li><a href="admin_home.php">Home Content</a></li>
-                    <li><a href="admin_menu.php">Menu Content</a></li>
-                    <li><a href="admin_contact_us.php">Contact Us Record</a></li>
-                    <li><a href="admin_feedback_content.php">Feedback Content</a></li>
-                    <li><a href="admin_feedback_record.php">Feedback Record</a></li>
-                    <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
-                    <li><a href="admin_about_us.php">About Us Content</a></li>
-                    <li><a href="admin_account.php">Account</a></li>
-                </ul>
-                <div class="homeBtn">
-                    <button type="submit" name="homeBtn"> Customer Dashboard</button>
-                </div>
-            </form>
+        <form method="post">
+            <ul>
+                <li><a href="admin_home.php">Home Content</a></li>
+                <li><a href="admin_menu.php">Menu Content</a></li>
+                <li><a href="admin_contact_us.php">Contact Us Record</a></li>
+                <li><a href="admin_feedback_content.php">Feedback Content</a></li>
+                <li><a href="admin_feedback_record.php">Feedback Record</a></li>
+                <li><a href="admin_feedback_statistics.php">Feedback Statistics</a></li>
+                <li><a href="admin_about_us.php">About Us Content</a></li>
+                <li><a href="admin_account.php">Account</a></li>
+            </ul>
+            <div class="homeBtn">
+                <button type="submit" name="homeBtn"> Customer Dashboard</button>
+            </div>
+        </form>
     </div>
 
     <div class="container">
         <h2>Menu Product</h2>
-        <button class="btn btn-primary m-5"><a href="menu_operations/add_product.php" class="text-light">Add Product</a></button>
+        <button class="btn btn-primary m-5"><a href="menu_operations/add_product.php" class="text-light">Add
+                Product</a></button>
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -105,12 +162,13 @@ if(isset($_POST['homeBtn'])){
                         <th scope="col">Subcategory</th>
                         <th scope="col">Description</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Popular</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT p.*, c.category_name, s.subcategory_name FROM Product p LEFT JOIN Category c ON p.category_ID = c.category_ID LEFT JOIN Subcategory s ON p.subcategory_ID = s.subcategory_ID LIMIT $offset, $records_per_page";
+                    $sql = "SELECT p.*, c.category_name, s.subcategory_name, p.product_popular_value FROM Product p LEFT JOIN Category c ON p.category_ID = c.category_ID LEFT JOIN Subcategory s ON p.subcategory_ID = s.subcategory_ID LIMIT $offset, $records_per_page";
                     $result = mysqli_query($con, $sql);
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -121,19 +179,53 @@ if(isset($_POST['homeBtn'])){
                             $product_description = $row['product_description'];
                             $product_image = $row['product_image'];
                             $product_price = $row['product_price'];
-                            echo '<tr>
-                            <th scope="row">' . $product_id . '</th>
-                            <td>' . $product_name . '</td>
-                            <td><img src="../menu_images/' . $product_image . '" style="max-width: 100px; max-height: 100px;"></td>
-                            <td>' . $product_category . '</td>
-                            <td>' . $product_subcategory . '</td>
-                            <td>' . $product_description . '</td>
-                            <td>' . $product_price . '</td>
-                            <td>
-                            <button class="btn-update"><a href="menu_operations/update_product.php?product_id=' . $product_id . '" class="text-light"><svg width="20px" height="20px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFF3E2"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit [#FFF3E2]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-99.000000, -400.000000)" fill="#FFF3E2"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M61.9,258.010643 L45.1,258.010643 L45.1,242.095788 L53.5,242.095788 L53.5,240.106431 L43,240.106431 L43,260 L64,260 L64,250.053215 L61.9,250.053215 L61.9,258.010643 Z M49.3,249.949769 L59.63095,240 L64,244.114985 L53.3341,254.031929 L49.3,254.031929 L49.3,249.949769 Z" id="edit-[#FFF3E2]"> </path> </g> </g> </g> </g></svg></a></button>
-                            <button class="btn-delete" onclick="confirmDeleteProduct(' . $product_id . ')"><a class="text-light"><svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#FFF3E2"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#FFF3E2" d="M352 192V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64H96a32 32 0 0 1 0-64h256zm64 0h192v-64H416v64zM192 960a32 32 0 0 1-32-32V256h704v672a32 32 0 0 1-32 32H192zm224-192a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32zm192 0a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32z"></path></g></svg></a></button>
-                            </td>
-                        </tr>';
+                            $product_popular_value = $row['product_popular_value'];
+                    ?>
+                            <tr>
+                                <th scope="row"><?= $product_id ?></th>
+                                <td><?= $product_name ?></td>
+                                <td><img src="../menu_images/<?= $product_image ?>" style="max-width: 100px; max-height: 100px;"></td>
+                                <td><?= $product_category ?></td>
+                                <td><?= $product_subcategory ?></td>
+                                <td><?= $product_description ?></td>
+                                <td><?= $product_price ?></td>
+                                <td>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="product_id" value="<?= $product_id ?>">
+                                        <input type="hidden" name="current_page" value="<?= $current_page ?>">
+                                        <input type="checkbox" name="product_popular" value="1" <?= $product_popular_value == 1 ? 'checked' : '' ?> onchange="this.form.submit()">
+                                    </form>
+                                </td>
+                                <td>
+                                    <button class="btn-update"><a href="menu_operations/update_product.php?product_id=<?= $product_id ?>" class="text-light"><svg width="20px" height="20px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFF3E2">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                                </g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <title>edit [#FFF3E2]</title>
+                                                    <desc>Created with Sketch.</desc>
+                                                    <defs> </defs>
+                                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g id="Dribbble-Light-Preview" transform="translate(-99.000000, -400.000000)" fill="#FFF3E2">
+                                                            <g id="icons" transform="translate(56.000000, 160.000000)">
+                                                                <path d="M61.9,258.010643 L45.1,258.010643 L45.1,242.095788 L53.5,242.095788 L53.5,240.106431 L43,240.106431 L43,260 L64,260 L64,250.053215 L61.9,250.053215 L61.9,258.010643 Z M49.3,249.949769 L59.63095,240 L64,244.114985 L53.3341,254.031929 L49.3,254.031929 L49.3,249.949769 Z" id="edit-[#FFF3E2]"> </path>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </svg></a></button>
+                                    <button class="btn-delete" onclick="confirmDeleteProduct(<?= $product_id ?>)"><a class="text-light"><svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#FFF3E2">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                                </g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path fill="#FFF3E2" d="M352 192V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64H96a32 32 0 0 1 0-64h256zm64 0h192v-64H416v64zM192 960a32 32 0 0 1-32-32V256h704v672a32 32 0 0 1-32 32H192zm224-192a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32zm192 0a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32z">
+                                                    </path>
+                                                </g>
+                                            </svg></a></button>
+                                </td>
+                            </tr>
+                    <?php
                         }
                     }
                     ?>
@@ -187,9 +279,10 @@ if(isset($_POST['homeBtn'])){
             echo '</div>';
             ?>
         </div>
-        
+
         <h2>Menu Category</h2>
-        <button class="btn btn-primary m-5"><a href="menu_operations/add_category.php" class="text-light">Add Category</a></button>
+        <button class="btn btn-primary m-5"><a href="menu_operations/add_category.php" class="text-light">Add
+                Category</a></button>
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -225,7 +318,8 @@ if(isset($_POST['homeBtn'])){
             </table>
         </div>
         <h2>Menu Subcategory</h2>
-        <button class="btn btn-primary m-5"><a href="menu_operations/add_subcategory.php" class="text-light">Add Subcategory</a></button>
+        <button class="btn btn-primary m-5"><a href="menu_operations/add_subcategory.php" class="text-light">Add
+                Subcategory</a></button>
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -263,4 +357,8 @@ if(isset($_POST['homeBtn'])){
 
     </div>
 </body>
+
 </html>
+
+
+<!-- <td><input type="checkbox" name="product_popular" value="" <?php echo $product_popular_value == 1 ? 'checked' : ''; ?> disabled></td> -->

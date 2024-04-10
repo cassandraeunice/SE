@@ -1,19 +1,26 @@
 <?php
 include 'connect.php';
 
-// Fetch content details for content_IDs
-$content_query = "SELECT * FROM Content WHERE content_ID IN (1, 2, 3, 4, 10, 11)";
+$content_query = "SELECT * FROM Content WHERE content_ID IN (1, 4, 10, 11)";
 $content_result = mysqli_query($con, $content_query);
 
-// Initialize variables to store content_text and content_image for content_IDs
+$popular_query = "SELECT * FROM Product WHERE product_popular_value = 1";
+$popular_result = mysqli_query($con, $popular_query);
+
 $content_texts = [];
 $content_images = [];
+$products = [];
 
 // Fetch content_text and content_image for content_IDs
 while ($row = mysqli_fetch_assoc($content_result)) {
   $content_texts[$row['content_ID']] = $row['content_text'];
   $content_images[$row['content_ID']] = $row['content_image'];
 }
+
+while ($row = mysqli_fetch_assoc($popular_result)) {
+  $products[] = $row;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +38,16 @@ while ($row = mysqli_fetch_assoc($content_result)) {
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       var carousel = document.getElementById('carouselFade');
-      var productTitles = ['Product Title 1', 'Product Title 2', 'Product Title 3'];
-      var productDescriptions = ['Description of Product 1', 'Description of Product 2', 'Description of Product 3'];
+      var productTitles = [
+            <?php foreach ($products as $product): ?>
+                '<?php echo $product['product_name']; ?>',
+            <?php endforeach; ?>
+        ];
+        var productDescriptions = [
+            <?php foreach ($products as $product): ?>
+                '<?php echo $product['product_description']; ?>',
+            <?php endforeach; ?>
+        ];
 
       // Function to update title and description based on the active index
       function updateContent(activeIndex) {
@@ -87,16 +102,14 @@ while ($row = mysqli_fetch_assoc($content_result)) {
           <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
               <?php
-              $content_ids = [1, 2, 3];
-              foreach ($content_ids as $index => $content_id) {
-                // Fetch the content image for the current content ID
-                $content_image = isset($content_images[$content_id]) ? $content_images[$content_id] : '';
+              $active_class = 'active';
+              foreach ($products as $index => $product) {
                 // Determine if the item is active or not
                 $active_class = ($index === 0) ? 'active' : '';
-                // Output the carousel item with the fetched image
+                // Output the carousel item with the fetched product image
                 echo '<div class="carousel-item ' . $active_class . '">
-                            <img src="../content_images/' . $content_image . '" class="d-block img-fluid" alt="...">
-                        </div>';
+                      <img src="../menu_images/' . $product['product_image'] . '" class="d-block img-fluid" alt="' . $product['product_name'] . '">
+                 </div>';
               }
               ?>
             </div>
