@@ -240,6 +240,7 @@
 }
 .price{
   text-align: right;
+  margin-left: 15px;
 }
 .details>p{
   color: #6f6f6f;
