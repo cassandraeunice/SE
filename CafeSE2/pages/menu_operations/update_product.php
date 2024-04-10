@@ -176,7 +176,7 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="mb-3">
                 <label>Product Price:</label><br></br>
-                <input type="number" class="form-control" placeholder="Enter product price" name="product_price" value="<?php echo $product['product_price']; ?>" required>
+                <input type="number" class="form-control" placeholder="Enter product price" name="product_price" min="1" value="<?php echo $product['product_price']; ?>" required>
             </div>
             <div class="button-container">
                 <button type="submit" class="btn btn-primary" name="submit">Update</button>

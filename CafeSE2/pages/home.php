@@ -74,7 +74,9 @@ while ($row = mysqli_fetch_assoc($content_result)) {
     <!-- Welcome to Cafe Siena -->
     <section>
       <div class="welcome-container">
-        <img src="../images/coffee3.jpg" alt="">
+        <?php
+        echo '<img src="../content_images/' . $content_images[1] . '" alt="Welcome Image">';
+        ?>
       </div>
     </section>
 
@@ -163,8 +165,3 @@ while ($row = mysqli_fetch_assoc($content_result)) {
 </body>
 
 </html>
-
-<?php
-// Use the content_image_url in the inline style for the background
-echo '<div class="welcome-container" style="background: url(../content_images/' . $content_images[1] . '); background-position: bottom; background-size: cover;">';
-?>

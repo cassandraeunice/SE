@@ -2,11 +2,11 @@
 include '../connect.php';
 
 // Check if contact_id is provided in the URL
-if (isset($_GET['contact_id'])) {
-    $contact_id = $_GET['contact_id'];
+if (isset($_GET['contact_ID'])) {
+    $contact_id = $_GET['contact_ID'];
 
     // Fetch contact details
-    $contact_query = "SELECT * FROM ContactUs WHERE contact_id = $contact_id";
+    $contact_query = "SELECT * FROM ContactUs WHERE contact_ID = $contact_id";
     $contact_result = mysqli_query($con, $contact_query);
     $contact_row = mysqli_fetch_assoc($contact_result);
 
@@ -19,7 +19,7 @@ if (isset($_GET['contact_id'])) {
         $new_status = $contact_row['contact_respond_value'] ? 0 : 1;
 
         // Update responded status
-        $update_query = "UPDATE ContactUs SET contact_respond_value = $new_status WHERE contact_id = $contact_id";
+        $update_query = "UPDATE ContactUs SET contact_respond_value = $new_status WHERE contact_ID = $contact_id";
         $update_result = mysqli_query($con, $update_query);
 
         // Refresh the page to reflect the updated status
@@ -48,7 +48,7 @@ if (isset($_GET['contact_id'])) {
         <div class="group1">
             <div class="contactID">
                 <label>Contact ID:</label><br></br>
-                <input type="text" value="<?php echo $contact_row['contact_id']; ?>" disabled>
+                <input type="text" value="<?php echo $contact_row['contact_ID']; ?>" disabled>
             </div>
             <div class="timestamp">
                 <label>Timestamp:</label><br></br>

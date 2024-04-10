@@ -50,11 +50,11 @@ if ($total_records < $records_per_page) {
 }
 
 // Check if contact_id is provided in the URL and toggle status
-if (isset($_GET['contact_id'])) {
-    $contact_id = $_GET['contact_id'];
+if (isset($_GET['contact_ID'])) {
+    $contact_id = $_GET['contact_ID'];
 
     // Fetch current responded status
-    $status_query = "SELECT contact_respond_value FROM ContactUs WHERE contact_id = $contact_id";
+    $status_query = "SELECT contact_respond_value FROM ContactUs WHERE contact_ID = $contact_id";
     $status_result = mysqli_query($con, $status_query);
     $status_row = mysqli_fetch_assoc($status_result);
     $current_status = $status_row['contact_respond_value'];
@@ -63,7 +63,7 @@ if (isset($_GET['contact_id'])) {
     $new_status = $current_status ? 0 : 1;
 
     // Update responded status
-    $update_query = "UPDATE ContactUs SET contact_respond_value = $new_status WHERE contact_id = $contact_id";
+    $update_query = "UPDATE ContactUs SET contact_respond_value = $new_status WHERE contact_ID = $contact_id";
     $update_result = mysqli_query($con, $update_query);
 
     // Redirect back to admin_contact_us.php
@@ -202,7 +202,7 @@ if(isset($_POST['homeBtn'])){
                 <?php
                 if ($result) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $contact_id = $row['contact_id'];
+                        $contact_id = $row['contact_ID'];
                         $customer_name = $row['customer_name'];
                         $email = $row['email'];
                         $subject = $row['subject'];
@@ -213,11 +213,11 @@ if(isset($_POST['homeBtn'])){
                             <td>' . $customer_name . '</td>
                             <td>' . $email . '</td>
                             <td>' . $subject . '</td>
-                            <td><a href="contact_us_operations/view_contact_record.php?contact_id=' . $contact_id . '" class="btn btn-primary">View Message</a></td>
+                            <td><a href="contact_us_operations/view_contact_record.php?contact_ID=' . $contact_id . '" class="btn btn-primary">View Message</a></td>
                             <td>' . $timestamp . '</td>
                             <td>' . $status . '</td>
                             <td>
-                                <a href="?contact_id=' . $contact_id . '" class="btn btn-primary">Change Status</a>
+                                <a href="?contact_ID=' . $contact_id . '" class="btn btn-primary">Change Status</a>
                             </td>
                         </tr>';
                     }
