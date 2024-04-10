@@ -330,7 +330,7 @@
   flex-direction: column;
   width: 100%;
   min-height: 615px;
-  background: white;
+  background: var(--dark-brown);
   background-position: center;
   background-size: cover;
   color: var(--coffee-color);
@@ -344,7 +344,7 @@
   text-transform: uppercase;
   padding: 0;
   margin: 0;
-  color: black;
+  color: var(--cream-color);
 }
 
   .about-card {
@@ -362,7 +362,7 @@
   gap: 5rem;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: var(--cream-color);
   margin-left:10px;
 
 }
@@ -396,8 +396,8 @@
 .know-more {
   width: 170px;
   height: 40px;
-  background-color: var(--dark-brown);
-  color: #FFFBF9;
+  background-color: var(--cream-color);
+  color: var(--dark-brown);
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -451,8 +451,8 @@
 /* Image Carousel */
 
 .row {
-  background-color: var(--dark-brown);
-  color: white;
+  background-color: white;
+  color: var(--dark-brown);
 }
 
 .carousel-item {
