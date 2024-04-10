@@ -77,17 +77,16 @@ while ($row = mysqli_fetch_assoc($content_result)) {
       // Use the content_image_url in the inline style for the background
       echo '<div class="welcome-container" style="background: url(../content_images/' . $content_images[1] . '); background-position: bottom; background-size: cover;">';
       ?>
-      <div class="welcome-message">
+      <!-- <div class="welcome-message">
         <h3>WELCOME TO</h3>
         <h1>CAFÉ SIENA!</h1>
         <h5>A taste of comfort</h5>
-      </div>
-      </div>
+      </div> -->
     </section>
 
     <!-- Image Carousel -->
     <section>
-      <div class="row">
+      <div class=" col-md-12 row">
         <div class="col-md-6">
           <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">

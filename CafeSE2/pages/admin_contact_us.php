@@ -3,7 +3,7 @@ session_start();
 include 'connect.php';
 
 // Number of records per page
-$records_per_page = 10;
+$records_per_page = 20;
 
 // Get the current page number
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;

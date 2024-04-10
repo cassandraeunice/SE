@@ -2,7 +2,7 @@
 include 'connect.php';
 
 // Number of records per page
-$records_per_page = 2;
+$records_per_page = 5;
 
 // Get the current page number
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
