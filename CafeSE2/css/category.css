@@ -177,8 +177,7 @@
 }
 
 .menu{
-  margin: 30px;
-  margin-bottom: -20px;
+  margin: 20px;
   padding: 0;
   display: grid;
   grid-template-columns: repeat( auto-fit, minmax(300px,1fr));
@@ -218,10 +217,12 @@
   display: grid;
   grid-template-rows: auto 1fr 50px;
   grid-row-gap: 15px;
+  height: 300px;
 }
 .details-sub{
   display: grid;
   grid-template-columns: auto auto;
+  /* height: 70px; */
 }
 .details-sub>h5{
   font-weight: 600;
@@ -238,7 +239,7 @@
   align-self: stretch;
 }
 
-.details-sub .name h5 {
+.name {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
