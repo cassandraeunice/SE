@@ -151,11 +151,21 @@
     justify-content: center;
     text-align: center;
     color: var(--dark-brown);
+    margin-bottom: -70px;
+    margin-top: -40px;
+}
+
+.menu-message {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu-text {
+  align-items: center;
     font-size: 85px;
-    margin-top: -50px;
     text-transform: uppercase;
 }
 
