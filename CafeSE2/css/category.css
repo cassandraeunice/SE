@@ -231,52 +231,18 @@
 }
 .details-sub{
   display: grid;
-  grid-template-columns: auto auto;
-  /* height: 70px; */
-}
-.details-sub>h5{
-  font-weight: 600;
-  font-size: 18px;
-}
-.price{
-  text-align: right;
-  margin-left: 15px;
-}
-.details>p{
-  color: #6f6f6f;
-  font-size: 15px;
-  line-height: 28px;
-  font-weight: 400;
-  align-self: stretch;
-}
-
-.name {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-   overflow: hidden;
 }
 
 .error-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
+  height: 50px;
+  margin-top: -10px;
   margin-bottom: 30px;
-  width: 100%;
-  overflow: hidden;
-}
-
-.error-container .error-msg {
-  align-items: center;
-  font-weight: bold;
-  text-align: center;
 }
 
 /* BREAKPOINTS */
 
 @media (max-width: 992px) {
-  
+
 }
 
 /* Footer */
