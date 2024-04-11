@@ -388,6 +388,11 @@ button {
   .form-group {
     flex-direction: column;
     align-items: center;
+    margin-left: 15px;
+  }
+
+  #firstName, #lastName {
+    width: 380px;
   }
 
   .lastName-input {
@@ -398,23 +403,25 @@ button {
   .email-input, .subj-input, .message-input {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Align input fields to the center */
+    align-items: center; 
+    width: 380px;
+    margin-left: 15px;
   }
 
   .email-input label {
-    margin-left: -350px;
-  }
-
-  .subj-input label {
-    margin-left: -325px;
-  }
-
-  .message-input label {
     margin-left: -320px;
   }
 
+  .subj-input label {
+    margin-left: -300px;
+  }
+
+  .message-input label {
+    margin-left: -290px;
+  }
+
   input[type=email], #subject, textarea {
-    width: 410px;
+    width: 380px;
   }
 
   #subject {
@@ -424,16 +431,19 @@ button {
   .req-info {
     font-size: 30px;
     margin-top: 25px;
+    padding-left: 15px;
   }
 
   .inquiry {
     font-size: 30px;
     margin-top: -15px;
+    padding-left: 15px;
   }
 
   .inquiry-text {
     font-size: 15px;
     margin-bottom: 15px;
+    padding-left: 15px;
   }
 
   .contact-text {
