@@ -16,19 +16,5 @@
 
         <h3>Cheers to Great Coffee!</h3>
         <p>Thank you again for your support. We look forward to serving you again soon!</p>
-
-        <h6 class="countdown-text">You will be redirected to the previous page in <span id="countdown">5</span> seconds.</h6>
-
-            <script type="text/javascript">
-                var timeleft = 5;
-                var countdownTimer = setInterval(function(){
-                    timeleft--;
-                    document.getElementById("countdown").textContent = timeleft;
-                    if(timeleft <= 0) {
-                        clearInterval(countdownTimer);
-                        window.history.back();
-                    }
-                }, 1000);
-            </script>
     </body>
 </html>

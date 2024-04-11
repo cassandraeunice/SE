@@ -78,9 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="container">
-        <h2 class="welcome-text">Share Your Experience</h2>
-        <p class="message">We value your feedback! Help us enhance your cafe experience by sharing your thoughts on our offerings.</p>
+    <h2 class="welcome-text">Share Your Experience</h2>
+    <p class="message">We value your feedback! Help us enhance your cafe experience by sharing your thoughts on our offerings.</p>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <div class="center">
             <div class="form-group">
                 <label id="label" for="customer_first_name">First Name:</label><br></br>
                 <input type="text" class="form-control" id="customer_first_name" name="customer_first_name" placeholder="Enter your first name"><br></br>
@@ -134,12 +135,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 <?php endforeach; ?>
             <?php endforeach; ?>
-
+                
             <div class="form-group">
-                <label id="label" for="feedback_experience">Comments and Suggestions:</label>
+                <label id="label" for="feedback_experience">Comments and Suggestions:</label><br>
                 <textarea class="form-control" id="feedback_experience" name="feedback_experience"></textarea>
             </div>
-
+            </div>
             <div class="button-container">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

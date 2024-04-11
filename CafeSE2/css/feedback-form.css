@@ -17,6 +17,15 @@
 
 .container {
     width: 100%;
+    display: flex;
+    align-items: center; /* Centers items vertically */
+    justify-content: center; /* Centers items horizontally */
+    flex-direction: column;
+    min-height: 0;
+}
+
+.center {
+    padding-left: 10px;
 }
 
 .welcome-text {
@@ -32,10 +41,10 @@
     margin-top: -20px;
     margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     padding: 0px 5px 0px 5px;
     font-weight: 700;
-    text-align: justify;
+    text-align: center;
     color: var(--coffee-color);
 }
 
@@ -47,7 +56,7 @@
 }
 
 input[type=text], input[type=email] {
-    width: 410px;
+    width: 350px;
     height: 40px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -61,6 +70,11 @@ input[type=text], input[type=email] {
     border-radius: 10px;
     background-color: var(--white-color-2);
     color: var(--dark-color-2);
+}
+
+.form-group {
+    flex-direction: column;
+    align-items: center;
 }
 
 ::placeholder {
@@ -94,7 +108,7 @@ h3 {
 }
 
 textarea {
-    width: 410px;
+    width: 350px;
     height: 300px;
     padding: 12px 20px;
     margin: 8px 0;
