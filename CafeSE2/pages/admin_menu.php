@@ -11,7 +11,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($current_page - 1) * $records_per_page;
 
 if (isset($_POST['homeBtn'])) {
-    header("Location: home.php"); // Redirect to admin_home.php
+    header("Location: home.php");
     exit();
 }
 
@@ -30,9 +30,12 @@ if (isset($_POST['product_id'])) {
     $count_row = mysqli_fetch_assoc($count_result);
     $current_popular_count = $count_row['total'];
 
+    $displayAlert = false;
+
     // Check if the current count is less than the minimum required number
     if ($product_popular == 0 && $current_popular_count - 1 < 3) {
-        echo "alert('Atleast 3 popular products must be displayed.');";
+        $displayAlert = true;
+        echo "<script>var displayAlert = true;</script>";
     } else {
         // Prepare the SQL query
         $sql = "UPDATE Product SET product_popular_value = ? WHERE product_ID = ?";
@@ -105,24 +108,24 @@ if (isset($_POST['product_id'])) {
             }
         }
 
-        var totalPopularCount = <?php echo $current_popular_count; ?>;
-
         document.addEventListener('DOMContentLoaded', function() {
-            // Select all checkboxes
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-            // Attach event listener to each checkbox
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('click', function(e) {
-                    // If the checkbox is being unchecked and there are less than 3 checked checkboxes, prevent the action
-                    var checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
-                    if (!this.checked && checkedCheckboxes < 3) {
-                        alert('At least 3 popular products must be displayed.');
-                        e.preventDefault(); // Prevent the checkbox from being unchecked
-                        this.checked = true; // Revert the checkbox to checked state
-                    }
+            // Check if the PHP flag is set to display an alert
+            if (typeof displayAlert !== 'undefined' && displayAlert) {
+                // Display the alert only if the PHP flag is true
+                window.onload = function() {alert('Atleast 3 popular products must be displayed.')};
+            } else {
+                // Your existing alert logic for JavaScript
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('click', function(e) {
+                        var checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                        if (!this.checked && checkedCheckboxes < 3) {
+                            e.preventDefault();
+                            this.checked = true;
+                        }
+                    });
                 });
-            });
+            }
         });
     </script>
 </head>
