@@ -118,7 +118,9 @@ if (isset($_POST['product_id'])) {
             // Check if the PHP flag is set to display an alert
             if (typeof displayAlert !== 'undefined' && displayAlert) {
                 // Display the alert only if the PHP flag is true
-                window.onload = function() {alert('Atleast 3 popular products must be displayed.')};
+                window.onload = function() {
+                    alert('Atleast 3 popular products must be displayed.')
+                };
             } else {
                 // Your existing alert logic for JavaScript
                 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -173,7 +175,7 @@ if (isset($_POST['product_id'])) {
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT p.*, c.category_name, s.subcategory_name, p.product_popular_value FROM Product p LEFT JOIN Category c ON p.category_ID = c.category_ID LEFT JOIN Subcategory s ON p.subcategory_ID = s.subcategory_ID LIMIT $offset, $records_per_page";
+                    $sql = "SELECT p.*, c.category_name, s.subcategory_name, p.product_popular_value FROM Product p LEFT JOIN Category c ON p.category_ID = c.category_ID LEFT JOIN Subcategory s ON p.subcategory_ID = s.subcategory_ID ORDER BY p.product_ID DESC LIMIT $offset, $records_per_page";
                     $result = mysqli_query($con, $sql);
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
