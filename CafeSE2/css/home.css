@@ -449,9 +449,17 @@
     margin-right: 0;
   }
 
+  .about-body {
+    padding: 5px;
+  }
+
   .know-more {
     align-self: center;
     margin-right: 0px;
+}
+
+.about-card-text {
+  font-size: 18px;
 }
 }
 
