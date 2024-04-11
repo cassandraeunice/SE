@@ -116,8 +116,9 @@ if (isset($_GET['category_id'])) {
     <section>
       <div class="display-container">
         <?php foreach ($subcategory_products as $subcategory_name => $products) : ?>
-          <div class="menu">
-            <?php if (!empty($subcategory_name)) : ?>
+          <div class="menu<?php echo empty($subcategory_name)|| count($products) === 0 ? ' no-subcategory' : ''; ?>">
+
+    <?php if (!empty($subcategory_name)) : ?>
               <div class="heading">
                 <h2><?php echo $subcategory_name; ?></h2>
               </div>
@@ -144,9 +145,13 @@ if (isset($_GET['category_id'])) {
             <?php else : ?>
               <div class="test">
                 <div class="error-container">
-                  <p class="error-msg" style="text-align: center; font-size:18px;"><?php echo !empty($subcategory_name) ? 'No products available for this subcategory.' : 'No products available for this category.'; ?> <i class='bx bx-error-circle'></i></p>
+                  <p class="error-msg">
+                    <?php echo !empty($subcategory_name) ? 'No products available for this subcategory.' : 'No products available for this category.'; ?> 
+                    <i class='bx bx-error-circle'></i>
+                  </p>
                 </div>
               </div>
+
             <?php endif; ?>
           </div> <!-- Menu -->
         <?php endforeach; ?>
