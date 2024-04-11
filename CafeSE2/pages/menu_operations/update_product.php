@@ -28,81 +28,88 @@ if (isset($_POST['submit'])) {
         $product_subcategory_ID = null; // Set to null
     }
 
-    // Check if an image is uploaded
-    if ($_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
-        $product_image = $_FILES['product_image']['name'];
-        $target_dir = "../../menu_images/";
-        $target_file = $target_dir . basename($product_image);
+    // Check if product name already exists in the database
+    $check_query = "SELECT * FROM Product WHERE product_name = '$product_name' AND product_ID != $id";
+    $check_result = mysqli_query($con, $check_query);
+    if (mysqli_num_rows($check_result) > 0) {
+        echo "<script>window.onload = function() { alert('Product with this name already exists. Please choose a different name.'); }</script>";
+    } else {
+        // Check if an image is uploaded
+        if ($_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
+            $product_image = $_FILES['product_image']['name'];
+            $target_dir = "../../menu_images/";
+            $target_file = $target_dir . basename($product_image);
 
-        // Check image file validity
-        $check = getimagesize($_FILES["product_image"]["tmp_name"]);
-        if ($check !== false) {
-            $uploadOk = 1;
-        } else {
-            echo "<script>window.onload = function() { alert('File is not an image.'); }</script>";
-            $uploadOk = 0;
-        }
+            // Check image file validity
+            $check = getimagesize($_FILES["product_image"]["tmp_name"]);
+            if ($check !== false) {
+                $uploadOk = 1;
+            } else {
+                echo "<script>window.onload = function() { alert('File is not an image.'); }</script>";
+                $uploadOk = 0;
+            }
 
-        // Check file size
-        if ($_FILES["product_image"]["size"] > 10 * 1024 * 1024) {
-            echo "<script>window.onload = function() { alert('Sorry, your file is too large.'); }</script>";
-            $uploadOk = 0;
-        }
+            // Check file size
+            if ($_FILES["product_image"]["size"] > 10 * 1024 * 1024) {
+                echo "<script>window.onload = function() { alert('Sorry, your file is too large.'); }</script>";
+                $uploadOk = 0;
+            }
 
-        // Allow certain file formats
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            echo "<script>window.onload = function() { alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.'); }</script>";
-            $uploadOk = 0;
-        }
+            // Allow certain file formats
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                echo "<script>window.onload = function() { alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.'); }</script>";
+                $uploadOk = 0;
+            }
 
-        // If file is valid, proceed with upload and database update
-        if ($uploadOk == 1) {
-            if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
-                // Construct the SQL query
-                $sql = "UPDATE Product SET product_name='$product_name', category_ID=$product_category_ID, ";
+            // If file is valid, proceed with upload and database update
+            if ($uploadOk == 1) {
+                if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
+                    // Construct the SQL query
+                    $sql = "UPDATE Product SET product_name='$product_name', category_ID=$product_category_ID, ";
 
-                // Check if subcategory_ID is empty
-                if ($product_subcategory_ID === null || $product_subcategory_ID === '') {
-                    // Exclude subcategory_ID from the query
-                    $sql .= "product_description='$product_description', product_image='$product_image', product_price=$product_price WHERE product_ID=$id";
+                    // Check if subcategory_ID is empty
+                    if ($product_subcategory_ID === null || $product_subcategory_ID === '') {
+                        // Exclude subcategory_ID from the query
+                        $sql .= "product_description='$product_description', product_image='$product_image', product_price=$product_price WHERE product_ID=$id";
+                    } else {
+                        // Include subcategory_ID in the query
+                        $sql .= "subcategory_ID=$product_subcategory_ID, product_description='$product_description', product_image='$product_image', product_price=$product_price WHERE product_ID=$id";
+                    }
+
+                    // Execute the SQL query
+                    $result = mysqli_query($con, $sql);
+                    if ($result) {
+                        header('location:../admin_menu.php');
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+                    }
                 } else {
-                    // Include subcategory_ID in the query
-                    $sql .= "subcategory_ID=$product_subcategory_ID, product_description='$product_description', product_image='$product_image', product_price=$product_price WHERE product_ID=$id";
-                }
-
-                // Execute the SQL query
-                $result = mysqli_query($con, $sql);
-                if ($result) {
-                    header('location:../admin_menu.php');
-                } else {
-                    echo "Error: " . $sql . "<br>" . mysqli_error($con);
+                    echo "<script>window.onload = function() { alert('Sorry, there was an error uploading your file.'); }</script>";
                 }
             } else {
-                echo "<script>window.onload = function() { alert('Sorry, there was an error uploading your file.'); }</script>";
+                echo "<script>window.onload = function() { alert('Sorry, your file was not uploaded.'); }</script>";
             }
         } else {
-            echo "<script>window.onload = function() { alert('Sorry, your file was not uploaded.'); }</script>";
-        }
-    } else {
-        // If no image is uploaded, proceed with database update without considering image upload
-        // Construct the SQL query
-        $sql = "UPDATE Product SET product_name='$product_name', category_ID=$product_category_ID, ";
+            // If no image is uploaded, proceed with database update without considering image upload
+            // Construct the SQL query
+            $sql = "UPDATE Product SET product_name='$product_name', category_ID=$product_category_ID, ";
 
-        // Check if subcategory_ID is empty
-        if ($product_subcategory_ID === null) {
-            // Exclude subcategory_ID from the query
-            $sql .= "subcategory_ID=NULL, product_description='$product_description', product_price=$product_price WHERE product_ID=$id";
-        } else {
-            // Include subcategory_ID in the query
-            $sql .= "subcategory_ID=$product_subcategory_ID, product_description='$product_description', product_price=$product_price WHERE product_ID=$id";
-        }
-        // Execute the SQL query
-        $result = mysqli_query($con, $sql);
-        if ($result) {
-            header('location:../admin_menu.php');
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($con);
+            // Check if subcategory_ID is empty
+            if ($product_subcategory_ID === null) {
+                // Exclude subcategory_ID from the query
+                $sql .= "subcategory_ID=NULL, product_description='$product_description', product_price=$product_price WHERE product_ID=$id";
+            } else {
+                // Include subcategory_ID in the query
+                $sql .= "subcategory_ID=$product_subcategory_ID, product_description='$product_description', product_price=$product_price WHERE product_ID=$id";
+            }
+            // Execute the SQL query
+            $result = mysqli_query($con, $sql);
+            if ($result) {
+                header('location:../admin_menu.php');
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($con);
+            }
         }
     }
 }

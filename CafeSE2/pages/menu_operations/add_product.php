@@ -46,21 +46,28 @@ if (isset($_POST['submit'])) {
 
     // If file is valid, proceed with upload and database insertion
     if ($uploadOk == 1) {
-        if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
-            if ($product_subcategory_ID === null || $product_subcategory_ID === '') {
-                $sql = "INSERT INTO Product (admin_ID, product_name, category_ID, product_description, product_image, product_price) VALUES (1, '$product_name', $product_category_ID, '$product_description', '$product_image', $product_price)";
-            } else {
-                $sql = "INSERT INTO Product (admin_ID, product_name, category_ID, subcategory_ID, product_description, product_image, product_price) VALUES (1, '$product_name', $product_category_ID, $product_subcategory_ID, '$product_description', '$product_image', $product_price)";
-            }
-
-            $result = mysqli_query($con, $sql);
-            if ($result) {
-                header('location:../admin_menu.php');
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($con);
-            }
+        // Check if product name already exists in the database
+        $check_query = "SELECT * FROM Product WHERE product_name = '$product_name'";
+        $check_result = mysqli_query($con, $check_query);
+        if (mysqli_num_rows($check_result) > 0) {
+            echo "<script>window.onload = function() { alert('Product with this name already exists. Please choose a different name.'); }</script>";
         } else {
-            echo "<script>window.onload = function() { alert('Sorry, there was an error uploading your file.'); }</script>";
+            if (move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
+                if ($product_subcategory_ID === null || $product_subcategory_ID === '') {
+                    $sql = "INSERT INTO Product (admin_ID, product_name, category_ID, product_description, product_image, product_price) VALUES (1, '$product_name', $product_category_ID, '$product_description', '$product_image', $product_price)";
+                } else {
+                    $sql = "INSERT INTO Product (admin_ID, product_name, category_ID, subcategory_ID, product_description, product_image, product_price) VALUES (1, '$product_name', $product_category_ID, $product_subcategory_ID, '$product_description', '$product_image', $product_price)";
+                }
+
+                $result = mysqli_query($con, $sql);
+                if ($result) {
+                    header('location:../admin_menu.php');
+                } else {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($con);
+                }
+            } else {
+                echo "<script>window.onload = function() { alert('Sorry, there was an error uploading your file.'); }</script>";
+            }
         }
     } else {
         echo "<script>window.onload = function() { alert('Sorry, your file was not uploaded.'); }</script>";
