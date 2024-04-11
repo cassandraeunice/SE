@@ -139,7 +139,7 @@
 /* Menu-Top */
 .menu-top-container {
     width: 100%;
-    height: 200px;
+    height: 300px;
     background: url("../images/leaves.png");
     background-color: white;
     background-repeat: no-repeat;
@@ -222,21 +222,43 @@
   object-fit: cover;
 }
 
-.details{
+.details {
   padding: 30px 10px;
   display: grid;
   grid-template-rows: auto 1fr 50px;
   grid-row-gap: 15px;
   height: 350px;
-}
-.details-sub{
+  overflow-wrap: break-word; /* Wrap long words */
+ }
+ 
+ .details-sub {
   display: grid;
-}
+  overflow-wrap: break-word; /* Wrap long words */
+ }
+
+ .name {
+  font-weight: 700;
+ }
+
+ .description {
+  text-align: justify;
+ }
 
 .error-container {
-  height: 50px;
+  height: 100px;
+  width: 300px;
+  text-align: center;
   margin-top: -10px;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center;
+}
+
+.error-msg {
+  font-size: 18px;
+  font-weight: 700;
 }
 
 /* BREAKPOINTS */
