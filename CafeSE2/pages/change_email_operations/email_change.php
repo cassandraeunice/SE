@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($newEmail !== $confirmEmail) {
           $error_message = "Email and Confirm Email do not match";
         } elseif ($newEmail === $currentEmail) {
-            $error_message = "New password cannot be the same as the current password";
+            $error_message = "New email cannot be the same as the current email";
         } else {
             $updateSql = "UPDATE admin
                 SET admin_email = ?,
