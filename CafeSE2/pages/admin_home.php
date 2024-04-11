@@ -1,4 +1,17 @@
 <?php
+
+session_start(); // Start session to access session variables
+
+// Check if the admin is logged in
+if (!isset($_SESSION['admin_ID']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    // Check if the admin's login status is remembered via cookie
+    if (!isset($_COOKIE['admin_logged_in']) || $_COOKIE['admin_logged_in'] !== 'true') {
+        // If not logged in and no remembered login status, redirect to login page
+        header("Location: login.php");
+        exit();
+    }
+}
+
 include 'connect.php';
 
 if (isset($_POST['homeBtn'])) {
@@ -72,7 +85,7 @@ if (isset($_POST['homeBtn'])) {
                 </tbody>
             </table>
         </div>
-
+        <br>
         <h2>About Us Section</h2>
         <div class="table-container">
             <table class="table">

@@ -1,4 +1,17 @@
 <?php
+
+session_start(); // Start session to access session variables
+
+// Check if the admin is logged in
+if (!isset($_SESSION['admin_ID']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    // Check if the admin's login status is remembered via cookie
+    if (!isset($_COOKIE['admin_logged_in']) || $_COOKIE['admin_logged_in'] !== 'true') {
+        // If not logged in and no remembered login status, redirect to login page
+        header("Location: login.php");
+        exit();
+    }
+}
+
 include 'connect.php';
 
 if(isset($_POST['homeBtn'])){
@@ -70,7 +83,9 @@ if(mysqli_num_rows($result) > 0) {
             <p><strong>Last Code Requested:</strong> <?php echo $last_updated_timestamp; ?></p>
 
         </div>
-        <button class="btn btn-danger m-5" style="background-color: red;"><a href="login.php" class="text-light">Logout</a></button>
+        <form method="post" action="logout.php">
+            <button type="submit" class="btn btn-danger m-5" style="background-color: red;">Logout</button>
+        </form>
     </div>
 </body>
 

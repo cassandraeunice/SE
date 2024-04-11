@@ -20,15 +20,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
         // Email exists, fetch the row
         $row = $result->fetch_assoc();
-        
+
         // Verify password
-        if (password_verify($password,$row['admin_password'])) {
+        if (password_verify($password, $row['admin_password'])) {
             // Password is correct, set session variables
             $_SESSION['admin_ID'] = $row['admin_ID'];
             $_SESSION['logged_in'] = true;
 
+            // Set a cookie to remember the login for 3 hours
+            setcookie("admin_logged_in", "true", time() + 3 * 3600, "/"); // Expires in 3 hours
+
+
             // Redirect to dashboard or desired page upon successful login
-            header("Location: admin_menu.php");
+            header("Location: admin_home.php");
             exit();
         } else {
             $error_message = "Invalid Email or Password";
@@ -44,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,38 +56,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/login.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
+
 <body>
 
 
-<div class="container">
+    <div class="container">
 
-<!-- Login Form -->
-<form id="loginForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <!-- Login Form -->
+        <form id="loginForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
-  <div class="login-container">
-      <p class="login-header">LOG IN</p>
+            <div class="login-container">
+                <p class="login-header">LOG IN</p>
 
-      <label for="email">Email</label>
-      <input type="email" placeholder="Enter Email" name="email" required>
+                <label for="email">Email</label>
+                <input type="email" placeholder="Enter Email" name="email" required>
 
-      <label for="psw">Password</label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-      <span class="psw"><a href="./forget_password_operations/forgot_password.php">Forgot password?</a></span>
+                <label for="psw">Password</label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <span class="psw"><a href="./forget_password_operations/forgot_password.php">Forgot password?</a></span>
 
-      <button type="submit">LOGIN</button>
+                <button type="submit">LOGIN</button>
 
-        </div>
+            </div>
 
-    </form>
+        </form>
 
-<!-- JavaScript to display alert without interrupting page -->
-<script>
-    window.onload = function() {
-        <?php if (!empty($error_message)): ?>
-            alert('<?php echo $error_message; ?>');
-        <?php endif; ?>
-    };
-</script>
+        <!-- JavaScript to display alert without interrupting page -->
+        <script>
+            window.onload = function() {
+                <?php if (!empty($error_message)) : ?>
+                    alert('<?php echo $error_message; ?>');
+                <?php endif; ?>
+            };
+        </script>
 
 </body>
+
 </html>
