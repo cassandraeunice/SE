@@ -259,7 +259,6 @@ input[type=text] {
     height: 40px;
     padding: 12px 20px;
     margin: 8px 0;
-    margin-top: -15px;
     display: inline-block;
     border: 1px solid var(--dark-brown);
     box-sizing: border-box;
@@ -291,7 +290,12 @@ input[type=email] {
 .form-group {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.name-group {
+  display: flex;
+  justify-content: space-between;
 }
 
 .firstName-input {
@@ -304,7 +308,6 @@ input[type=email] {
   display: flex;
   align-content: end;
   flex-direction: column;
-  margin-left: 10px;
 }
 
 #subject {
@@ -384,11 +387,22 @@ button {
   text-decoration: none;
 }
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
+  body {
+    max-width: 750px;
+    margin: 0 auto; /* This centers the content */
+  }
+
   .form-group {
     flex-direction: column;
     align-items: center;
     margin-left: 15px;
+  }
+
+  .name-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   #firstName, #lastName {
@@ -397,7 +411,6 @@ button {
 
   .lastName-input {
     margin-left: 0;
-    margin-bottom: -15px;
   }
 
   .email-input, .subj-input, .message-input {
@@ -405,7 +418,7 @@ button {
     flex-direction: column;
     align-items: center; 
     width: 380px;
-    margin-left: 15px;
+   
   }
 
   .email-input label {
@@ -431,19 +444,19 @@ button {
   .req-info {
     font-size: 30px;
     margin-top: 25px;
-    padding-left: 15px;
+   
   }
 
   .inquiry {
     font-size: 30px;
     margin-top: -15px;
-    padding-left: 15px;
+  
   }
 
   .inquiry-text {
     font-size: 15px;
     margin-bottom: 15px;
-    padding-left: 15px;
+    
   }
 
   .contact-text {
@@ -455,7 +468,6 @@ button {
     font-size: 18px;
     padding: 15px;
   }
-  
 }
 
 /* Footer */

@@ -45,7 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>Contact Us</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/contact-us.css">
@@ -92,25 +93,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <div class="contact-container">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <p class="req-info">REQUEST INFORMATION</p>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <div class="form-group">
-                <div class="firstName-input">
-                    <label for="firstName">First Name:</label><br></br>
-                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
-                </div>
-                <div class="lastName-input">
-                    <label for="lastName">Last Name:</label><br></br>
-                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+            <p class="req-info">REQUEST INFORMATION</p>
+                <div class="name-group">
+                    <div class="firstName-input">
+                        <label for="firstName">First Name:</label><br>
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                    </div>
+                    <div class="lastName-input">
+                        <label for="lastName">Last Name:</label><br>
+                        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                    </div>
                 </div>
             </div>
+            <div class="form-group">
             <div class="email-input">
                 <label for="email">Email:</label><br></br>
                 <input type="email" class="form-control" id="email" name="email" required value="<?php echo $email; ?>" placeholder="Enter your email"><br></br>
             </div>
             <div class="inquiry-info">
-            <p class="inquiry">INQUIRY</p>
-            <p class="inquiry-text">We’d love to hear from you. Drop us a line if you have any questions.</p>
+                <p class="inquiry">INQUIRY</p>
+                <p class="inquiry-text">We’d love to hear from you. Drop us a line if you have any questions.</p>
             </div>
             <div class="subj-input">
                 <label for="subject">Subject:</label><br></br>
@@ -120,11 +124,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="message">Message:</label><br></br>
                 <textarea class="form-control" id="message" name="message" rows="5" required><?php echo $message; ?></textarea><br></br>
             </div>
-            <div class="button-container">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
     <div class="contact-information">
             <p>0917 588 6554</p>
             <a href="mailto:cafesienaph@gmail.com">cafesienaph@gmail.com</a>
