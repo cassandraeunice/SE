@@ -169,6 +169,11 @@
     .menu-top-container {
       background-size: contain;
     }
+
+    .home-menu {
+      padding: 20px;
+      font-size: 18px;
+    }
 }
 
 /* Menu Display */

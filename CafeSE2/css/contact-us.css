@@ -435,6 +435,16 @@ button {
     font-size: 15px;
     margin-bottom: 15px;
   }
+
+  .contact-text {
+    padding: 10px;
+    font-size: 60px;
+  }
+
+  .home-contact {
+    font-size: 18px;
+    padding: 15px;
+  }
   
 }
 
