@@ -108,6 +108,8 @@ if (isset($_POST['product_id'])) {
             }
         }
 
+        var totalPopularCount = <?php echo $current_popular_count; ?>;
+
         document.addEventListener('DOMContentLoaded', function() {
             // Check if the PHP flag is set to display an alert
             if (typeof displayAlert !== 'undefined' && displayAlert) {
