@@ -106,9 +106,13 @@ if (isset($_POST['product_id'])) {
                     window.location.href = "admin_menu.php";
                 }, 50);
             }
+            if (window.location.hash === '#popular_error') {
+                alert("Product cannot be deleted because it is marked as popular. Ensure they are removed before deleting this product.");
+                setTimeout(function() {
+                    window.location.href = "admin_menu.php";
+                }, 50);
+            }
         }
-
-        var totalPopularCount = <?php echo $current_popular_count; ?>;
 
         document.addEventListener('DOMContentLoaded', function() {
             // Check if the PHP flag is set to display an alert
@@ -121,10 +125,6 @@ if (isset($_POST['product_id'])) {
                 checkboxes.forEach(checkbox => {
                     checkbox.addEventListener('click', function(e) {
                         var checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
-                        if (!this.checked && checkedCheckboxes < 3) {
-                            e.preventDefault();
-                            this.checked = true;
-                        }
                     });
                 });
             }

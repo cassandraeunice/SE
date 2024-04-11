@@ -14,7 +14,8 @@ if (isset($_GET['product_id'])) {
 
     // Check if the product_popular_value is 1
     if ($row['product_popular_value'] == 1) {
-        echo "<script>window.onload = function() { alert('Product cannot be deleted because it is marked as popular.'); }</script>";
+        echo '<script>setTimeout(function() { window.location.href = "../admin_menu.php#popular_error"; }, 50);</script>';
+
     } else {
         // If product_popular_value is not 1, proceed with deletion
         $sql = "DELETE FROM Product WHERE product_ID = ?";
