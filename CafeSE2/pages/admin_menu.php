@@ -302,7 +302,7 @@ if (isset($_POST['product_id'])) {
                 </thead>
                 <tbody>
                     <?php
-                    $category_query = "SELECT * FROM Category";
+                    $category_query = "SELECT * FROM Category ORDER BY category_ID DESC";
                     $category_result = mysqli_query($con, $category_query);
                     if ($category_result) {
                         while ($row = mysqli_fetch_assoc($category_result)) {
@@ -339,7 +339,7 @@ if (isset($_POST['product_id'])) {
                 </thead>
                 <tbody>
                     <?php
-                    $subcategory_query = "SELECT s.*, c.category_name FROM Subcategory s LEFT JOIN Category c ON s.category_ID = c.category_ID";
+                    $subcategory_query = "SELECT s.*, c.category_name FROM Subcategory s LEFT JOIN Category c ON s.category_ID = c.category_ID ORDER BY s.subcategory_ID DESC";
                     $subcategory_result = mysqli_query($con, $subcategory_query);
                     if ($subcategory_result) {
                         while ($row = mysqli_fetch_assoc($subcategory_result)) {
