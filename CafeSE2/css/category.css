@@ -227,7 +227,7 @@
   display: grid;
   grid-template-rows: auto 1fr 50px;
   grid-row-gap: 15px;
-  height: 320px;
+  height: 350px;
 }
 .details-sub{
   display: grid;
@@ -258,7 +258,6 @@
 }
 
 .error-container {
-  margin-left: 430px;
   height: 50px;
   margin-top: -10px;
   margin-bottom: 30px;
@@ -275,10 +274,9 @@
 }
 
 /* BREAKPOINTS */
+
 @media (max-width: 992px) {
-  .error-container {
-    margin-left: 0;
-  }
+  
 }
 
 /* Footer */
