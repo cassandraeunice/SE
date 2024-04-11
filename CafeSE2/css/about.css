@@ -269,6 +269,24 @@
   .about-body .card-img-top {
     margin-right:0;
   }
+
+  .about-text {
+    font-size: 60px;
+  }
+
+  .home-about {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .about-card-text {
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .about-container {
+    min-height: 415px;
+  }
 }
 
   /* Visit Us */
@@ -357,19 +375,21 @@ font-size: 24px;
   }
 
   .visit-title {
-    font-size: 60px;
+    font-size: 40px;
   }
 
   .visit-card iframe {
-    margin-top: 20px;
-    width: 450px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
   }
 
   .visit-text-section {
     gap: 0;
     margin-top: 0;
     text-align: center;
+    font-size: 18px;
+    padding: 15px;
+    padding-bottom: -15px;
   }
 }
 
