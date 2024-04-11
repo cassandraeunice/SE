@@ -139,7 +139,7 @@
 /* Menu-Top */
 .menu-top-container {
     width: 100%;
-    height: 300px;
+    height: 200px;
     background: url("../images/leaves.png");
     background-color: white;
     background-repeat: no-repeat;
@@ -201,7 +201,6 @@
   grid-column: 1/-1;
   text-align: center;
 }
-
 .heading>h1{
   font-weight: 400;
   font-size: 30px;
@@ -216,7 +215,6 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
   margin: 0 20px;
 }
-
 .food-items img{
   position: relative;
   width: 100%;
@@ -235,15 +233,10 @@
   display: grid;
 }
 
-.test {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px; /* You can adjust the height as needed */
-}
-
 .error-container {
-  text-align: center;
+  height: 50px;
+  margin-top: -10px;
+  margin-bottom: 30px;
 }
 
 /* BREAKPOINTS */
