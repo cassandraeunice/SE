@@ -15,7 +15,7 @@ if (!isset($_SESSION['admin_ID']) || !isset($_SESSION['logged_in']) || $_SESSION
 include 'connect.php';
 
 // Number of records per page
-$records_per_page = 5;
+$records_per_page = 10;
 
 // Get the current page number
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -177,7 +177,7 @@ if (isset($_POST['product_id'])) {
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Product Name</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Image</th>
                         <th scope="col">Category</th>
                         <th scope="col">Subcategory</th>

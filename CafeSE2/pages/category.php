@@ -116,7 +116,7 @@ if (isset($_GET['category_id'])) {
     <section>
       <div class="display-container">
         <?php foreach ($subcategory_products as $subcategory_name => $products) : ?>
-          <div class="menu<?php echo empty($subcategory_name) || count($products) === 0 ? ' no-subcategory' : ''; ?>">
+          <div class="menu<?php echo !empty($subcategory_name) && count($products) === 0 ? ' no-subcategory' : ''; ?>">
 
             <?php if (!empty($subcategory_name)) : ?>
               <div class="heading">

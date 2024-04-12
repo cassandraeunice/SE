@@ -1,0 +1,294 @@
+CREATE TABLE Admin (
+    admin_ID INT AUTO_INCREMENT PRIMARY KEY,
+    admin_email VARCHAR(255) NOT NULL,
+    admin_password VARCHAR(255) NOT NULL,
+    verification_code VARCHAR(6),
+    code_expiration TIMESTAMP
+);
+
+CREATE TABLE Content (
+    content_ID INT AUTO_INCREMENT PRIMARY KEY,
+    admin_ID INT,
+    FOREIGN KEY (admin_ID) REFERENCES Admin(admin_ID),
+    content_text TEXT,
+    content_image VARCHAR(255)
+);
+
+CREATE TABLE Category (
+    category_ID INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255) NULL,
+    category_image VARCHAR(255) NULL
+);
+
+CREATE TABLE Subcategory (
+    subcategory_ID INT AUTO_INCREMENT PRIMARY KEY,
+    subcategory_name VARCHAR(255) NOT NULL,
+    category_ID INT,
+    FOREIGN KEY (category_ID) REFERENCES Category(category_ID)
+);
+
+CREATE TABLE Product (
+    product_ID INT AUTO_INCREMENT PRIMARY KEY,
+    admin_ID INT,
+    FOREIGN KEY (admin_ID) REFERENCES Admin(admin_ID),
+    product_name VARCHAR(255) NOT NULL,
+    category_ID INT,
+    FOREIGN KEY (category_ID) REFERENCES Category(category_ID),
+    subcategory_ID INT,
+    FOREIGN KEY (subcategory_ID) REFERENCES Subcategory(subcategory_ID),
+    product_description VARCHAR(255) NOT NULL,
+    product_image VARCHAR(255) NOT NULL,
+    product_price DECIMAL(10, 2) NOT NULL,
+    product_popular_value BOOLEAN NOT NULL DEFAULT 0
+);
+
+CREATE TABLE ContactUs (
+    contact_ID INT AUTO_INCREMENT PRIMARY KEY,
+    admin_ID INT,
+    FOREIGN KEY (admin_ID) REFERENCES Admin(admin_ID),
+    contact_first_name VARCHAR(255) NULL,
+    contact_last_name VARCHAR(255) NULL,
+    contact_email VARCHAR(255) NOT NULL,
+    contact_subject VARCHAR(255) NOT NULL,
+    contact_message TEXT NOT NULL,
+    contact_respond_value BOOLEAN NOT NULL DEFAULT 0,
+    contact_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Customer (
+    customer_ID INT AUTO_INCREMENT PRIMARY KEY,
+    customer_email VARCHAR(255),
+    customer_first_name VARCHAR(255),
+    customer_last_name VARCHAR(255)
+);
+
+CREATE TABLE Feedback (
+    feedback_ID INT AUTO_INCREMENT PRIMARY KEY,
+    customer_ID INT,
+    FOREIGN KEY (customer_ID) REFERENCES Customer(customer_ID),
+    feedback_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    feedback_experience VARCHAR(1000)
+);
+
+CREATE TABLE Section (
+    section_ID INT AUTO_INCREMENT PRIMARY KEY,
+    section_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Question (
+    question_ID INT AUTO_INCREMENT PRIMARY KEY,
+    section_ID INT,
+    FOREIGN KEY (section_ID) REFERENCES Section(section_ID),
+    question_text VARCHAR(255) NOT NULL,
+    archive_value BOOLEAN NOT NULL DEFAULT 0
+);
+
+CREATE TABLE Rating (
+    rating_ID INT AUTO_INCREMENT PRIMARY KEY,
+    admin_ID INT,
+    FOREIGN KEY (admin_ID) REFERENCES Admin(admin_ID),
+    feedback_ID INT,
+    FOREIGN KEY (feedback_ID) REFERENCES Feedback(feedback_ID),
+    question_ID INT,
+    FOREIGN KEY (question_ID) REFERENCES Question(question_ID),
+    rating_number INT NOT NULL
+);
+
+INSERT INTO Section (section_name) VALUES ('Service');
+INSERT INTO Section (section_name) VALUES ('Food');
+
+INSERT INTO Question (section_ID, question_text) 
+VALUES ((SELECT section_ID FROM Section WHERE section_name = 'Service'), 'How satisfied were you with the service?');
+
+INSERT INTO Question (section_ID, question_text) 
+VALUES ((SELECT section_ID FROM Section WHERE section_name = 'Service'), 'How responsive were the staff?');
+
+INSERT INTO Question (section_ID, question_text) 
+VALUES ((SELECT section_ID FROM Section WHERE section_name = 'Service'), 'How knowledgeable were the staff about the products/services offered?');
+
+INSERT INTO Question (section_ID, question_text) 
+VALUES ((SELECT section_ID FROM Section WHERE section_name = 'Food'), 'How would you rate the quality of the food?');
+
+INSERT INTO Question (section_ID, question_text) 
+VALUES ((SELECT section_ID FROM Section WHERE section_name = 'Food'), 'Were the portions satisfactory?');
+
+INSERT INTO Question (section_ID, question_text) 
+VALUES ((SELECT section_ID FROM Section WHERE section_name = 'Food'), 'Did you find the menu options appealing?');
+
+INSERT INTO Admin (admin_email, admin_password) VALUES ('janvincentdyogi@gmail.com', 'Janvincent1!');
+
+INSERT INTO Content (content_ID, admin_ID, content_text, content_image) VALUES 
+(1, 1, NULL, 'home_page.png'),
+(4, 1, 'First opening in 2013 along C. Lawis Street, Cafe Siena has since been serving the Antipolo community with various types of food and drinks. Fan favorites such as the Bagnet Pakbet and Beef Kare Kare along with their best selling Americano and caramel coffees have been staples of the cafe.
+
+Cafe Siena eventually relocated to Buliran Road, where the events center is also located. The homey feel of the cafe contributes to the relaxing atmosphere that the cafe is known for and has become an added reason for its popularity among patrons.
+
+We measure success by the ability to define our purpose which is passion and flair to serve good and affordable food. As the business continues to soar greater heights, we mix the best international practices with local market knowledge and expertise, seeking continuous process improvements. Product diversity is our key.', 'cafe_siena.jpg'),
+(5, 1, 'First opening in 2013 along C. Lawis Street, Cafe Siena has since been serving the Antipolo community with various types of food and drinks. Fan favorites such as the Bagnet Pakbet and Beef Kare Kare along with their best selling Americano and caramel coffees have been staples of the cafe.
+
+Cafe Siena eventually relocated to Buliran Road, where the events center is also located. The homey feel of the cafe contributes to the relaxing atmosphere that the cafe is known for and has become an added reason for its popularity among patrons.
+
+We measure success by the ability to define our purpose which is passion and flair to serve good and affordable food. As the business continues to soar greater heights, we mix the best international practices with local market knowledge and expertise,seeking continuous process improvements. Product diversity is our key.
+
+First opening in 2013 along C. Lawis Street, Cafe Siena has since been serving the Antipolo community with various types of food and drinks. Fan favorites such as the Bagnet Pakbet and Beef Kare Kare along with their best selling Americano and caramel coffees have been staples of the cafe.', 'CafeLogo.png'),
+(6, 1, 'Sitio Bayugo Buliran Rd., Antipolo, Philippines', NULL),
+(7, 1, 'Monday - Sunday: 7:00 PM - 10:00 PM', NULL),
+(8, 1, '0917 588 6554', NULL),
+(9, 1, 'cafesienaph@gmail.com', NULL),
+(10, 1, 'https://www.facebook.com/cafesiena2013', NULL),
+(11, 1, 'https://www.instagram.com/cafesienaph', NULL);
+
+INSERT INTO ContactUs (admin_ID, contact_first_name, contact_last_name, contact_email, contact_subject, contact_message, contact_respond_value, contact_timestamp)
+VALUES 
+    (1, 'John', 'Doe', 'john@example.com', 'Product Inquiry', 'Interested in learning more about your product.', 0, '2024-01-15 08:30:00'),
+    (1, 'Jane', 'Smith', 'jane@example.com', 'Technical Support', 'Experiencing issues with the software.', 1, '2024-02-02 14:45:00'),
+    (1, 'Michael', 'Johnson', 'michael@example.com', 'Billing Question', 'Question about recent charges on my account.', 0, '2024-03-10 11:20:00'),
+    (1, 'Emily', 'Brown', 'emily@example.com', 'General Inquiry', 'Just wanted to leave some feedback about your service.', 1, '2024-01-25 09:00:00'),
+    (1, 'William', 'Davis', 'william@example.com', 'Order Status', 'Checking on the status of my recent order.', 0, '2024-02-18 16:10:00'),
+    (1, 'Emma', 'Wilson', 'emma@example.com', 'Product Feedback', 'Providing feedback on the latest version of your software.', 1, '2024-03-05 13:55:00'),
+    (1, 'Matthew', 'Martinez', 'matthew@example.com', 'Service Inquiry', 'Interested in learning more about your consulting services.', 0, '2024-01-20 10:30:00'),
+    (1, 'Olivia', 'Anderson', 'olivia@example.com', 'Account Assistance', 'Need help accessing my account.', 1, '2024-02-08 17:40:00'),
+    (1, 'James', 'Taylor', 'james@example.com', 'Technical Support', 'Need assistance troubleshooting an issue.', 0, '2024-03-15 08:15:00'),
+    (1, 'Sophia', 'Thomas', 'sophia@example.com', 'Product Inquiry', 'Considering purchasing your product and have some questions.', 1, '2024-01-30 12:20:00'),
+    (1, 'Liam', 'Wilson', 'liam@example.com', 'General Inquiry', 'Just wanted to say thank you for your great service.', 0, '2024-02-22 09:30:00'),
+    (1, 'Olivia', 'Brown', 'olivia.b@example.com', 'Billing Question', 'Question about my recent invoice.', 1, '2024-03-08 15:00:00'),
+    (1, 'Noah', 'Garcia', 'noah@example.com', 'Product Feedback', 'Suggesting some improvements for your product.', 0, '2024-01-10 14:50:00'),
+    (1, 'Isabella', 'Martinez', 'isabella@example.com', 'Service Inquiry', 'Looking for information about your customer support services.', 1, '2024-02-03 11:40:00'),
+    (1, 'Ethan', 'Wilson', 'ethan@example.com', 'Account Assistance', 'Need help recovering my account.', 0, '2024-03-18 08:00:00'),
+    (1, 'Ava', 'Anderson', 'ava@example.com', 'Order Status', 'Checking on the delivery status of my order.', 1, '2024-01-28 16:25:00'),
+    (1, 'Mason', 'Taylor', 'mason@example.com', 'Technical Support', 'Experiencing difficulties with your software.', 0, '2024-02-14 13:15:00'),
+    (1, 'Harper', 'Thomas', 'harper@example.com', 'Product Inquiry', 'Interested in the features of your product.', 1, '2024-03-01 09:45:00'),
+    (1, 'Evelyn', 'Brown', 'evelyn@example.com', 'General Inquiry', 'Just wanted to provide some feedback.', 0, '2024-01-16 14:00:00'),
+    (1, 'Jack', 'Garcia', 'jack@example.com', 'Billing Question', 'Question about a charge on my account.', 1, '2024-02-05 11:10:00'),
+    (1, 'Sophia', 'Rodriguez', 'sophia.r@example.com', 'Product Feedback', 'Providing feedback on your product.', 0, '2024-03-12 08:35:00'),
+    (1, 'Logan', 'Wilson', 'logan@example.com', 'Service Inquiry', 'Inquiring about your consulting services.', 1, '2024-01-22 15:20:00'),
+    (1, 'Emma', 'Taylor', 'emma.t@example.com', 'Account Assistance', 'Need help with my account settings.', 0, '2024-02-11 10:05:00'),
+    (1, 'Oliver', 'Anderson', 'oliver@example.com', 'Order Status', 'Checking on the status of my order.', 1, '2024-03-20 16:50:00'),
+    (1, 'Ava', 'Rodriguez', 'ava.r@example.com', 'Technical Support', 'Experiencing technical issues with your product.', 0, '2024-01-12 13:30:00'),
+    (1, 'Elijah', 'Martinez', 'elijah@example.com', 'Product Inquiry', 'Interested in purchasing your product.', 1, '2024-02-25 09:15:00'),
+    (1, 'Mia', 'Wilson', 'mia@example.com', 'General Inquiry', 'Just had a question about your services.', 0, '2024-03-03 14:45:00'),
+    (1, 'Charlotte', 'Garcia', 'charlotte@example.com', 'Billing Question', 'Question about my billing statement.', 1, '2024-01-18 11:00:00'),
+    (1, 'Amelia', 'Rodriguez', 'amelia@example.com', 'Product Feedback', 'Providing some feedback on your product features.', 0, '2024-02-08 08:40:00'),
+    (1, 'Benjamin', 'Martinez', 'benjamin@example.com', 'Service Inquiry', 'Inquiring about your customer service.', 1, '2024-03-05 16:30:00');
+
+INSERT INTO Category (category_name, category_image) VALUES
+('Starters', 'starters.png'),
+('Soup', 'soup.png'),
+('Pasta', 'pasta.png'),
+('Main Course', 'mainCourse.png'),
+('Dessert', 'dessert.png');
+
+INSERT INTO Subcategory (subcategory_name, category_ID) VALUES
+('Pork', (SELECT category_ID FROM Category WHERE category_name = 'Main Course')),
+('Beef', (SELECT category_ID FROM Category WHERE category_name = 'Main Course')),
+('Chicken', (SELECT category_ID FROM Category WHERE category_name = 'Main Course')),
+('Seafood', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'));
+
+INSERT INTO Product (admin_ID, product_name, category_ID, product_description, product_image, product_price, product_popular_value) VALUES
+(1, 'Breaded Cheese Sticks (Best Seller)', (SELECT category_ID FROM Category WHERE category_name = 'Starters'), 'Deep fried cheddar cheese in crispy molo wrapper', 'breadedCheeseSticks.jpg', 180.00, 1),
+(1, 'Nachos', (SELECT category_ID FROM Category WHERE category_name = 'Starters'), 'Tortilla chips topped with creamy cheese sauce, ground beef, onions, garlic, bellpeppers, in red sauce', 'nachos.jpg', 200.00, 0),
+(1, 'Mozzarella Balls (Must try)', (SELECT category_ID FROM Category WHERE category_name = 'Starters'), 'Fried breaded mozzarella balls with tomato and pesto sauce', 'mozzarellaBalls.jpg', 280.00, 0),
+(1, 'French Fries', (SELECT category_ID FROM Category WHERE category_name = 'Starters'), 'Classic french fries with garlic mayo dip', 'frenchFries.jpg', 170.00, 0),
+(1, 'Gambas Al Ajillo', (SELECT category_ID FROM Category WHERE category_name = 'Starters'), 'Shrimps sautèed in olive oil, butter, paprika, and garlic w/ chili flakes', 'gambasAlAjillo.jpg', 350.00, 0),
+(1, 'Calamares', (SELECT category_ID FROM Category WHERE category_name = 'Starters'), 'Breaded squid rings in garlic mayo dip', 'calamares.jpg', 250.00, 0),
+(1, 'Buffalo Wings', (SELECT category_ID FROM Category WHERE category_name = 'Starters'), 'Chicken wings coated with sweet and spicy red sauce', 'buffaloWings.jpg', 290.00, 0),
+(1, 'Sweet Wings (Best Seller)', (SELECT category_ID FROM Category WHERE category_name = 'Starters'), 'Chicken wings coated with honey soy sauce', 'sweetWings.jpg', 290.00, 1);
+
+INSERT INTO Product (admin_ID, product_name, category_ID, product_description, product_image, product_price, product_popular_value) VALUES
+(1, 'Mushroom Soup (Best Seller)', (SELECT category_ID FROM Category WHERE category_name = 'Soup'), 'A creamy Soup made with fresh mushrooms', 'mushroomSoup.jpg', 80.00, 1),
+(1, 'Nido Soup', (SELECT category_ID FROM Category WHERE category_name = 'Soup'), 'A nourishing Soup made with Nido milk powder', 'nidoSoup.jpg', 80.00, 0),
+(1, 'Pumpkin Soup', (SELECT category_ID FROM Category WHERE category_name = 'Soup'), 'A comforting Soup made with roasted pumpkin', 'pumpkinSoup.jpg', 80.00, 0);
+
+
+INSERT INTO Product (admin_ID, product_name, category_ID, product_description, product_image, product_price, product_popular_value) VALUES
+(1, 'Pasta Ala Siena (Best Seller) (Choice of linguini or penne pasta)', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Sautéed onions, garlic, tomato, and basil in tomato sauce', 'pastaAlaSiena.jpg', 260.00, 1),
+(1, 'Spicy Seafood Marinara (Choice of spaghetti, linguini or penne pasta)', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Squid, shrimps, and basil in spicy tomato sauce', 'spicySeafoodMarinara.jpg', 240.00, 0),
+(1, 'Creamy Carbonara', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Creamy white sauce and bacon', 'creamyCarbonara.jpg', 250.00, 0),
+(1, 'Frutti De Mare (Choice of spaghetti, linguini or penne pasta)', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Creamy white sauce, squid and shrimp', 'fruttiDeMare.jpg', 260.00, 0),
+(1, 'Pasta Rica (Best Seller)', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Sauteed garlic, tomato, basil, capers, and spanish sardines topped with salted egg', 'pastaRica.jpg', 260.00, 1),
+(1, 'Spaghetti Meatballs', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Spaghetti pasta, meatballs in classic tomato sauce', 'spaghettiMeatballs.jpg', 220.00, 0),
+(1, 'Creamy Beef Pesto (Choice of linguini or penne pasta)', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Creamy pesto sauce and beef strips', 'creamyBeefPesto.jpg', 260.00, 0),
+(1, 'Baked Lasagna (Best Seller)', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Classic layers of meaty red sauce and white sauce', 'bakedLasagna.jpg', 300.00, 1),
+(1, 'Baked Macaroni', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Macaroni Pasta, meaty tomato sauce topped with cheese sauce', 'bakedMacaroni.jpg', 290.00, 0),
+(1, 'Baked Mac N’ Cheese', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Elbow Macaroni cheese sauce and bacon bits', 'bakedMacNCheese.jpg', 260.00, 0),
+(1, 'Enzo’s Truffle', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Linguini pasta, Shimeji, Shitake, and white onions sautéed in olive oil drizzled with truffle salsa', 'enzosTruffle.jpg', 290.00, 0),
+(1, 'Pancit Canton (Best Seller, must try)', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Pancit Canton', 'pancitCanton.jpg', 250.00, 1),
+(1, 'Pancit Bihon (Best Seller, must try)', (SELECT category_ID FROM Category WHERE category_name = 'Pasta'), 'Pancit Bihon', 'pancitBihon.jpg', 250.00, 1);
+
+INSERT INTO Product (admin_ID, product_name, category_ID, subcategory_ID, product_description, product_image, product_price, product_popular_value) VALUES
+(1, 'Kare Kare Bagnet (Best Seller)', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Pork'), 'Peanut sauce, pechay, eggplant, string beans, & crispy pork bagnet', 'karekareBagnet.jpg', 580.00, 1),
+(1, 'Lechon Kawali', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Pork'), 'Crispy and tender pork belly with lechon sauce', 'lechonKawali.jpg', 270.00, 0),
+(1, 'Pork Binagoongan', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Pork'), 'Bagoong, tomato, eggplant, red sauce, and crispy pork belly', 'porkBinagoongan.jpg', 250.00, 0),
+(1, 'Crispy Pata', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Pork'), 'Crunchy crisp pork leg skin and savory tender meat with special pata sauce', 'crispyPata.jpg', 650.00, 0),
+(1, 'Baby Back Ribs', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Pork'), 'Special cut pork ribs in hickory barbecue sauce', 'babyBackribs.jpg', 350.00, 0);
+
+INSERT INTO Product (admin_ID, product_name, category_ID, subcategory_ID, product_description, product_image, product_price, product_popular_value) VALUES
+(1, 'Beef Sinigang', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Beef'), 'Tamarind Soup, eggplant, radish, string beans, tomato, kangkong, and tender beef belly', 'beefSinigang.jpg', 390.00, 0),
+(1, 'Beef Caldereta', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Beef'), 'Beef shortplate in sumptuous tomato sauce with potato, carrots, and bellpepper topped with grated cheese', 'caldereta.jpg', 550.00, 0),
+(1, 'Roast Beef w/ Mushroom Gravy (Best Seller)', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Beef'), 'Slow roasted beef chuck served with creamy mushroom sauce', 'beefMushroom.jpg', 320.00, 1),
+(1, 'Beef Surf & Turf (Must Try)', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Beef'), 'Grilled beef slices and shrimp, mustard, in rosemary sauce', 'surfTurf.jpg', 350.00, 1),
+(1, 'Beef Salpicao', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Beef'), 'Strir fried cubed tender beef, worcestershire, butter, and garlic chips', 'beefSalpicao.jpg', 310.00, 0);
+
+INSERT INTO Product (admin_ID, product_name, category_ID, subcategory_ID, product_description, product_image, product_price, product_popular_value) VALUES
+(1, 'House Fried Chicken', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Chicken'), 'Crispy and juicy classic Filipino fried chicken', 'houseFried.jpg', 190.00, 0),
+(1, 'Chicken Ala Pobre (Best Seller)', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Chicken'), 'Fried chicken leg quarter in soy garlic lime sauce', 'chickenAlaPobre.jpg', 200.00, 1),
+(1, 'Chicken Parmigiana', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Chicken'), 'Breaded chicken fillet covered in tomato sauce, mozzarella and parmesan cheese', 'chickenParmigiana.jpg', 280.00, 0),
+(1, 'Spicy Chicken Fingers (Must Try)', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Chicken'), 'Breaded chicken fillet strips, cayenne, and mustard with herbed white sauce dip', 'spicyChicken.jpg', 200.00, 1);
+
+INSERT INTO Product (admin_ID, product_name, category_ID, subcategory_ID, product_description, product_image, product_price, product_popular_value) VALUES
+(1, 'Pan Seared Salmon in Creamy Spinach Capers Sauce', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Seafood'), 'Seared salmon in creamy spinach capers sauce', 'panSeared.jpg', 470.00, 0),
+(1, 'Grilled Tuna Belly in Sweet Soy Garlic Sauce', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Seafood'), 'Grilled tuna belly marinated in sweet and savory sauce with sautéed spinach', 'grilledTuna.jpg', 450.00, 0),
+(1, 'Crispy Fish Finger', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Seafood'), 'Fried breaded fish fillet crunchy and juicy with garlic mayo dip', 'crispyFish.jpg', 220.00, 420),
+(1, 'Peppered Fish Fillet', (SELECT category_ID FROM Category WHERE category_name = 'Main Course'), (SELECT subcategory_ID FROM Subcategory WHERE subcategory_name = 'Seafood'), 'Steamed fish roll in creamy honey pepper sauce', 'pepperedFish.jpg', 230.00, 450);
+
+INSERT INTO Product (admin_ID, product_name, category_ID, subcategory_ID, product_description, product_image, product_price, product_popular_value) 
+VALUES 
+(1, 'Mango Jubilee Crepe', (SELECT category_ID FROM Category WHERE category_name = 'Dessert'), NULL, 'Delicious crepe filled with mangoes and topped with a jubilee sauce', 'mangoJubilee.jpg', 160.00, 0),
+(1, 'Banofee Crepe', (SELECT category_ID FROM Category WHERE category_name = 'Dessert'), NULL, 'Delectable crepe filled with bananas, caramel sauce, and whipped cream', 'banofee.jpg', 160.00, 0),
+(1, 'Cheesecake', (SELECT category_ID FROM Category WHERE category_name = 'Dessert'), NULL, 'Creamy and indulgent cheesecake', 'cheesecake.jpg', 200.00, 0);
+
+
+INSERT INTO Customer (customer_email, customer_first_name, customer_last_name) 
+VALUES 
+('customer1@example.com', 'John', 'Doe'),
+('customer2@example.com', 'Jane', 'Smith'),
+('customer3@example.com', 'Alice', 'Johnson');
+
+INSERT INTO Feedback (customer_ID, feedback_timestamp, feedback_experience) 
+VALUES 
+(1, '2024-04-10 08:30:00', 'The service was excellent, very satisfied overall.'),
+(2, '2024-04-11 12:15:00', 'The food quality was great, but the staff could have been more attentive.'),
+(3, '2024-04-12 10:45:00', 'The menu options were limited, but the staff was friendly.');
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 1), 4, 5);
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 2), 4, 4);
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 3), 4, 3);
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 1), 5, 5);
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 2), 5, 3);
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 3), 5, 4);
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 1), 6, 4);
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 2), 6, 3);
+
+INSERT INTO Rating (admin_ID, feedback_ID, question_ID, rating_number)
+VALUES (1, (SELECT feedback_ID FROM Feedback WHERE customer_ID = 3), 6, 3);
+
+UPDATE Product
+SET product_popular_value = 0;
+
+
+
