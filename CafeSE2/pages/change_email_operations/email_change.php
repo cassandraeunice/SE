@@ -113,10 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </style>
 
             <button type="submit">Change</button>
-
-            <?php if (!empty($error_message)): ?>
-                <p class="error-message"><?php echo $error_message; ?></p>
-            <?php endif; ?>
         </div>
     </form>
 

@@ -102,10 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" placeholder="Enter confirm password" name="confirm-psw" required>
 
             <button type="submit">Change</button>
-
-            <?php if (!empty($error_message)): ?>
-                <p class="error-message"><?php echo $error_message; ?></p>
-            <?php endif; ?>
         </div>
     </form>
 
