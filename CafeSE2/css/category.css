@@ -184,6 +184,7 @@
   display: flex;
   flex-direction: column;
   background-color: white;
+  
 }
 
 .menu{
@@ -193,6 +194,23 @@
   grid-template-columns: repeat( auto-fit, minmax(300px,1fr));
   grid-gap: 20px 40px;
 }
+
+.menu.no-subcategory {
+  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); 
+}
+
+.test {
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  height: 100px;
+  width: 100%; /* Occupy full width of parent container */
+}
+
+.test.no-subcategory {
+  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); 
+}
+
 
 .heading{
   background-color: var(--dark-brown);
