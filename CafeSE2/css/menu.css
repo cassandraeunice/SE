@@ -227,6 +227,10 @@
   .display-container {
     background-size: contain;
   }
+
+  .card-menu {
+    margin: 0;
+  }
   
 }
 
