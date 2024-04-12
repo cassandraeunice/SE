@@ -256,6 +256,12 @@
 
  .name {
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+          line-clamp: 3;
+  -webkit-box-orient: vertical;
  }
 
  .description {
@@ -277,6 +283,18 @@
 .error-msg {
   font-size: 18px;
   font-weight: 700;
+}
+
+.menu.no-subcategory {
+  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); 
+}
+
+.test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
 }
 
 /* BREAKPOINTS */
