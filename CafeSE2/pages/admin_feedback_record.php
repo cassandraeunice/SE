@@ -66,7 +66,7 @@ $sql = "SELECT f.*, CONCAT(c.customer_first_name, ' ', c.customer_last_name) AS 
         FROM Feedback f 
         INNER JOIN Customer c ON f.customer_ID = c.customer_ID
         WHERE f.feedback_timestamp BETWEEN '$startDate' AND '$endDate'
-        ORDER BY f.feedback_timestamp
+        ORDER BY f.feedback_timestamp DESC
         LIMIT $offset, $records_per_page";
 
 $result = mysqli_query($con, $sql);
