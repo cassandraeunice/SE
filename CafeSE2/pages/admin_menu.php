@@ -144,7 +144,11 @@ if (isset($_POST['product_id'])) {
                 });
             }
         });
-        
+
+        function search() {
+            var searchTerm = document.getElementById("searchInput").value.trim();
+            window.location.href = "admin_menu.php?search=" + searchTerm;
+        }
     </script>
 </head>
 
@@ -170,6 +174,11 @@ if (isset($_POST['product_id'])) {
 
     <div class="container">
         <h2>Menu Product</h2>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button onclick="search()">Search</button>
+        </div>
+        <br />
         <button class="btn btn-primary m-5"><a href="menu_operations/add_product.php" class="text-light">Add
                 Product</a></button>
         <div class="table-container">
@@ -189,7 +198,16 @@ if (isset($_POST['product_id'])) {
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT p.*, c.category_name, s.subcategory_name, p.product_popular_value FROM Product p LEFT JOIN Category c ON p.category_ID = c.category_ID LEFT JOIN Subcategory s ON p.subcategory_ID = s.subcategory_ID ORDER BY p.product_ID DESC LIMIT $offset, $records_per_page";
+                    // Get the search term from the URL
+                    $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+
+                    // Modify the SQL query to include the search term
+                    $sql = "SELECT p.*, c.category_name, s.subcategory_name, p.product_popular_value 
+        FROM Product p 
+        LEFT JOIN Category c ON p.category_ID = c.category_ID 
+        LEFT JOIN Subcategory s ON p.subcategory_ID = s.subcategory_ID 
+        WHERE p.product_name LIKE '%$searchTerm%' OR p.product_description LIKE '%$searchTerm%'
+        ORDER BY p.product_ID DESC LIMIT $offset, $records_per_page";
                     $result = mysqli_query($con, $sql);
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -257,7 +275,7 @@ if (isset($_POST['product_id'])) {
         <div class="pagination">
             <?php
             // Get total number of records
-            $sql = "SELECT COUNT(*) AS total FROM Product";
+            $sql = "SELECT COUNT(*) AS total FROM Product WHERE product_name LIKE '%$searchTerm%' OR product_description LIKE '%$searchTerm%'";
             $result = mysqli_query($con, $sql);
             $row = mysqli_fetch_assoc($result);
             $total_records = $row['total'];
@@ -380,6 +398,3 @@ if (isset($_POST['product_id'])) {
 </body>
 
 </html>
-
-
-<!-- <td><input type="checkbox" name="product_popular" value="" <?php echo $product_popular_value == 1 ? 'checked' : ''; ?> disabled></td> -->

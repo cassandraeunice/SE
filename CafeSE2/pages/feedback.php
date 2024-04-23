@@ -73,73 +73,82 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Cafe Siena</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/feedback-form.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script>
+        function validateForm() {
+            var starRatings = document.querySelectorAll('.star-rating');
+            for (var i = 0; i < starRatings.length; i++) {
+                var stars = starRatings[i].querySelectorAll('.fa-star.fa-solid');
+                if (stars.length === 0) {
+                    alert("Please rate all questions before submitting.");
+                    return false;
+                }
+            }
+            return true;
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+        var starRatings = document.querySelectorAll('.star-rating');
+        starRatings.forEach(function(starRating) {
+            var stars = starRating.querySelectorAll('.fa-star');
+            stars.forEach(function(star) {
+                star.addEventListener('click', function() {
+                    var rating = this.getAttribute('data-rating');
+                    var questionId = this.id.split('_')[1];
+                    document.getElementById('rating_' + questionId).value = rating;
+                    stars.forEach(function(s) {
+                        if (s.getAttribute('data-rating') <= rating) {
+                            s.classList.remove('fa-regular');
+                            s.classList.add('fa-solid');
+                        } else {
+                            s.classList.remove('fa-solid');
+                            s.classList.add('fa-regular');
+                        }
+                    });
+                });
+            });
+        });
+    });
+    </script>
 </head>
 
 <body>
     <div class="container">
-    <h2 class="welcome-text">Share Your Experience</h2>
-    <p class="message">We value your feedback! Help us enhance your cafe experience by sharing your thoughts on our offerings.</p>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div class="center">
-            <div class="form-group">
-                <label id="label" for="customer_first_name">First Name:</label><br></br>
-                <input type="text" class="form-control" id="customer_first_name" name="customer_first_name" placeholder="Enter your first name"><br></br>
-            </div>
-            <div class="form-group">
-                <label id="label" for="customer_last_name">Last Name:</label><br></br>
-                <input type="text" class="form-control" id="customer_last_name" name="customer_last_name" placeholder="Enter your last name"><br></br>
-            </div>
-            <div class="form-group">
-                <label id="label" for="customer_email">Email:</label><br></br>
-                <input type="email" class="form-control" id="customer_email" name="customer_email" placeholder="Enter your email"><br></br>
-            </div>
+        <h2 class="welcome-text">Share Your Experience</h2>
+        <p class="message">We value your feedback! Help us enhance your cafe experience by sharing your thoughts on our offerings.</p>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="return validateForm();">
+            <div class="center">
+                <div class="form-group">
+                    <label id="label" for="customer_first_name">First Name:</label><br></br>
+                    <input type="text" class="form-control" id="customer_first_name" name="customer_first_name" placeholder="Enter your first name"><br></br>
+                </div>
+                <div class="form-group">
+                    <label id="label" for="customer_last_name">Last Name:</label><br></br>
+                    <input type="text" class="form-control" id="customer_last_name" name="customer_last_name" placeholder="Enter your last name"><br></br>
+                </div>
+                <div class="form-group">
+                    <label id="label" for="customer_email">Email:</label><br></br>
+                    <input type="email" class="form-control" id="customer_email" name="customer_email" placeholder="Enter your email"><br></br>
+                </div>
 
-            <?php foreach ($questions as $section => $section_questions) : ?>
-                <h3><?php echo $section; ?></h3>
-                <?php foreach ($section_questions as $question) : ?>
-                    <div class="form-group">
-                        <label class="question"><?php echo $question['text']; ?></label>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ratings[<?php echo $question['id']; ?>]" id="rating_<?php echo $question['id']; ?>_5" value="5" required>
-                                    <label class="form-check-label" for="rating_<?php echo $question['id']; ?>_5">Very Good</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ratings[<?php echo $question['id']; ?>]" id="rating_<?php echo $question['id']; ?>_4" value="4" required>
-                                    <label class="form-check-label" for="rating_<?php echo $question['id']; ?>_4">Good</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ratings[<?php echo $question['id']; ?>]" id="rating_<?php echo $question['id']; ?>_3" value="3" required>
-                                    <label class="form-check-label" for="rating_<?php echo $question['id']; ?>_3">Fair</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ratings[<?php echo $question['id']; ?>]" id="rating_<?php echo $question['id']; ?>_2" value="2" required>
-                                    <label class="form-check-label" for="rating_<?php echo $question['id']; ?>_2">Poor</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ratings[<?php echo $question['id']; ?>]" id="rating_<?php echo $question['id']; ?>_1" value="1" required>
-                                    <label class="form-check-label" for="rating_<?php echo $question['id']; ?>_1">Very Poor</label><br></br>
-                                </div>
+                <?php foreach ($questions as $section => $section_questions) : ?>
+                    <h3><?php echo $section; ?></h3>
+                    <?php foreach ($section_questions as $question) : ?>
+                        <div class="form-group">
+                            <label class="question"><?php echo $question['text']; ?></label>
+                            <div class="star-rating" id="star-rating-<?php echo $question['id']; ?>">
+                                <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                    <i class="fa-star fa-regular" data-rating="<?php echo $i; ?>" id="star_<?php echo $question['id']; ?>_<?php echo $i; ?>"></i>
+                                <?php endfor; ?>
+                                <input type="hidden" name="ratings[<?php echo $question['id']; ?>]" id="rating_<?php echo $question['id']; ?>" value="0" />
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-                
-            <div class="form-group">
-                <label id="label" for="feedback_experience">Comments and Suggestions:</label><br>
-                <textarea class="form-control" id="feedback_experience" name="feedback_experience"></textarea>
-            </div>
+
+                <div class="form-group">
+                    <label id="label" for="feedback_experience">Comments and Suggestions:</label><br>
+                    <textarea class="form-control" id="feedback_experience" name="feedback_experience"></textarea>
+                </div>
             </div>
             <div class="button-container">
                 <button type="submit" class="btn btn-primary">Submit</button>

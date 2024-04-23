@@ -101,7 +101,7 @@ if (isset($_GET['sort'])) {
             c.contact_timestamp AS timestamp, c.contact_respond_value AS responded
             FROM ContactUs c
             WHERE c.contact_timestamp BETWEEN '$startDate' AND '$endDate'
-            ORDER BY $sort_condition c.contact_timestamp DESC
+            ORDER BY $sort_condition c.contact_timestamp
             LIMIT $offset, $records_per_page";
 } else {
     // Default SQL query
@@ -110,7 +110,7 @@ if (isset($_GET['sort'])) {
             c.contact_timestamp AS timestamp, c.contact_respond_value AS responded
             FROM ContactUs c
             WHERE c.contact_timestamp BETWEEN '$startDate' AND '$endDate'
-            ORDER BY c.contact_timestamp DESC
+            ORDER BY c.contact_timestamp
             LIMIT $offset, $records_per_page";
     $button_text = "Sort by Not Responded";
     $next_sort_option = "not_responded";
