@@ -10,6 +10,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 include '../connect.php';
+date_default_timezone_set('Asia/Manila');
+
 
 if (isset($_GET["email"])) {
     $email = $_GET["email"];

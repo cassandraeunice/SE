@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Argent&display=swap');
 
+
+
+
 :root {
   --cream-color: #FFF3E2;
   --coffee-color: #8F5E36;
@@ -61,22 +64,6 @@ form {
     margin: 0;
 }
   
-  input[type=email], input[type=password] {
-    width: 380px;
-    height: 40px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    margin-top: 15px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 10px;
-    background-color: white;
-    color: var(--coffee-color);
-  }
-
   label {
     font-size: 25px;
   }
@@ -142,6 +129,9 @@ form {
     align-items: center;
     height: 100vh;
 }
+
+
+
   
   @media screen and (max-width: 600px) {
     span.psw {

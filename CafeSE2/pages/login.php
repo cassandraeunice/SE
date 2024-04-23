@@ -55,8 +55,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Cafe Siena</title>
     <link rel="stylesheet" href="../css/login.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+<style> 
 
+.password-container {
+            position: relative;
+        }
+
+        #passwordField {
+            padding-right: 30px; 
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 55%;
+            right: 20px; 
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 1;
+            opacity: 0.8;
+        }
+        .toggle-password:hover {
+            color: #555;
+        }
+
+input[type=email], input[type=password], input[type=text] {
+  width: 380px;
+  height: 40px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  margin-top: 15px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 10px;
+  background-color: white;
+  color: var(--coffee-color);
+}
+
+</style>
 <body>
 
 
@@ -72,7 +113,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="email" placeholder="Enter Email" name="email" required>
 
                 <label for="psw">Password</label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <div class="password-container">
+                    <input type="password" placeholder="Enter Password" name="psw" id="passwordField" required >
+                    <i class='bx bx-low-vision toggle-password'></i>
+                </div>
                 <span class="psw"><a href="./forget_password_operations/forgot_password.php">Forgot password?</a></span>
 
                 <button type="submit">LOGIN</button>
@@ -88,6 +132,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     alert('<?php echo $error_message; ?>');
                 <?php endif; ?>
             };
+
+                //pass visible
+                $(document).on('click', '.toggle-password', function() {
+        var passwordField = $('#passwordField');
+        var fieldType = passwordField.attr('type');
+        if (fieldType === 'password') {
+            passwordField.attr('type', 'text');
+            $(this).removeClass('bx-low-vision').addClass('bx-show');
+        } else {
+            passwordField.attr('type', 'password');
+            $(this).removeClass('bx-show').addClass('bx-low-vision')
+        }
+    });
         </script>
 
 </body>

@@ -19,7 +19,7 @@ if(isset($_POST['homeBtn'])){
     exit();
 }
 
-$query = "SELECT admin_email, admin_password, code_expiration FROM cafe_siena3.admin";
+$query = "SELECT admin_email, admin_password, code_expiration FROM cafe_siena.admin";
 $result = mysqli_query($con, $query);
 
 if(mysqli_num_rows($result) > 0) {
