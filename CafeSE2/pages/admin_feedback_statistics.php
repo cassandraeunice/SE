@@ -100,6 +100,66 @@ if(isset($_POST['homeBtn'])){
 //                               GROUP BY s.section_name, q.question_text
 //                               ORDER BY s.section_name, q.question_text";
 // $resultMonthlyQuestionAverage = mysqli_query($con, $sqlMonthlyQuestionAverage);
+
+
+
+// Calculate Average by Section within the date range
+$sqlSectionAverageDateRange1 = "SELECT DATE_FORMAT(f.feedback_timestamp, '%b %Y') AS month_year, s.section_name, AVG(r.rating_number) AS monthly_average
+                                    FROM Feedback f
+                                    INNER JOIN Rating r ON f.feedback_ID = r.feedback_ID
+                                    INNER JOIN Question q ON r.question_ID = q.question_ID
+                                    INNER JOIN Section s ON q.section_ID = s.section_ID
+                                    WHERE f.feedback_timestamp BETWEEN '$startDate' AND '$endDate'
+                                    GROUP BY month_year, s.section_name
+                                    ORDER BY month_year, s.section_name";
+$resultSectionAverageDateRange1 = mysqli_query($con, $sqlSectionAverageDateRange1);
+
+// Store data for the chart
+$labels = []; // Array to store labels (month_year)
+$foodData = []; // Array to store average ratings for Food
+$serviceData = []; // Array to store average ratings for Service
+
+while ($row = mysqli_fetch_assoc($resultSectionAverageDateRange1)) {
+    // Add month_year to labels array if not already present
+    $monthYear = $row['month_year'];
+    if (!in_array($monthYear, $labels)) {
+        $labels[] = $monthYear;
+    }
+
+    // Store average rating for Food and Service
+    if ($row['section_name'] === 'Food') {
+        $foodData[$monthYear] = round($row['monthly_average'], 2);
+    } elseif ($row['section_name'] === 'Service') {
+        $serviceData[$monthYear] = round($row['monthly_average'], 2);
+    }
+}
+
+// Sort the labels array based on month and year
+usort($labels, function($a, $b) {
+    $aDate = strtotime($a);
+    $bDate = strtotime($b);
+    return $aDate - $bDate;
+});
+
+// Prepare datasets for Chart.js
+$datasets = [
+    [
+        'label' => 'Food',
+        'data' => array_values($foodData), // Extract the values (average ratings)
+        'borderColor' => 'red', // Set color for Food data
+        'fill' => false, // Do not fill the area under the line
+    ],
+    [
+        'label' => 'Service',
+        'data' => array_values($serviceData), // Extract the values (average ratings)
+        'borderColor' => 'blue', // Set color for Service data
+        'fill' => false, // Do not fill the area under the line
+    ],
+];
+
+// Convert labels and datasets to JSON format for JavaScript
+$labels_json = json_encode($labels);
+$datasets_json = json_encode($datasets);
 ?>
 
 <!DOCTYPE html>
@@ -111,34 +171,6 @@ if(isset($_POST['homeBtn'])){
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard-feedback-statistics.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script>
-        function setupDateRange() {
-            var startDateInput = document.getElementById('start_date');
-            var endDateInput = document.getElementById('end_date');
-
-            function updateEndDateMin() {
-                endDateInput.min = startDateInput.value;
-            }
-
-            function updateStartDateMax() {
-                startDateInput.max = endDateInput.value;
-            }
-
-            startDateInput.addEventListener('change', function() {
-                updateEndDateMin();
-            });
-
-            endDateInput.addEventListener('change', function() {
-                updateStartDateMax();
-                if (endDateInput.value < startDateInput.value) {
-                    startDateInput.value = endDateInput.value;
-                }
-            });
-
-            updateEndDateMin();
-            updateStartDateMax();
-        }
-    </script>
 </head>
 
 <body onload="setupDateRange()">
@@ -173,6 +205,10 @@ if(isset($_POST['homeBtn'])){
             <input type="submit" name="submit" value="Apply">
         </form>
 
+        <h3>Chart: Average Ratings Over Time</h3>
+    <div class="chart-container">
+        <canvas id="myLineChart"></canvas>
+    </div>
         <!-- Average Ratings by Section within Date Range -->
         <h3>Average Ratings by Section (Date Range: <?php echo $startDate; ?> to <?php echo $endDate; ?>)</h3>
         <table class="table">
@@ -218,6 +254,67 @@ if(isset($_POST['homeBtn'])){
         </table>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+        const ctxLine = document.getElementById('myLineChart');
+
+// Parse the PHP-generated JSON data into JavaScript arrays
+const labels = <?php echo $labels_json; ?>;
+const datasets = <?php echo $datasets_json; ?>;
+
+new Chart(ctxLine, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: datasets
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Average Rating'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Months'
+                }
+            }
+        }
+    }
+});
+
+function setupDateRange() {
+    var startDateInput = document.getElementById('start_date');
+    var endDateInput = document.getElementById('end_date');
+
+    function updateEndDateMin() {
+        endDateInput.min = startDateInput.value;
+    }
+
+    function updateStartDateMax() {
+        startDateInput.max = endDateInput.value;
+    }
+
+    startDateInput.addEventListener('change', function() {
+        updateEndDateMin();
+    });
+
+    endDateInput.addEventListener('change', function() {
+        updateStartDateMax();
+        if (endDateInput.value < startDateInput.value) {
+            startDateInput.value = endDateInput.value;
+        }
+    });
+
+    updateEndDateMin();
+    updateStartDateMax();
+}
+    </script>
+    
 
 </html>
 
