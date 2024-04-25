@@ -96,10 +96,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="change-header">New Password</p>
 
             <label for="psw">New Password</label>
-            <input type="password" placeholder="Enter password" name="psw" required>
+            <input type="password" placeholder="Enter password" name="psw" required onpaste="return false;">
 
             <label for="confirm-psw">Confirm Password</label>
-            <input type="password" placeholder="Enter confirm password" name="confirm-psw" required>
+            <input type="password" placeholder="Enter confirm password" name="confirm-psw" required onpaste="return false;">
 
             <button type="submit">Change</button>
         </div>

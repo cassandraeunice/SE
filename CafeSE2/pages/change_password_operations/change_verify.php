@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p class="verify-header">Verification Code</p>
 
         <label for="code">Input Change Password Verification Code</label>
-        <input class="verification-code" type="text" placeholder="Input Change Password Code..." name="code" required>
+        <input class="verification-code" type="text" placeholder="Input Change Password Code..." name="code" required onpaste="return false;">
             <style>
                 .verification-code {
                     width: 380px;

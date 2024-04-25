@@ -90,10 +90,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="change-header">New Email</p>
 
             <label for="email">New Email</label>
-            <input type="email" placeholder="Enter email" name="email" class="emailTx" required>
+            <input type="email" placeholder="Enter email" name="email" class="emailTx" required onpaste="return false;">
 
             <label for="confirm-email">Confirm Email</label>
-            <input type="email" placeholder="Enter confirm email" name="confirm-email" class="emailTx" required>
+            <input type="email" placeholder="Enter confirm email" name="confirm-email" class="emailTx" required onpaste="return false;">
 
             <style>
             .emailTx {

@@ -114,7 +114,7 @@ input[type=email], input[type=password], input[type=text] {
 
                 <label for="psw">Password</label>
                 <div class="password-container">
-                    <input type="password" placeholder="Enter Password" name="psw" id="passwordField" required >
+                    <input type="password" placeholder="Enter Password" name="psw" id="passwordField" required  onpaste="return false;">
                     <i class='bx bx-low-vision toggle-password'></i>
                 </div>
                 <span class="psw"><a href="./forget_password_operations/forgot_password.php">Forgot password?</a></span>

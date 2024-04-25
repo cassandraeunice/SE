@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="forgot-header">Forgot Password</p>
 
             <label for="email">Email</label>
-            <input type="email" placeholder="Enter Email..." name="email" required>
+            <input type="email" placeholder="Enter Email..." name="email" required onpaste="return false;">
       
             <button type="submit">Send verification code</button>
 
