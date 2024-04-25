@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error_message = "Invalid Verification Code";
         } else {
             // Verification code is correct, redirect to password-change.html
-            header("Location: ./password_change.php");
+            header("Location: ./email_change.php");
             exit();
         }
     }
