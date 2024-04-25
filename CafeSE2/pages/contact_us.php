@@ -117,9 +117,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="inquiry-text">We’d love to hear from you. Drop us a line if you have any questions.</p>
             </div>
             <div class="subj-input">
-                <label for="subject">Subject:</label><br></br>
-                <input type="text" class="form-control" id="subject" name="subject" required value="<?php echo $subject; ?>" placeholder="Enter subject"><br></br>
-            </div>
+            <label for="subject">Subject:</label><br>
+            <select id="subject" name="subject" required><br></br>
+                <option value="">Select a subject</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Reservation">Reservation</option>
+                <option value="Intimate Events">Intimate Events</option>
+                <option value="Catering">Catering</option>
+                <option value="Packed Meals">Packed Meals</option>
+            </select><br><br>
+        </div>
             <div class="message-input">
                 <label for="message">Message:</label><br></br>
                 <textarea class="form-control" id="message" name="message" rows="5" required><?php echo $message; ?></textarea><br></br>
