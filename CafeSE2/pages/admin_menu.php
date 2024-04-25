@@ -176,7 +176,7 @@ if (isset($_POST['product_id'])) {
         <h2>Menu Product</h2>
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Search...">
-            <button onclick="search()">Search</button>
+            <button id="searchBtn" onclick="search()">Search</button>
         </div>
         <br />
         <button class="btn btn-primary m-5"><a href="menu_operations/add_product.php" class="text-light">Add

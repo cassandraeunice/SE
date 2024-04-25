@@ -193,3 +193,29 @@ body {
     padding: 0 5px;
     color: #333;
 }
+
+.search-bar {
+    display: flex; 
+    justify-content: right; 
+    
+}
+
+#searchInput {
+    height: 30px;
+    width: 300px;
+    color: var(--dark-color-2);
+    font-size: 18px;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: var(--dark-color-2) solid 2px;
+}
+
+#searchBtn {
+    height: 35px;
+    width: 100px;
+    font-size: 18px;
+    color: var(--white-color);
+    background-color: var(--dark-color-2);
+    border-radius: 10px;
+
+}
