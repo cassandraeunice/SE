@@ -6,7 +6,7 @@ include '../connect.php';
 $admin_ID = 1;
 
 // Fetch admin email from database
-$sql = "SELECT admin_email FROM admin WHERE admin_ID = ?";
+$sql = "SELECT admin_email FROM Admin WHERE admin_ID = ?";
 $stmt = $con->prepare($sql);
 $stmt->bind_param("i", $admin_ID);
 $stmt->execute();

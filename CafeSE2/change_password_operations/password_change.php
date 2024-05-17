@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_ID = 1;
 
     // Select hashed password from the database
-    $sql = "SELECT admin_password FROM admin
+    $sql = "SELECT admin_password FROM Admin
             WHERE admin_ID = ?";
 
     $stmt = $con->prepare($sql);
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
             // Update the password in the database
-            $updateSql = "UPDATE admin
+            $updateSql = "UPDATE Admin
                 SET admin_password = ?,
                     verification_code = NULL,
                     code_expiration = NULL

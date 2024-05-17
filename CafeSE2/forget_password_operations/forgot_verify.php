@@ -9,7 +9,7 @@ date_default_timezone_set('Asia/Manila');
 $remainingTime = 0;
 
 // Retrieve code expiration value from the database
-$sql = "SELECT * FROM admin WHERE admin_ID = 1";
+$sql = "SELECT * FROM Admin WHERE admin_ID = 1";
 $stmt = $con->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -21,7 +21,7 @@ $remainingTime = max(0, $codeExpiration - $currentTimestamp);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $verificationCode = $_POST["code"];
 
-    $sql = "SELECT * FROM admin
+    $sql = "SELECT * FROM Admin
             WHERE verification_code = ?";
 
     $stmt = $con->prepare($sql);

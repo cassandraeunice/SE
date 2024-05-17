@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $admin_ID = 1;
 
         // select update all
-        $sql = "SELECT * FROM admin
+        $sql = "SELECT * FROM Admin
                 WHERE admin_ID = ?";
         
         $stmt = $con->prepare($sql);

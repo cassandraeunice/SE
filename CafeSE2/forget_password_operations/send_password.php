@@ -17,7 +17,7 @@ if (isset($_GET["email"])) {
     $verificationCode = sprintf('%06d', mt_rand(0, 999999));
     $expiry = date("Y-m-d H:i:s", strtotime("+3 minutes"));
 
-    $sql = "UPDATE admin
+    $sql = "UPDATE Admin
             SET verification_code = ?,
                 code_expiration = ?
             WHERE admin_email = ?";

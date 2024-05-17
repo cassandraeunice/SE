@@ -19,7 +19,7 @@ $error_message = ""; // Initialize error message variable
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_ID = 1;
 // select update all
-    $sql = "SELECT * FROM admin
+    $sql = "SELECT * FROM Admin
             WHERE admin_ID = ?";
 
     $stmt = $con->prepare($sql);
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } elseif ($newEmail === $currentEmail) {
             $error_message = "New email cannot be the same as the current email";
         } else {
-            $updateSql = "UPDATE admin
+            $updateSql = "UPDATE Admin
                 SET admin_email = ?,
                     verification_code = NULL,
                     code_expiration = NULL
