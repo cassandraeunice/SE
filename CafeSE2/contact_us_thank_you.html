@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cafe Siena</title>
+
+        <link rel="stylesheet" href="css/contact-us-thank-you.css">
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Thank You for Reaching Out!</h1>
+            <p>We've received your message and appreciate your interest in Café Siena. Our team will respond promptly.</p>
+    
+            <p>For the latest updates and specials, follow us on social media.</p>
+    
+            <p>Thank you for choosing Café Siena!</p>
+
+            <!-- Countdown Timer -->
+            <h6 class="countdown-text">You will be redirected to the previous page in <span id="countdown">5</span> seconds.</h6>
+
+            <script type="text/javascript">
+                var timeleft = 5;
+                var countdownTimer = setInterval(function(){
+                    timeleft--;
+                    document.getElementById("countdown").textContent = timeleft;
+                    if(timeleft <= 0) {
+                        clearInterval(countdownTimer);
+                        window.location.href = "home.php";
+                    }
+                }, 1000);
+            </script>
+        </div>
+    </body>
+</html>
