@@ -230,10 +230,11 @@
 }
 
 .about-card-text {
-  font-size: 22px;
+  font-size: 18px;
   align-items: center;
   margin-bottom: 80px;
   text-align: justify;
+  padding: 3px;
 
 }
 
@@ -280,8 +281,8 @@
   }
 
   .about-card-text {
-    font-size: 18px;
-    padding: 5px;
+    font-size: 14px;
+    padding: 3px;
   }
 
   .about-container {

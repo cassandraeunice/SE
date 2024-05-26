@@ -393,11 +393,12 @@
 }
 
 .about-card-text {
-  font-size: 22px;
+  font-size: 18px;
   align-items: center;
   margin-bottom: 80px;
   font-family: 'Poppins', sans-serif;
   text-align: justify;
+  padding: 3px;
 }
 
 .know-more {
@@ -459,7 +460,7 @@
 }
 
 .about-card-text {
-  font-size: 18px;
+  font-size: 14px;
 }
 }
 
