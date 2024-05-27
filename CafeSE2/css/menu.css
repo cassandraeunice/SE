@@ -231,6 +231,11 @@
   .card-menu {
     margin: 0;
   }
+
+  .card-menu {
+    height: 100px;
+    width: 100px;
+  }
   
 }
 
