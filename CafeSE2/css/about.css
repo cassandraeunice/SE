@@ -451,5 +451,6 @@ footer {
 @media (max-width: 992px) {
   .footer-content .copyright {
     width: 150px;
+    font-size: 8px;
   }
 }
