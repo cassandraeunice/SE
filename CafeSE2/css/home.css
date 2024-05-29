@@ -569,8 +569,6 @@ footer {
   }
 }
 
-
-
 .titleProduct,
 .descProduct,
 .welcome-message h3,
@@ -593,3 +591,8 @@ body {
  main {
   flex: 1 0 auto;
  }
+
+ html, body {
+  width: 100%;
+  overflow-x: hidden;
+} 
